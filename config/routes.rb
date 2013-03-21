@@ -2,7 +2,7 @@ Agile2go::Application.routes.draw do
   resources :users
   resources :sprints
   resources :projects
-  root :to => "home#index"
+  root :to => "home#home"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

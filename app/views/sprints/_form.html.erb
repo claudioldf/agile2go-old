@@ -2,7 +2,7 @@
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
+      <%= f.text_field :name, :class => 'text_field input-xlarge' %>
     </div>
   </div>
   <div class="control-group">
@@ -12,27 +12,27 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :and_date, :class => 'control-label' %>
+    <%= f.label :deadLine, :class => 'control-label' %>
     <div class="controls">
-      <%= f.date_select :and_date, :class => 'date_select' %>
+      <%= f.date_select :and_date, :class => 'date_select input-xlarge' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :daily_scrum, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :daily_scrum, :class => 'text_field' %>
+      <%= f.text_field :daily_scrum, :class => 'text_field input-xlarge' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :goal, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :goal, :class => 'text_area' %>
+      <%= f.text_area :goal, :class => 'text_area input-xlarge' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :project, :class => 'control-label' %>    
     <div class="controls">
-      <%= collection_select :project, :project_id, @projects, :id, :name, {:prompt => "select a project"}, :class => 'text_field' %>
+      <%= collection_select :project, :project_id, @projects, :id, :name, {:prompt => "select a project"}, :class => 'text_field input-xlarge' %>
     </div>
   </div>
 
