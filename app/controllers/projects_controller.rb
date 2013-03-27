@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   
   def index
-    @projects = Project.all        
+    @projects = Project.all      
   end
   
   def show
@@ -13,32 +13,35 @@ class ProjectsController < ApplicationController
   end
   
   def edit
-    @project = Project.find(params[:id])
+    #authorize! :index, @project, :message => 'Not authorized as an administrator.'
+    @project = Project.find(params[:id])    
   end
   
   def create
     @project = Project.new(params[:project])
-    
+
+    #authorize! :save, @projects, :message => 'Not authorized as an administrator.'    
     if @project.save
-      redirect_to @project, notice: 'Project was successfully created.'        
+      redirect_to projects_path, :notice => "Project updated."
     else
-      render action: "new"                   
+      redirect_to projects_path, :alert => "Unable to update project."
     end
   end
   
   def update
     @project = Project.find(params[:id])
-    
-    if @project.update_attributes(params[:project])
-      redirect_to @project, notice: 'Project was successfully updated.'         
+
+    authorize! :update, @projects, :message => 'Not authorized as an administrator.'    
+    if @project.update_attributes(params[:user], :as => :admin)
+      redirect_to projects_path, :notice => "Project updated."
     else
-      render action: "edit"   
-    end               
+      redirect_to projects_path, :alert => "Unable to update project."
+    end
   end
   
   def destroy
     @project = Project.find(params[:id])
     @project.destroy    
-    redirect_to @project
+    redirect_to projects_path, :notice => "Project deleted."
   end
 end

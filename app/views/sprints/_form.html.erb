@@ -1,43 +1,12 @@
-<%= form_for @sprint, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="control-group">
-    <%= f.label :name, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :name, :class => 'text_field input-xlarge' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :start_date, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.date_select :start_date, :class => 'date_select' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :deadLine, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.date_select :and_date, :class => 'date_select input-xlarge' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :daily_scrum, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :daily_scrum, :class => 'text_field input-xlarge' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :goal, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_area :goal, :class => 'text_area input-xlarge' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :project, :class => 'control-label' %>    
-    <div class="controls">
-      <%= collection_select :project, :project_id, @projects, :id, :name, {:prompt => "select a project"}, :class => 'text_field input-xlarge' %>
-    </div>
-  </div>
-
+<%= simple_form_for @sprint, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :start_date %>
+  <%= f.input :end_date %>
+  <%= f.input :daily_scrum %>
+  <%= f.input :goal %>
+  <%= f.input :project_id, collection: Project.all %>
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 sprints_path, :class => 'btn' %>
   </div>

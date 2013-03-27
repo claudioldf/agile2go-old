@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Agile2go::Application.config.secret_token = '82a8185ebf43617ddfb297d3321d8ac19ed9b2aae283dac1d6d628fd43192f9ee0f7645b41680057941fb013330f832fef37b978c5f7c1cd76afb0f4fda10e51'
+Agile::Application.config.secret_token = '41aa79780d2bc269d5ed6a149e160314c6f3108e72a2ae51135f877018560aefa410ff70715cbc697dafe5ecbd9ec53eac6fe6a9a52dbf7d8fae46b96f207a5d'

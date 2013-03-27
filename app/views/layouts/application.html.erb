@@ -1,53 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>agile2go</title>
-  <!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"
-	type="text/javascript"></script> 
-	<![endif]-->
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-<div class="navbar navbar-fixed-top navbar-inverse">
-	<div class="navbar-inner">
-    	<div class="container">     
-    		<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-    		<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-    			<span class="icon-bar"></span>
-    			<span class="icon-bar"></span>
-    			<span class="icon-bar"></span>
-    		</a>     
-    			<!-- Be sure to leave the brand out there if you want it shown -->
-    		<a class="brand" href="http://0.0.0.0:3000/">Agile2Go</a>     
-    			<!-- Everything you want hidden at 940px or less, place within here -->    			
-    		<div class="nav-collapse collapse">
-    			<!-- .nav, .navbar-search, .navbar-form, etc -->
-    			<ul class="nav">
-    				<li><%= link_to "Projects", projects_path %></li>
-            <li><%= link_to "Sprints", sprints_path %></li>
-            <li><%= link_to "Users", users_path %></li>            
-    				<li><%= link_to "About Us" %></li>
-    				<li><%= link_to "Logout" %></li>
-    			</ul>
-    		</div>     
-    	</div>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "agile2go" %></title>
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"
+      type="text/javascript"></script> 
+    <![endif]-->
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Agile2Go" %>">
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>    
+    <%= yield(:head) %>
+  </head>
+  <body class="<%= controller_name %> <%= action_name %>">
+    <div class="navbar navbar-fixed-top navbar-inverse">
+      <nav class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>          
+          <%= render 'layouts/navigation' %>
+          </div>
+        </div>
+      </nav>
     </div>
-</div>	
-<div class="container">
-	<div class="row">
-		<div class="span9">
-			<%= yield %>
-		</div>
-		<!-- <div class="span3">
-			<h2>About Us</h2>
-			Agile2Go is a opensource project for agile projects.
-		</div> -->
-	</div>	
-</div>
-
-</body>
+    <div id="main" role="main">
+      <div class="container">
+        <div class="content">
+           <div class="row">
+            <div class="span12">
+              <%= render 'layouts/messages' %>
+              <%= yield %>
+            </div>
+          </div>
+          <footer>
+          </footer>
+        </div>
+      </div> <!--! end of .container -->
+    </div> <!--! end of #main -->
+  </body>
 </html>

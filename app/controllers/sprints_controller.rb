@@ -1,16 +1,15 @@
 class SprintsController < ApplicationController
   
   def index
-    @sprints = Sprint.all              
+    @sprints = Sprint.all    
   end
-  
+
   def show
-    @sprint = Sprint.find(params[:id])        
+    @sprint = Sprint.find(params[:id])    
   end
   
   def new
-    @sprint = Sprint.new
-    @projects = Project.all        
+    @sprint = Sprint.new    
   end
   
   def edit
@@ -19,26 +18,28 @@ class SprintsController < ApplicationController
   
   def create
     @sprint = Sprint.new(params[:sprint])
-    
+
     if @sprint.save
-      redirect_to @sprint, notice: 'Sprint was successfully created.'        
+      redirect_to sprints_path, :notice => "Sprint updated."
     else
-      render action: "new"    
-    end               
+      redirect_to sprints_path, :alert => "Unable to update sprint."
+    end
   end
   
   def update
     @sprint = Sprint.find(params[:id])
-    
-    if @sprint.update_attributes(params[:sprint])
-      redirect_to @sprint, notice: 'Sprint was successfully updated.'        
+
+    authorize! :update, @sprint, :message => 'Not authorized as an administrator.'    
+    if @sprint.update_attributes(params[:user], :as => :admin)
+      redirect_to sprints_path, :notice => "Sprint updated."
     else
-      render action: "edit"                   
+      redirect_to sprints_path, :alert => "Unable to update sprint."
     end
   end
   
   def destroy
     @sprint = Sprint.find(params[:id])
-    @sprint.destroy        
+    @sprint.destroy
+    redirect_to sprints_path, :notice => "Sprint deleted."    
   end
 end

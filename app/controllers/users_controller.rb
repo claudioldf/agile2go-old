@@ -1,43 +1,45 @@
 class UsersController < ApplicationController
-  
+  before_filter :authenticate_user!
+
   def index
-    @users = User.all    
+    #authorize! :index, @user, :message => 'Not authorized as an administrator.'
+    @users = User.all
   end
-  
-  def show
-    @user = User.find(params[:id])  
+
+  def show    
+    @user = User.find(params[:id])
   end
-  
+
   def new
+    #authorize! :index, @user, :message => 'Not authorized as an administrator.'
     @user = User.new    
   end
 
   def edit
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'
     @user = User.find(params[:id])
-  end
-  
-  def create
-    @user = User.new(params[:user])
-    
-    if @user.save
-      redirect_to @user, notice: 'User was successfully created.'        
-    else
-      render action: "new"             
-    end
   end
   
   def update
+    #authorize! :update, @user, :message => 'Not authorized as an administrator.'
     @user = User.find(params[:id])
-    
-    if @user.update_attributes(params[:user])
-      redirect_to @user, notice: 'User was successfully updated.'        
+    if @user.update_attributes(params[:user], :as => :admin)
+      redirect_to users_path, :notice => "User updated."
     else
-      render action: "edit"   
-    end                
+      redirect_to users_path, :alert => "Unable to update user."
+    end
   end
-  
+    
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy    
+    #authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to users_path, :notice => "User deleted."
+    #unless user == current_user
+     # user.destroy
+      #redirect_to users_path, :notice => "User deleted."
+    #else
+     # redirect_to users_path, :notice => "Can't delete yourself."
+   # end
   end
 end

@@ -1,22 +1,15 @@
-<%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-  <div class="container">
-    <h2 class="brand">Please sign in</h2>
-  <div class="control-group">
-    <%= f.label :email, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :email, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :password, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.password_field :password, :class => 'text_field' %>
-    </div>
-  </div>
+<div style="text-align: center; height: 250px;">
+  <% if !user_signed_in? %>    
+    <br />
+    <h1>Agile2Go</h1>      
+    <h4>Scrum Management for those loves Agile!</h4>    
+    <br />    
+      <tr>      	
+        <td>      
+          <a class="btn btn-inverse btn-large" href="https://github.com/rafaeljesus/agile.git">
+            <i class="icon-github-sign"></i>Fork Me
+          </a>            
+        </td>      
+      </tr>        
+  <% end %>  
 </div>
-<div class="form-actions">
-    <%= f.submit :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                users_path, :class => 'btn' %>
-  </div>
-<% end %>

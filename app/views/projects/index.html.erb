@@ -4,8 +4,7 @@
 </div>
 <table class="table table-striped">
   <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
+    <tr>      
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:company) %></th>
@@ -15,9 +14,8 @@
   </thead>
   <tbody>
     <% @projects.each do |project| %>
-      <tr>
-        <td><%= link_to project.id, project_path(project) %></td>
-        <td><%= project.name %></td>
+      <tr>        
+        <td><%= link_to project.name, project_path(project) %></td>
         <td><%= project.description %></td>
         <td><%= project.company %></td>
         <td><%=l project.created_at %></td>
