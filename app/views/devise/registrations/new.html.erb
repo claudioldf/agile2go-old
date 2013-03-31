@@ -1,11 +1,16 @@
-<h2>Sign up</h2>
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
+<div class="page-header">
+	<h2>Sign up</h2>
+</div>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal' }) do |f| %>
   <%= f.error_notification %>
-  <%= display_base_errors resource %>
-  <%= f.input :name, :placeholder => 'Name', :autofocus => true %>
-  <%= f.input :email, :placeholder => 'Email', :required => true %>
-  <%= f.input :password, :placeholder => 'Password', :required => true %>
-  <%= f.input :password_confirmation, :placeholder => 'Confirmation', :required => true %>
-  <%= f.button :submit, 'Sign up', :class => 'btn-primary btn-large' %>
+  <%= display_base_errors resource %>  
+  <%= f.input :name, :placeholder => 'Name', :autofocus => true, input_html: { class: 'text_field input-xlarge' } %>
+  <%= f.input :email, :placeholder => 'Email', :required => true, input_html: { class: 'text_field input-xlarge' } %>
+  <%= f.input :password, :placeholder => 'Password', :required => true, input_html: { class: 'text_field input-xlarge' } %>
+  <%= f.input :password_confirmation, :placeholder => 'Confirmation', :required => true, input_html: { class: 'text_field input-xlarge' } %>
+  <div class="form-actions">
+  	<%= f.button :submit, 'Sign up', :class => 'btn-primary btn-large' %>
+  </div>
+  <%= render "devise/shared/links" %>
 <% end %>
-<%= render "devise/shared/links" %>
+
