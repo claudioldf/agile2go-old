@@ -27,9 +27,9 @@ class SprintsController < ApplicationController
   end
   
   def update
+    #authorize! :update, @sprint, :message => 'Not authorized as an administrator.'    
     @sprint = Sprint.find(params[:id])
-
-    authorize! :update, @sprint, :message => 'Not authorized as an administrator.'    
+  
     if @sprint.update_attributes(params[:user], :as => :admin)
       redirect_to sprints_path, :notice => "Sprint updated."
     else

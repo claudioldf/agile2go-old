@@ -12,7 +12,7 @@
       <th><%= model_class.human_attribute_name(:daily_scrum) %></th>
       <th><%= model_class.human_attribute_name(:goal) %></th>
       <th><%= model_class.human_attribute_name(:project_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th>Registered</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -26,7 +26,7 @@
         <td><%= sprint.daily_scrum %></td>
         <td><%= sprint.goal %></td>
         <td><%= sprint.project_id %></td>
-        <td><%=l sprint.created_at %></td>
+        <td><%=l sprint.created_at.to_date %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_sprint_path(sprint), :class => 'btn btn-mini' %>
