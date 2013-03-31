@@ -8,6 +8,7 @@ group :assets do
   gem "less-rails"
   gem "twitter-bootstrap-rails"
 end
+gem 'bootstrap-datepicker-rails'
 gem 'jquery-rails'
 gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]
 gem "database_cleaner", ">= 1.0.0.RC1", :group => :test

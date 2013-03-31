@@ -9,8 +9,7 @@
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:start_date) %></th>
       <th><%= model_class.human_attribute_name(:end_date) %></th>
-      <th><%= model_class.human_attribute_name(:daily_scrum) %></th>
-      <th><%= model_class.human_attribute_name(:goal) %></th>
+      <th><%= model_class.human_attribute_name(:daily_scrum) %></th>      
       <th><%= model_class.human_attribute_name(:project_id) %></th>
       <th>Registered</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -23,9 +22,8 @@
         <td><%= sprint.name %></td>
         <td><%= sprint.start_date %></td>
         <td><%= sprint.end_date %></td>
-        <td><%= sprint.daily_scrum %></td>
-        <td><%= sprint.goal %></td>
-        <td><%= sprint.project_id %></td>
+        <td><%= sprint.daily_scrum %></td>        
+        <td><%= sprint.project.name %></td>
         <td><%=l sprint.created_at.to_date %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
