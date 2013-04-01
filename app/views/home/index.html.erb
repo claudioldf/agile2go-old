@@ -1,7 +1,7 @@
+<% if !user_signed_in? %>    
 <div class="container">
   <div class="hero-unit">
-    <div style="text-align: center; height: 250px;">
-      <% if !user_signed_in? %>    
+    <div style="text-align: auto; height: 250px;">      
         <br />
         <h1>Agile2Go</h1>      
         <h4>Scrum Management for those loves Agile!</h4>    
@@ -13,9 +13,23 @@
               </a>            
             </td>      
           </tr>              
-      <% else %>
-        <p class="text-info">Here user will see all the projects in a panel</p>
-      <% end %>  
     </div>
   </div>
 </div>
+<% else %>
+<div class="page-header">
+  <h1>Current Projects</h1>
+  <hr class="bs-docs-separator">  
+  <div style="text-align:left;">
+    <div class="alert alert-info">        
+      <strong>Agile2Go</strong>
+    </div>  
+    <div class="alert alert-info">
+      <strong>SocialPM</strong>
+    </div>  
+  </div>
+</div>
+<hr class="bs-docs-separator">  
+<% end %>  
+
+    
