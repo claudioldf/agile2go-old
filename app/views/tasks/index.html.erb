@@ -21,7 +21,7 @@
         <td><%= task.priority %></td>
         <td><%= task.hours %></td>
         <td><%= task.status %></td>
-        <td><%= task.sprint_id %></td>
+        <td><%= task.sprint.name %></td>
         <td><%=l task.created_at.to_date %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
