@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
+  before_filter :authenticate_user!
   
   def index
-    @projects = Project.all      
+    @projects = Project.paginate :per_page => 5, :page => params[:page]
   end
   
   def show
@@ -29,9 +30,9 @@ class ProjectsController < ApplicationController
   end
   
   def update
-    @project = Project.find(params[:id])
-
     authorize! :update, @projects, :message => 'Not authorized as an administrator.'    
+    @project = Project.find(params[:id])
+    
     if @project.update_attributes(params[:user], :as => :admin)
       redirect_to projects_path, :notice => "Project updated."
     else

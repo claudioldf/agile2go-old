@@ -1,7 +1,8 @@
 class SprintsController < ApplicationController
+  before_filter :authenticate_user!
   
   def index
-    @sprints = Sprint.all    
+    @sprints = Sprint.paginate :per_page => 5, :page => params[:page]
   end
 
   def show
