@@ -23,15 +23,11 @@
         <td><%= user.created_at.to_date %></td>
         <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %></td>
         <td>
-          <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini btn-inverse" type="button">Change role</a>          
+          <a id="modal" data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini btn-inverse" type="button">Change role</a>
           <%= render user %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_user_path(user), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      user_path(user),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger'%>
+                      edit_user_path(user), :class => 'btn btn-mini' %>    
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")), user, confirm: "Are you sure you want to delete '#{user.name}'?", method: :delete, :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
     <% end %>
