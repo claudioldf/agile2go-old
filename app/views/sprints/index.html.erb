@@ -5,14 +5,13 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:start_date) %></th>
-      <th><%= model_class.human_attribute_name(:end_date) %></th>
-      <th><%= model_class.human_attribute_name(:daily_scrum) %></th>      
-      <th><%= model_class.human_attribute_name(:project_id) %></th>
-      <th>Registered</th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <th>#Id</th>
+      <th>Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Daily Scrum</th>      
+      <th>Project</th>
+      <th>Registered</th>      
     </tr>
   </thead>
   <tbody>
@@ -26,9 +25,8 @@
         <td><%= sprint.project.name %></td>
         <td><%=l sprint.created_at.to_date %></td>
         <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_sprint_path(sprint), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")), sprint, confirm: "Are you sure you want to delete '#{sprint.name}'?", method: :delete, :class => 'btn btn-mini btn-danger' %>
+          <%= link_to content_tag('i', '', class: 'icon-edit'), edit_sprint_path(sprint) %>
+          <%= link_to content_tag('i', '', class: 'icon-trash '), sprint, confirm: "Are you sure you want to delete '#{sprint.id}'?", method: :delete  %>
         </td>
       </tr>
     <% end %>
