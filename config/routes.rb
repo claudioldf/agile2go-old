@@ -4,8 +4,7 @@ Agile::Application.routes.draw do
   resources :projects
 
   authenticated :user do    
-    root :to => "home#index"  
-    #match 'users' => 'home#index', :as => 'user_root'
+    root :to => "home#index"      
   end
   devise_scope :user do
     get "sign_up", :to => "devise/resgistrations#new"
