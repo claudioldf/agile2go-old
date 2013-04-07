@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable  
   attr_accessible :role_ids, :as => :admin
-  attr_protected :name, :email, :password, :password_confirmation, :remember_me, :avatar_url
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :avatar_url
 
   private
 
