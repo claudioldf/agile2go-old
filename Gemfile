@@ -8,12 +8,12 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem "less-rails"
-  gem "twitter-bootstrap-rails"
-  gem "bootstrap-sass", ">= 2.3.0.0"
+  gem "twitter-bootstrap-rails"  
 end
 group :production do
   gem 'pg'  
 end
+gem "bootstrap-sass", ">= 2.3.0.0"
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-rails'
 gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]

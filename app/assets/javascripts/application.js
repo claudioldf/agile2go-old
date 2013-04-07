@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require twitter/bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-modal
 //= require bootstrap-datepicker/core
