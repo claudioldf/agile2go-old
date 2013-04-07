@@ -12,11 +12,8 @@ group :assets do
   gem "bootstrap-sass", ">= 2.3.0.0"
 end
 group :production do
-  gem 'pg'
-  gem 'activerecord-postgresql-adapter'
+  gem 'pg'  
 end
-gem 'pg'
-gem 'activerecord-postgresql-adapter'
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-rails'
 gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]
