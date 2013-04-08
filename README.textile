@@ -60,7 +60,7 @@ If you add functionality to this application, create an alternative implementati
 
 h2. Maintainers
 
-* Rafael Jesus [github/rafaeljesus](https://github.com/rafaeljesus)
+* Rafael Jesus (https://github.com/rafaeljesus)
 
 h2. Demo
 
