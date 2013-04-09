@@ -7,5 +7,5 @@ Agile::Application.routes.draw do
     root :to => "home#index"      
   end  
   root :to => "home#index"  
-  devise_for :users, :path => "auth"      
+  devise_for :users, :path => "auth", :controllers => { :registrations => "devise/registrations" }      
 end
