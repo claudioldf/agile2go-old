@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   rolify  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable  
-  attr_accessible :role_ids, :as => :admin
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :avatar_url
+  attr_protected :role_ids, :as => :admin
+  attr_protected :name, :email, :password, :password_confirmation, :remember_me, :avatar_url
 
   private
 
