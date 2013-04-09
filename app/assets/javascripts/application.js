@@ -12,9 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require bootstrap-datepicker
-//= require bootstrap-modal
 //= require bootstrap-datepicker/core
+//= require twitter/bootstrap/bootstrap-transition
+//= require twitter/bootstrap/bootstrap-alert
+//= require twitter/bootstrap/bootstrap-modal
+//= require twitter/bootstrap/bootstrap-button
+//= require twitter/bootstrap/bootstrap-collapse
 //= require_tree .
 
 $(document).on("focus", "[data-behaviour~='datepicker']", function(e){
