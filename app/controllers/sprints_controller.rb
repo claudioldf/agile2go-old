@@ -3,6 +3,7 @@ class SprintsController < ApplicationController
   
   def index
     @sprints = Sprint.paginate :per_page => 5, :page => params[:page]
+    @sprint = Sprint.new 
   end
 
   def show

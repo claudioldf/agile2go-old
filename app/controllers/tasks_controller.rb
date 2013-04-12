@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   
   def index
     @tasks = Task.paginate :per_page => 5, :page => params[:page]
+    @task = Task.new
   end
   
   def show
@@ -10,7 +11,7 @@ class TasksController < ApplicationController
   end
   
   def new
-    @task = Task.new
+    @task = Task.new    
   end
   
   def edit

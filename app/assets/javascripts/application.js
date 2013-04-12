@@ -16,6 +16,7 @@
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require twitter/bootstrap/bootstrap-transition
+//= require twitter/bootstrap/bootstrap-tooltip
 //= require twitter/bootstrap/bootstrap-alert
 //= require twitter/bootstrap/bootstrap-modal
 //= require twitter/bootstrap/bootstrap-button
@@ -25,3 +26,13 @@
 $(document).on("focus", "[data-behaviour~='datepicker']", function(e){
     $(this).datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true})
 });
+
+jQuery( function($) {
+    
+});
+
+$(function(){
+  
+});
+
+
