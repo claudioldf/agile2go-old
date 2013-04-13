@@ -27,12 +27,17 @@ $(document).on("focus", "[data-behaviour~='datepicker']", function(e){
     $(this).datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true})
 });
 
-jQuery( function($) {
-    
+
+$(document).ready(function(){
+	$("#edit-tooltip").tooltip(this.id);
+	$("#del-tooltip").tooltip(this.id);
+	$("#modal").tooltip(this.id);    	
 });
 
-$(function(){
-  
-});
+function tooltip(id) {
+    $(id).tooltip('toogle');   	
+}
 
+$(function(){  
+});
 

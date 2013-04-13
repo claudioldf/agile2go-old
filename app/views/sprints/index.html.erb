@@ -30,8 +30,8 @@
         <td><%= sprint.project.name %></td>
         <td><%=l sprint.created_at.to_date %></td>
         <td>
-          <%= link_to content_tag('i', '', class: 'icon-edit'), edit_sprint_path(sprint) %>
-          <%= link_to content_tag('i', '', class: 'icon-trash '), sprint, confirm: "Are you sure you want to delete '#{sprint.id}'?", method: :delete  %>
+          <%= link_to content_tag('i', '', class: 'icon-edit'), edit_sprint_path(sprint), :id => 'edit-tooltip', :title => 'edit' %>
+          <%= link_to content_tag('i', '', class: 'icon-trash '), sprint, :id => 'del-tooltip', :title => 'delete', confirm: "Are you sure you want to delete '#{sprint.id}'?", method: :delete  %>
         </td>
       </tr>
     <% end %>
