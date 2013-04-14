@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/rweng/jquery-datatables-rails.git
+  revision: 494f752b8eb8350f33841c822a67d014c869219f
+  specs:
+    jquery-datatables-rails (1.11.2)
+      jquery-rails
+
+GIT
   remote: git://github.com/yrgoldteeth/bootstrap-will_paginate.git
   revision: 994fbb96ab52d2bdbb6035e534060f9df18b34c6
   specs:
@@ -228,6 +235,7 @@ DEPENDENCIES
   email_spec (>= 1.4.0)
   factory_girl_rails (>= 4.2.0)
   figaro (>= 0.6.3)
+  jquery-datatables-rails!
   jquery-rails
   launchy (>= 2.2.0)
   less-rails

@@ -1,5 +1,3 @@
-# Override Rails handling of confirmation
-
 $.rails.allowAction = (element) ->
   # The message is something like "Are you sure?"
   message = element.data('confirm')

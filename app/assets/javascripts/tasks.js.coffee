@@ -1,12 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-
-jQuery ->  
-  $("#done").tooltip()
-
-# Override Rails handling of confirmation
-
 $.rails.allowAction = (element) ->
   # The message is something like "Are you sure?"
   message = element.data('confirm')
