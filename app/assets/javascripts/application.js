@@ -13,10 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
-//= require bootstrap-datepicker
-//= require bootstrap-datepicker/core
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
+//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
 //= require twitter/bootstrap/bootstrap-transition
 //= require twitter/bootstrap/bootstrap-tooltip
 //= require twitter/bootstrap/bootstrap-alert
@@ -25,9 +25,9 @@
 //= require twitter/bootstrap/bootstrap-collapse
 //= require_tree .
 
-$(document).ready(function(){
-	$("#edit-tooltip").tooltip(this.id);
-	$("#del-tooltip").tooltip(this.id);		
+$(document).ready(function(){	
+  $("#edit-tooltip").tooltip(this.id);
+  $("#del-tooltip").tooltip(this.id);     
 	dataTable();	
 });
 
@@ -40,7 +40,8 @@ function dataTable(){
     	"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
     	"sPaginationType": "bootstrap",    	 
   		"sScrollX": "100%",
-  		"bScrollCollapse": true,  		
+  		"bScrollCollapse": true
+      //"aoColumns": [null, null]  		
  	});
 }
 

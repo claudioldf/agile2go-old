@@ -12,6 +12,7 @@
       <th>Daily Scrum</th>      
       <th>Project</th>
       <th>Registered</th>      
+      <th>Actions</th>      
     </tr>
   </thead>
   <tbody>
@@ -32,8 +33,6 @@
     <% end %>
   </tbody>
 </table>
-
-<%= will_paginate %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_sprint_path,

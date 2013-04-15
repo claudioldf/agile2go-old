@@ -17,7 +17,8 @@
       <th>Hours</th>
       <th>Status</th>
       <th>Sprint</th>
-      <th>Registered</th>      
+      <th>Registered</th>   
+      <th>Actions</th>   
     </tr>
   </thead>
   <tbody>
@@ -45,8 +46,6 @@
     <% end %>
   </tbody>
 </table>
-
-<%= will_paginate %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_task_path,

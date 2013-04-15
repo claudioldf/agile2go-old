@@ -2,8 +2,7 @@ class TasksController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @tasks = Task.paginate :per_page => 5, :page => params[:page]
-    @task = Task.new
+    @tasks = Task.all    
   end
   
   def show
