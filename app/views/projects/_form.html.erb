@@ -2,8 +2,9 @@
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :company %>
-  <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
+  <%= f.association :users, collection: User.all(order: 'name') %>  
+  <div class="form-actions">            
+    <%= f.button :submit, :class => 'btn-primary' %>        
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 projects_path, :class => 'btn' %>
   </div>

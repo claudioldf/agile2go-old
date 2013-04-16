@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130406225722) do
+ActiveRecord::Schema.define(:version => 20130416224920) do
 
   create_table "projects", :force => true do |t|
-    t.string   "company"
-    t.text     "description"
     t.string   "name"
+    t.string   "description"
+    t.string   "company"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -33,11 +33,11 @@ ActiveRecord::Schema.define(:version => 20130406225722) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "sprints", :force => true do |t|
-    t.string   "daily_scrum"
-    t.date     "end_date"
-    t.date     "start_date"
-    t.text     "goal"
     t.string   "name"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.string   "daily_scrum"
+    t.string   "goal"
     t.integer  "project_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
@@ -70,9 +70,13 @@ ActiveRecord::Schema.define(:version => 20130406225722) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.string   "name"
+    t.string   "avatar_url"
+    t.integer  "project_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["project_id"], :name => "index_users_on_project_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "users_roles", :id => false, :force => true do |t|

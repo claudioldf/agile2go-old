@@ -11,17 +11,17 @@ class ProjectsController < ApplicationController
   
   def new
     @project = Project.new    
+    #@users = User.all(order: 'name')
   end
   
   def edit
     #authorize! :index, @project, :message => 'Not authorized as an administrator.'
     @project = Project.find(params[:id])    
+    #@users = User.all(order: 'name')
   end
   
   def create
-    @project = Project.new(params[:project])
-
-    #authorize! :save, @projects, :message => 'Not authorized as an administrator.'    
+    #authorize! :save, @projects, :message => 'Not authorized as an administrator.'        
     if @project.save
       redirect_to projects_path, :notice => "Project updated."
     else
@@ -30,8 +30,8 @@ class ProjectsController < ApplicationController
   end
   
   def update
-    authorize! :update, @projects, :message => 'Not authorized as an administrator.'    
-    @project = Project.find(params[:id])
+    #authorize! :update, @projects, :message => 'Not authorized as an administrator.'        
+    @project = Project.find(params[:id])    
     
     if @project.update_attributes(params[:user], :as => :admin)
       redirect_to projects_path, :notice => "Project updated."
