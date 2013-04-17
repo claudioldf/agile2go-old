@@ -2,7 +2,7 @@
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :company %>
-  <%= f.association :users, collection: User.all(order: 'name') %>  
+  <%= f.association :users, collection: @users %>  
   <div class="form-actions">            
     <%= f.button :submit, :class => 'btn-primary' %>        
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

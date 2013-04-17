@@ -10,14 +10,14 @@ class ProjectsController < ApplicationController
   end
   
   def new
-    @project = Project.new    
-    #@users = User.all(order: 'name')
+    @project = Project.new        
+    @users = User.all(order: 'name')
   end
   
   def edit
     #authorize! :index, @project, :message => 'Not authorized as an administrator.'
-    @project = Project.find(params[:id])    
-    #@users = User.all(order: 'name')
+    @project = Project.find(params[:id])        
+    @users = User.all(order: 'name')    
   end
   
   def create
