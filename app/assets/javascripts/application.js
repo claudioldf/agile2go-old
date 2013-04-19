@@ -26,13 +26,35 @@
 //= require_tree .
 
 $(document).ready(function(){	
-  $("#edit-tooltip").tooltip(this.id);
-  $("#del-tooltip").tooltip(this.id);     
+  loadTooltip();
 	dataTable();	
 });
 
-function tooltip(id){
-    $(id).tooltip('toogle');   	
+function loadTooltip(){
+  editTooltip();
+  delTooltip();  
+  homeTooltip();
+}
+
+function homeTooltip(){
+  $("a#home-tootip").each(function(){
+    $(this).tooltip();       
+  });       
+  return false;
+}
+
+function editTooltip(){
+  $("a#edit-tooltip").each(function(){
+    $(this).tooltip();       
+  });     	
+  return false;
+}
+
+function delTooltip(){
+  $("a#del-tooltip").each(function(){
+    $(this).tooltip();       
+  });       
+  return false;
 }
 
 function dataTable(){

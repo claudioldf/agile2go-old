@@ -1,35 +1,30 @@
 <% if !user_signed_in? %>    
-<div class="container">
-  <div class="hero-unit">
-    <div style="text-align: center; height: 250px;">
-        <br />
-        <h1>Agile2Go</h1>
-        <h4>Scrum Management for those loves Agile!</h4>
-        <br />
-          <tr>
-            <td>
-              <a class="btn btn-inverse btn-large" href="https://github.com/rafaeljesus/agile.git">
-                <i class="icon-github-sign"></i>Fork Me
-              </a>
-            </td>
-          </tr>
-    </div>
-  </div>
+<div class="container">  
+  <div style="text-align: center; height: 250px;">
+    <br />
+    <h1>Agile2Go</h1>
+    <h4>Scrum Management for those loves Agile!</h4>
+    <br />
+    <tr>
+      <td>
+        <a class="btn btn-inverse btn-large" href="https://github.com/rafaeljesus/agile.git">
+          <i class="icon-github-sign"></i>Fork Me
+        </a>
+      </td>
+    </tr>
+  </div>  
 </div>
-<% else %>
-  <h1>Current Projects</h1>
-  <hr class="bs-docs-separator">    
+<% else %>    
     <div class="page-header">
     <% @projects.each do |project| %>
-      <div style="text-align:left;">
-        <div class="alert alert-info">        
-          <strong><%= link_to project.name, project %></strong>
-        </div>
-      </div>      
+      <div style="text-align:left;">                                  
+        <a id="home-tootip" href="<%= projects_path %>" title="<%= project.description %>"><%= project.name %></a>          
+      </div>            
+    </div>          
     <% end %>          
   </div>
-<hr class="bs-docs-separator">  
 </div>
 <% end %>  
+
 
     
