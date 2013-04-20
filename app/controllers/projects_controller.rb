@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_filter :authenticate_user!
   
   def index
+    authorize! :index, @project, :message => 'Not authorized as an administrator.'
     @projects = Project.all
   end
   
@@ -15,14 +16,14 @@ class ProjectsController < ApplicationController
   end
   
   def edit
-    #authorize! :index, @project, :message => 'Not authorized as an administrator.'
+    authorize! :edit, @project, :message => 'Not authorized as an administrator.'
     @project = Project.find(params[:id])        
     @users = User.all(order: 'name')    
   end
   
   def create
-    #authorize! :save, @projects, :message => 'Not authorized as an administrator.'        
-    @project = Projects.new(params[:project])
+    authorize! :create, @projects, :message => 'Not authorized as an administrator.'        
+    @project = Project.new(params[:project])
     if @project.save
       redirect_to projects_path, :notice => "Project updated."
     else
@@ -32,7 +33,7 @@ class ProjectsController < ApplicationController
   end
   
   def update
-    #authorize! :update, @projects, :message => 'Not authorized as an administrator.'        
+    authorize! :update, @projects, :message => 'Not authorized as an administrator.'        
     @project = Project.find(params[:id])    
     if @project.update_attributes(params[:project], :as => :admin)
       redirect_to projects_path, :notice => "Project updated."

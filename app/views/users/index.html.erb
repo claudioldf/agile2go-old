@@ -25,9 +25,9 @@
         <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %></td>
         <td>
           <% if current_user.has_role? :admin %>    
-            <a id="modal" data-toggle="modal" href="#role-options-<%= user.id %>" class="icon-th-large" title="change role"></a>
+            <a id="change-role" data-toggle="modal" href="#role-options-<%= user.id %>" class="icon-th-large" title="change role"></a>
             <%= render user %>
-          <% end %>                    
+          <% end %>                               
           <%= link_to content_tag('i', '', class: 'icon-edit'), edit_user_path(user), :id => 'edit-tooltip', :title => 'edit' %>
           <%= link_to content_tag('i', '', class: 'icon-trash '), user, :id => 'del-tooltip', :title => 'delete', confirm: "Are you sure you want to delete '#{user.name}'?", method: :delete  %>                    
         </td>

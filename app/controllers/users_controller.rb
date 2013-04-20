@@ -10,8 +10,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def new
-    #authorize! :new, @user, :message => 'Not authorized as an administrator.'
+  def new    
     @user = User.new    
   end
 
@@ -19,7 +18,7 @@ class UsersController < ApplicationController
     #authorize! :edit, @user, :message => 'Not authorized as an administrator.'
     @user = User.find(params[:id])
   end
-  
+
   def update
     #authorize! :update, @user, :message => 'Not authorized as an administrator.'
     @user = User.find(params[:id])
@@ -31,7 +30,7 @@ class UsersController < ApplicationController
   end
     
   def destroy
-    #authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
+    authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
     @user = User.find(params[:id])
     #unless @user == current_user
       @user.destroy

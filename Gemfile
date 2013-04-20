@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-gem 'rails', '3.2.12'
 group :development, :test do
 	gem 'sqlite3'
 end
@@ -14,6 +13,7 @@ end
 group :production do
   gem 'pg'  
 end
+gem 'rails', '3.2.12'
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-rails'
 gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]

@@ -32,8 +32,16 @@ $(document).ready(function(){
 
 function loadTooltip(){
   editTooltip();
-  delTooltip();  
+  delTooltip(); 
+  changeRoleTootip();  
   homeTooltip();
+}
+
+function changeRoleTootip(){
+  $("a#change-role").each(function(){
+    $(this).tooltip();       
+  });       
+  return false;
 }
 
 function homeTooltip(){
