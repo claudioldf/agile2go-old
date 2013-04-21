@@ -36,6 +36,14 @@
   </tbody>
 </table>    
 
+<% if @users.size > 0 %>
+  <p>
+    Download:
+    <%= link_to "CSV", users_path(format: "csv") %> |
+    <%= link_to "Excel", users_path(format: "xls") %>
+  </p>
+<% end %>
+
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_user_path,
             :class => 'btn btn-primary' %>

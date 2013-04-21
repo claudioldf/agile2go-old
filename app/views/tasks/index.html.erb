@@ -47,6 +47,14 @@
   </tbody>
 </table>
 
+<% if @tasks.size > 0 %>
+  <p>
+    Download:
+    <%= link_to "CSV", tasks_path(format: "csv") %> |
+    <%= link_to "Excel", tasks_path(format: "xls") %>
+  </p>
+<% end %>
+
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_task_path,
             :class => 'btn btn-primary' %>

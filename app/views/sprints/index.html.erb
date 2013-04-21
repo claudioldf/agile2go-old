@@ -34,6 +34,14 @@
   </tbody>
 </table>
 
+<% if @sprints.size > 0 %>
+  <p>
+    Download:
+    <%= link_to "CSV", sprints_path(format: "csv") %> |
+    <%= link_to "Excel", sprints_path(format: "xls") %>
+  </p>
+<% end %>
+
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_sprint_path,
             :class => 'btn btn-primary' %>

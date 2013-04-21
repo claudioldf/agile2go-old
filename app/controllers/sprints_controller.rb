@@ -2,7 +2,12 @@ class SprintsController < ApplicationController
   before_filter :authenticate_user!
   
   def index
-    @sprints = Sprint.all    
+    @sprints = Sprint.order(:name)    
+    respond_to do |format|
+      format.html
+      format.csv { send_data @sprints.to_csv }
+      format.xls { send_data @sprints.to_csv(col_sep: "\t") }
+    end
   end
 
   def show

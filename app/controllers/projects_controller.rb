@@ -3,7 +3,12 @@ class ProjectsController < ApplicationController
   
   def index
     authorize! :index, @project, :message => 'Not authorized as an administrator.'
-    @projects = Project.all
+    @projects = Project.order(:name)
+    respond_to do |format|
+      format.html
+      format.csv { send_data @projects.to_csv }
+      format.xls { send_data @projects.to_csv(col_sep: "\t") }
+    end
   end
   
   def show

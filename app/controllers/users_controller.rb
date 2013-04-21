@@ -3,7 +3,12 @@ class UsersController < ApplicationController
 
   def index
     #authorize! :index, @user, :message => 'Not authorized as an administrator.'
-    @users = User.all
+    @users = User.order(:name)
+      respond_to do |format|
+      format.html
+      format.csv { send_data @users.to_csv }
+      format.xls { send_data @users.to_csv(col_sep: "\t") }
+    end
   end
 
   def show    
@@ -39,4 +44,5 @@ class UsersController < ApplicationController
      # redirect_to users_path, :notice => "Can't delete yourself."
     #end
   end
+  
 end

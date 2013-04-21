@@ -13,6 +13,7 @@ end
 group :production do
   gem 'pg'  
 end
+gem 'roo'
 gem 'rails', '3.2.12'
 gem 'bootstrap-datepicker-rails'
 gem 'jquery-rails'
