@@ -29,11 +29,10 @@
 </table>
 
 <% if @projects.size > 0 %>
-  <p>
-    Download:
-    <%= link_to "CSV", projects_path(format: "csv") %> |
-    <%= link_to "Excel", projects_path(format: "xls") %>
-  </p>
+  <ul class="nav nav-pills">      
+    <li class="active"><%= link_to "CSV", projects_path(format: "csv"), :id => 'csv-tip', :title => 'export to .csv' %></li>                        
+    <li class="active"><%= link_to "Excel", projects_path(format: "xls"), :id => 'xls-tip', :title => 'export to .xls' %></li>
+  </ul>                                          
 <% end %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),

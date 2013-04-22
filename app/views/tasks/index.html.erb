@@ -48,13 +48,15 @@
 </table>
 
 <% if @tasks.size > 0 %>
-  <p>
-    Download:
-    <%= link_to "CSV", tasks_path(format: "csv") %> |
-    <%= link_to "Excel", tasks_path(format: "xls") %>
-  </p>
+  <ul class="nav nav-pills">      
+    <li class="active"><%= link_to "CSV", tasks_path(format: "csv"), :id => 'csv-tip', :title => 'export to .csv' %></li>                        
+    <li class="active"><%= link_to "Excel", tasks_path(format: "xls"), :id => 'xls-tip', :title => 'export to .xls' %></li>
+  </ul>                                            
 <% end %>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_task_path,
             :class => 'btn btn-primary' %>
+
+
+

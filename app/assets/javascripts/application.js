@@ -35,6 +35,17 @@ function loadTooltip(){
   delTooltip(); 
   changeRoleTootip();  
   homeTooltip();
+  cvsTooltip();
+}
+
+function cvsTooltip(){
+  $("a#csv-tip").each(function(){
+    $(this).tooltip();       
+  });
+  $("a#xls-tip").each(function(){
+    $(this).tooltip();       
+  });       
+  return false;
 }
 
 function changeRoleTootip(){
