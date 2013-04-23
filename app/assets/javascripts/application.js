@@ -23,6 +23,7 @@
 //= require twitter/bootstrap/bootstrap-modal
 //= require twitter/bootstrap/bootstrap-button
 //= require twitter/bootstrap/bootstrap-collapse
+//= require highcharts
 //= require_tree .
 
 $(document).ready(function(){	
@@ -89,5 +90,7 @@ function dataTable(){
 $(document).on("focus", "[data-behaviour~='datepicker']", function(e){
     $(this).datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true})
 });
+
+
 
 
