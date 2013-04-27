@@ -3,12 +3,6 @@
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
 
-<div class="progress">
-  <div id="done" class="bar bar-info" style="width: 35%;"><p>Done</p></div>      
-  <div id="ongoing" class="bar bar-warning" style="width: 20%;">Ongoing</div>
-  <div id="todo" class="bar bar-danger" style="width: 10%;">Todo</div>
-</div>
-
 <table class="datatable table table-striped table-bordered table-condensed">  
   <thead>
     <tr>
@@ -36,7 +30,7 @@
         <% if task.status == 'DONE' %>    
           <td><span class="label label-info"><%= task.status %></span></td>
         <% end %>
-        <td><%= task.sprint.name %></td>
+        <td><%= task.sprint.name %> - <%= task.sprint.project.name %></td>
         <td><%=l task.created_at.to_date %></td>
         <td>          
           <%= link_to content_tag('i', '', class: 'icon-edit'), edit_task_path(task), :id => 'edit-tooltip', :title => 'edit' %>
