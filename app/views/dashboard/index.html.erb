@@ -1,0 +1,43 @@
+<br />
+<div id="chart" style="width:100%; height:400px;"></div>
+
+<script>        
+	$(function(){ 
+        $('#content').removeClass('content')
+    	$('#chart').highcharts({
+        	chart: {
+            	type: 'bar'
+        	},
+        	title: {
+            	text: 'Dashboard'
+        	},
+        	xAxis: {
+            	categories: [ <% @projects.map do |p| %> '<%= p.name %>', <% end %> ]
+        	},
+        	yAxis: {
+            	title: {
+	                text: 'Qtd'
+            	}
+        	},
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                }
+            },
+        	series: [                                                 
+            {
+            	name: 'TODO',                
+            	data: [ 20, 43, 56 ]
+        	},                           
+            {
+                name: 'ONGOING',                
+                data: [ 34, 21, 4 ]
+            },                           
+            {
+                name: 'DONE',                
+                data: [ 2, 8, 76 ]
+            }                           
+            ]
+    	});
+	});
+</script>
