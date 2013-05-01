@@ -5,11 +5,8 @@ class Project < ActiveRecord::Base
   attr_accessible :company, :description, :name, :user_ids
   validates_presence_of :company, :description, :name
 
-  scope :names, select("name")
-  scope :qtd, select('count(t.id) as qtd').joins('join sprints s on s.project_id = projects.id join tasks t on t.sprint_id = s.id').group('projects.id, s.id, t.status')
-
-  joins(":sprints => :tasks").select("distinct status")
-
+  scope :names, select("name")  
+  
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << column_names

@@ -14,8 +14,9 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])    
   end
   
-  def new
-    @task = Task.new    
+  def new    
+    @task = Task.new        
+    sprints
   end
   
   def edit
@@ -58,5 +59,16 @@ class TasksController < ApplicationController
       format.html { redirect_to tasks_url }
       format.json { head :no_content }
     end
+  end  
+
+  private
+  
+  def sprints
+    @sprints = Array.new
+      @list = Sprint.all
+      @list.map do |s|
+          @sprints << s.name + ' - ' + s.project.name
+      end     
   end
+
 end

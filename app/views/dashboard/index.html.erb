@@ -24,19 +24,13 @@
                     stacking: 'normal'
                 }
             },
-        	series: [                                                 
+        	series: [                         
+            <% @tasks.map do |t| %>                        
             {
-            	name: 'TODO',                
-            	data: [ 20, 43, 56 ]
-        	},                           
-            {
-                name: 'ONGOING',                
-                data: [ 34, 21, 4 ]
-            },                           
-            {
-                name: 'DONE',                
-                data: [ 2, 8, 76 ]
-            }                           
+            	name: '<%= t.status %>',                
+            	data: <%= qtd_by(t.status , @projects) %>
+        	},                 
+            <% end %>                      
             ]
     	});
 	});

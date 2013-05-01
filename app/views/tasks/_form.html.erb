@@ -3,7 +3,7 @@
   <%= f.input :hours, placeholder: "Hours", input_html: { class: 'text_field input-xlarge' } %>
   <%= f.input :status, placeholder: "Status", collection: [ "TODO", "ONGOING", "DONE"], input_html: { class: 'text_field input-xlarge' } %>
   <%= f.input :priority, collection: 1..5, prompt: "Select Priority", input_html: { class: 'text_field input-xlarge' } %>
-  <%= f.input :sprint_id, collection: Sprint.all, prompt: "Select Sprint", input_html: { class: 'text_field input-xlarge' } %>
+  <%= f.input :sprint_id, collection: @sprints, prompt: "Select Sprint", input_html: { class: 'text_field input-xlarge' } %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
