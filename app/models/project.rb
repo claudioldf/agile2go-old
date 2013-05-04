@@ -1,6 +1,5 @@
 class Project < ActiveRecord::Base
 	has_many :users
-  #has_many :sprints
   accepts_nested_attributes_for :users, :allow_destroy => true
   attr_accessible :company, :description, :name, :user_ids
   validates_presence_of :company, :description, :name
@@ -9,9 +8,9 @@ class Project < ActiveRecord::Base
   
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << column_names
+      csv << ["Name", "Description", "Company", "Registered"]
         all.each do |project|
-        csv << project.attributes.values_at(*column_names)
+        csv << [project.name, project.description, project.company, project.created_at.to_date]
       end
     end
   end

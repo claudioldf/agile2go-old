@@ -1,0 +1,16 @@
+<table>    
+  <tr>      
+    <th>Name</th>
+    <th>Description</th>
+    <th>Company</th>
+    <th>Registered</th>        
+  </tr>  
+  <% @projects.each do |project| %>
+    <tr>        
+      <td><%= project.name %></td>
+      <td><%= project.description %></td>
+      <td><%= project.company %></td>
+      <td><%= project.created_at.to_date %></td>      
+    </tr>
+  <% end %>
+</table>

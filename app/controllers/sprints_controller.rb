@@ -6,7 +6,7 @@ class SprintsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { send_data @sprints.to_csv }
-      format.xls { send_data @sprints.to_csv(col_sep: "\t") }
+      format.xls #{ send_data @sprints.to_csv(col_sep: "\t") }
     end
   end
 
@@ -26,9 +26,9 @@ class SprintsController < ApplicationController
     authorize! :create, @project, :message => 'Not authorized as an administrator.'
     @sprint = Sprint.new(params[:sprint])
     if @sprint.save
-      redirect_to sprints_path, :notice => "Sprint updated."
+      redirect_to sprints_path, :notice => "Sprint created."
     else      
-      render action: "new", :alert => "Unable to create project."
+      render action: "new", :alert => "Unable to create sprint."
     end
   end
   

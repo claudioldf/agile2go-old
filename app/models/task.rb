@@ -6,12 +6,12 @@ class Task < ActiveRecord::Base
   scope :names, select("distinct status")
 
   def self.to_csv(options = {})
-    CSV.generate(options) do |task|
-      csv << column_names
-        all.each do |task|
-        csv << task.attributes.values_at(*column_names)
+    CSV.generate(options) do |csv|
+      csv << ["Id", "Status", "Priority", "Hours", "Registered", "Sprint", "Project"]
+        all.each do |task|        
+        csv << [task.id, task.status, task.priority, task.hours, task.created_at.to_date, task.sprint.name, task.sprint.project.name]
       end
     end
-  end
+  end  
 
 end

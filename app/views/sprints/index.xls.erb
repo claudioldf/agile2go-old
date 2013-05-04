@@ -1,0 +1,22 @@
+<table>    
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Daily Scrum</th>      
+    <th>Project</th>
+    <th>Registered</th>          
+  </tr>    
+  <% @sprints.each do |sprint| %>
+    <tr>
+      <td><%= sprint.id %></td>
+      <td><%= sprint.name %></td>
+      <td><%= sprint.start_date %></td>
+      <td><%= sprint.end_date %></td>
+      <td><%= sprint.daily_scrum %></td>        
+      <td><%= sprint.project.name %></td>
+      <td><%= sprint.created_at.to_date %></td>      
+    </tr>
+  <% end %>  
+</table>

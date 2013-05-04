@@ -2,11 +2,11 @@ class TasksController < ApplicationController
   before_filter :authenticate_user!
     
   def index
-    @tasks = Task.all    
-      respond_to do |format|
+    @tasks = Task.order(:id)    
+    respond_to do |format|
       format.html
       format.csv { send_data @tasks.to_csv }
-      format.xls { send_data @tasks.to_csv(col_sep: "\t") }
+      format.xls #{ send_data @tasks.to_csv(col_sep: "\t") }
     end
   end
   
@@ -24,41 +24,31 @@ class TasksController < ApplicationController
   end
   
   def create
+    authorize! :create, @task, :message => 'Not authorized as an administrator.'
     @task = Task.new(params[:task])
-
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render json: @task, status: :created, location: @task }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
-    end
+    
+    if @task.save
+      redirect_to tasks_path, :notice => "Task created."
+    else
+      render action: "new", :alert => "Unable to create task."    
+    end        
   end
   
   def update
-    @task = Task.find(params[:id])
-
-    respond_to do |format|
-      if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
-    end
+    authorize! :destroy, @task, :message => 'Not authorized as an administrator.'    
+    @task = Task.find(params[:id])  
+    
+    if @task.update_attributes(params[:task], :as => :admin)
+      redirect_to tasks_path, :notice => "Task updated."
+    else      
+      render action: "edit", :alert => "Unable to update task."
+    end        
   end
   
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
-
-    respond_to do |format|
-      format.html { redirect_to tasks_url }
-      format.json { head :no_content }
-    end
+    redirect_to tasks_path, :notice => "Task deleted."    
   end  
 
   private

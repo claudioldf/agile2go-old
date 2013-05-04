@@ -1,0 +1,22 @@
+<table>    
+  <tr>
+    <th>Id</th>   
+    <th>Status</th>   
+    <th>Priority</th>
+    <th>Hours</th>    
+    <th>Registered</th>         
+    <th>Sprint</th>
+    <th>Project</th>
+  </tr>    
+  <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.id %></td>        
+      <td><%= task.status %></td>            
+      <td><%= task.priority %></td>
+      <td><%= task.hours %></td>          
+      <td><%= task.created_at.to_date %></td>      
+      <td><%= task.sprint.name %></td>
+      <td><%= task.sprint.project.name %></td>      
+    </tr>
+  <% end %>  
+</table>
