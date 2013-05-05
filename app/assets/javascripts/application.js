@@ -23,7 +23,6 @@
 //= require twitter/bootstrap/bootstrap-modal
 //= require twitter/bootstrap/bootstrap-button
 //= require twitter/bootstrap/bootstrap-collapse
-//= require highcharts
 //= require_tree .
 
 $(document).ready(function(){	
