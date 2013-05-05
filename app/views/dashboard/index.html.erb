@@ -28,11 +28,10 @@
             <% @tasks.map do |t| %>                        
             {
             	name: '<%= t.status %>',                
-            	data: <%= qtd_by(t.status , @projects) %>
+            	data: <%=raw qtd_by(t.status , @projects) %>
         	},                         
             <% end %>                              
             ]            
-    	});
-        alert(<%= @projects.size %>);
+    	});        
 	});    
 </script>
