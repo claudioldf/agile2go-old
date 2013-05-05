@@ -2,7 +2,7 @@
 <div id="chart" style="width:100%; height:400px;"></div>
 
 <script>        
-	$(function(){ 
+	$(document).ready({
         $('#content').removeClass('content')
     	$('#chart').highcharts({
         	chart: {
@@ -28,7 +28,7 @@
             <% @tasks.map do |t| %>                        
             {
             	name: '<%= t.status %>',                
-            	data: <%= qtd_by t.status , @projects %>
+            	data: <%= qtd_by(t.status , @projects) %>
         	},                 
             <% end %>                      
             ]
