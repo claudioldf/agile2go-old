@@ -9,6 +9,7 @@ group :assets do
   gem "less-rails"
   gem "twitter-bootstrap-rails"  
   gem "bootstrap-sass", ">= 2.3.0.0"
+  gem 'jquery-rails'
 end
 group :production do
   gem 'pg'  
@@ -16,7 +17,6 @@ end
 gem 'roo'
 gem 'rails', '3.2.12'
 gem 'bootstrap-datepicker-rails'
-gem 'jquery-rails'
 gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]
 gem "database_cleaner", ">= 1.0.0.RC1", :group => :test
 gem "email_spec", ">= 1.4.0", :group => :test
