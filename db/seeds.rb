@@ -17,38 +17,3 @@
 #puts 'user: ' << user.name
 #user.add_role :admin
 
-12.times do |i|
-  Task.create(storie: "As a SCRUM MASTER i want to delete any project", priority: 3, hours: "#{i}:00", status: "TODO", sprint_id: 1)
-end
-
-6.times do |i|
-  Task.create(storie: "As a SCRUM MASTER i want to delete any project", priority: 2, hours: "#{i}:00", status: "ONGOING", sprint_id: 1)
-end
-
-3.times do |i|
-  Task.create(storie: "As a SCRUM MASTER i want to delete any project", priority: 2, hours: "#{i}:00", status: "DONE", sprint_id: 1)
-end
-
-32.times do |i|
-  Task.create(storie: "As a SCRUM MASTER i want to delete any project", priority: 3, hours: "#{i}:00", status: "TODO", sprint_id: 2)
-end
-
-6.times do |i|
-  Task.create(storie: "As a SCRUM MASTER i want to delete any project", priority: 2, hours: "#{i}:00", status: "ONGOING", sprint_id: 2)
-end
-
-2.times do |i|
-  Task.create(storie: "As a SCRUM MASTER i want to delete any project", priority: 2, hours: "#{i}:00", status: "DONE", sprint_id: 2)
-end
-
-6.times do |i|
-  Task.create(storie: "As a SCRUM MASTER i want to delete any project", priority: 3, hours: "#{i}:00", status: "TODO", sprint_id: 3)
-end
-
-2.times do |i|
-  Task.create(storie: "As a SCRUM MASTER i want to delete any project", priority: 2, hours: "#{i}:00", status: "ONGOING", sprint_id: 3)
-end
-
-1.times do |i|
-  Task.create(storie: "As a SCRUM MASTER i want to delete any project", priority: 2, hours: "#{i}:00", status: "DONE", sprint_id: 3)
-end
