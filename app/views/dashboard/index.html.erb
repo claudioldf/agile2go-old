@@ -29,9 +29,10 @@
             {
             	name: '<%= t.status %>',                
             	data: <%= qtd_by(t.status , @projects) %>
-        	},                 
-            <% end %>                      
-            ]
+        	},                         
+            <% end %>                              
+            ]            
     	});
-	});
+        alert(<%= @projects.size %>);
+	});    
 </script>
