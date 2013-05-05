@@ -28,7 +28,7 @@
             <% @tasks.map do |t| %>                        
             {
             	name: '<%= t.status %>',                
-            	data: <%= qtd_by(t.status , @projects) %>
+            	data: <%= qtd_by t.status , @projects %>
         	},                 
             <% end %>                      
             ]
