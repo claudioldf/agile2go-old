@@ -3,6 +3,35 @@
 
 <script>        
 	$(function(){ 
-        $('#content').removeClass('content');    	
+        $("#content").removeClass("content");
+    	$("#chart").highcharts({
+        	chart: {
+            	type: 'bar'
+        	},
+        	title: {
+            	text: 'Dashboard'
+        	},
+        	xAxis: {
+            	categories: [ <% @projects.map do |p| %> '<%= p.name %>', <% end %> ]
+        	},
+        	yAxis: {
+            	title: {
+	                text: 'Qtd'
+            	}
+        	},
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                }
+            },
+        	series: [                         
+            <% @tasks.map do |t| %>                        
+            {
+            	name: '<%= t.status %>',                
+            	data: <%= qtd_by(t.status , @projects) %>
+        	},                 
+            <% end %>                      
+            ]
+    	});
 	});
 </script>
