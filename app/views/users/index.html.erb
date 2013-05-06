@@ -27,8 +27,7 @@
           <% if current_user.has_role? :admin %>    
             <a id="change-role" data-toggle="modal" href="#role-options-<%= user.id %>" class="icon-th-large" title="change role"></a>
             <%= render user %>
-          <% end %>                               
-          <%= link_to content_tag('i', '', class: 'icon-edit'), edit_user_path(user), :id => 'edit-tooltip', :title => 'edit' %>
+          <% end %>                                         
           <%= link_to content_tag('i', '', class: 'icon-trash '), user, :id => 'del-tooltip', :title => 'delete', confirm: "Are you sure you want to delete '#{user.name}'?", method: :delete  %>                    
         </td>
       </tr>
@@ -42,7 +41,3 @@
     <li id="xls-tip" class="active"><%= link_to "Excel", users_path(format: "xls"), :id => 'xls-tip', :title => 'export to .xls' %></li>
   </ul>                                            
 <% end %>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_user_path,
-            :class => 'btn btn-primary' %>
