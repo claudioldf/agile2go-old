@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
 
-  def index
-    #authorize! :index, @user, :message => 'Not authorized as an administrator.'
+  def index    
     @users = User.order(:name)
       respond_to do |format|
       format.html
@@ -15,17 +14,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def new    
-    @user = User.new    
-  end
-
-  def edit
-    #authorize! :edit, @user, :message => 'Not authorized as an administrator.'
-    @user = User.find(params[:id])
-  end
-
   def update
-    #authorize! :update, @user, :message => 'Not authorized as an administrator.'
+    authorize! :update, @user, :message => 'Not authorized as an administrator.'
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user], :as => :admin)
       redirect_to users_path, :notice => "User updated."
