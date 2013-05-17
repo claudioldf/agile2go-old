@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << ["Id", "Status", "Priority", "Hours", "Registered", "Sprint", "Project"]
+      csv << %w(Id Status Priority Hours Registered Sprint Project)
         all.each do |task|        
         csv << [task.id, task.status, task.priority, task.hours, task.created_at.to_date, task.sprint.name, task.sprint.project.name]
       end

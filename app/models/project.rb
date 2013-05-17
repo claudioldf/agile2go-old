@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
   
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << ["Name", "Description", "Company", "Registered"]
+      csv << %w(Name Description Company Registered)
         all.each do |project|
         csv << [project.name, project.description, project.company, project.created_at.to_date]
       end
