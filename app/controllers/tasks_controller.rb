@@ -3,6 +3,10 @@ class TasksController < ApplicationController
     
   def index
     @tasks = Task.order(:id)    
+
+    puts '!!!!!!!!! TASKS !!!!!!!!!!!!'
+    @tasks.each_char { |t| t.id, t.status, t.sprint_id, t.sprint.name }
+
     respond_to do |format|
       format.html
       format.csv { send_data @tasks.to_csv }
