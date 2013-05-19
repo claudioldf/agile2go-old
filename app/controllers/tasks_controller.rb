@@ -2,12 +2,7 @@ class TasksController < ApplicationController
   before_filter :authenticate_user!
     
   def index
-    @tasks = Task.order(:id)    
-
-    @tasks.each { |t|
-      puts "ID =>" + t.id, puts "SPRINT_ID => " + t.sprint_id, puts "SPRINT_NAME =>" + t.sprint.name
-    }
-
+    @tasks = Task.order(:id)        
     respond_to do |format|
       format.html
       format.csv { send_data @tasks.to_csv }
