@@ -12,35 +12,35 @@ class ProjectsController < ApplicationController
   end
   
   def show
+    authorize! :show, @project, :message => 'Not authorized as an administrator.'
     @project = Project.find(params[:id])    
   end
   
-  def new
+  def new    
     @project = Project.new        
     @users = User.all(order: 'name')
   end
   
-  def edit
-    authorize! :edit, @project, :message => 'Not authorized as an administrator.'
+  def edit    
+    authorize! :show, @project, :message => 'Not authorized as an administrator.'
     @project = Project.find(params[:id])        
     @users = User.all(order: 'name')    
   end
   
   def create
-    authorize! :create, @projects, :message => 'Not authorized as an administrator.'        
+    authorize! :create, @project, :message => 'Not authorized as an administrator.'        
     @project = Project.new(params[:project])
     if @project.save
       redirect_to projects_path, :notice => "Project updated."
-    else
-      #redirect_to projects_path, :alert => "Unable to update project."
+    else      
       render action: "new", :alert => "Unable to update project."
     end
   end
   
   def update
-    authorize! :update, @projects, :message => 'Not authorized as an administrator.'        
+    authorize! :update, @project, :message => 'Not authorized as an administrator.'        
     @project = Project.find(params[:id])    
-    if @project.update_attributes(params[:project], :as => :admin)
+    if @project.update_attributes(params[:project], :as => :master)
       redirect_to projects_path, :notice => "Project updated."
     else      
       render action: "edit", :alert => "Unable to update project."
@@ -48,8 +48,10 @@ class ProjectsController < ApplicationController
   end
   
   def destroy
+    authorize! :destroy, @project, :message => 'Not authorized as an administrator.'
     @project = Project.find(params[:id])
     @project.destroy    
     redirect_to projects_path, :notice => "Project deleted."
   end
+  
 end

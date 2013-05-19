@@ -8,6 +8,9 @@
     <![endif]-->    
     <%= stylesheet_link_tag "application", :media => "all" %>    
     <%= csrf_meta_tags %>    
+    <%= javascript_include_tag "jquery" %>
+    <%= javascript_include_tag "jquery_ujs" %>
+    <%= javascript_include_tag "highcharts" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= yield(:head) %>
   </head>

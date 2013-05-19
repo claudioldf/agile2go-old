@@ -1,7 +1,7 @@
 class SprintsController < ApplicationController
   before_filter :authenticate_user!
   
-  def index
+  def index    
     @sprints = Sprint.order(:name)    
     respond_to do |format|
       format.html
@@ -15,15 +15,17 @@ class SprintsController < ApplicationController
   end
   
   def new
+    authorize! :new, @sprint, :message => 'Not authorized as an administrator.'
     @sprint = Sprint.new    
   end
   
   def edit
+    authorize! :edit, @sprint, :message => 'Not authorized as an administrator.'
     @sprint = Sprint.find(params[:id])
   end
   
   def create
-    authorize! :create, @project, :message => 'Not authorized as an administrator.'
+    authorize! :create, @sprint, :message => 'Not authorized as an administrator.'
     @sprint = Sprint.new(params[:sprint])
     if @sprint.save
       redirect_to sprints_path, :notice => "Sprint created."
@@ -35,7 +37,7 @@ class SprintsController < ApplicationController
   def update
     authorize! :update, @sprint, :message => 'Not authorized as an administrator.'    
     @sprint = Sprint.find(params[:id])
-    if @sprint.update_attributes(params[:sprint], :as => :admin)
+    if @sprint.update_attributes(params[:sprint], :as => :master)
       redirect_to sprints_path, :notice => "Sprint updated."
     else      
       render action: "edit", :alert => "Unable to update project."
@@ -43,6 +45,7 @@ class SprintsController < ApplicationController
   end
   
   def destroy
+    authorize! :destroy, @sprint, :message => 'Not authorized as an administrator.'
     @sprint = Sprint.find(params[:id])
     @sprint.destroy
     redirect_to sprints_path, :notice => "Sprint deleted."    

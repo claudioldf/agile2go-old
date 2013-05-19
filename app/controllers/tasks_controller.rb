@@ -15,11 +15,13 @@ class TasksController < ApplicationController
   end
   
   def new    
+    authorize! :new, @task, :message => 'Not authorized as an administrator.'              
     @task = Task.new        
-    sprints
+    sprints    
   end
   
   def edit
+    authorize! :edit, @task, :message => 'Not authorized as an administrator.'
     @task = Task.find(params[:id])
   end
   
@@ -36,8 +38,7 @@ class TasksController < ApplicationController
   
   def update
     authorize! :destroy, @task, :message => 'Not authorized as an administrator.'    
-    @task = Task.find(params[:id])  
-    
+    @task = Task.find(params[:id])      
     if @task.update_attributes(params[:task], :as => :admin)
       redirect_to tasks_path, :notice => "Task updated."
     else      
@@ -46,6 +47,7 @@ class TasksController < ApplicationController
   end
   
   def destroy
+    authorize! :destroy, @task, :message => 'Not authorized as an administrator.'
     @task = Task.find(params[:id])
     @task.destroy
     redirect_to tasks_path, :notice => "Task deleted."    
@@ -59,6 +61,6 @@ class TasksController < ApplicationController
       @list.map do |s|
           @sprints << s.name + ' - ' + s.project.name
       end     
-  end
+  end  
 
 end
