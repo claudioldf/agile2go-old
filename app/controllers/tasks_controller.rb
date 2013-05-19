@@ -5,7 +5,7 @@ class TasksController < ApplicationController
     @tasks = Task.order(:id)    
 
     @tasks.each { |t|
-      puts 'ID =>' + t.id, puts 'STS =>' + t.status, puts 'SPRINT_ID => ' + t.sprint_id, puts 'SPRINT_NAME =>' + t.sprint.name
+      puts "ID =>" + t.id, puts "SPRINT_ID => " + t.sprint_id, puts "SPRINT_NAME =>" + t.sprint.name
     }
 
     respond_to do |format|
