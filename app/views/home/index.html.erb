@@ -1,3 +1,8 @@
+<script type="text/javascript">        
+  $(function(){ 
+    $('#content').removeClass('content')
+  });
+</script>
 <% if !user_signed_in? %>    
 <div class="container">  
   <div class="marketing">
@@ -30,18 +35,18 @@
         </div>          
       </div>
     </div>          
-<% else %>    
-  <div class="page-header">  
-    <ul class="nav nav-pills">      
-      <li class="active">
-        <% @projects.each do |project| %>    
+<% else %>   
+  <hr />
+  <% @projects.each do |project| %>    
+    <div class="card">
+      <h3>
         <a id="home-tootip" href="<%= projects_path %>" title="<%= project.description %>"><%= project.name %></a>
-        <br />
-        <% end %>
-      </li>                        
-    </ul>                                        
-    </div>            
-  </div>
+      </h3>
+    </div>
+    <br />
+  <% end %>            
+  <hr />
+  </div>  
 </div>
 <% end %>  
 
