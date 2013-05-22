@@ -81,7 +81,7 @@
 <br />
 <div>
   <% @projects.each do |project| %> 
-    <% if !project.sprints.nil? %>      
+    <% if project.sprints.nil? %>      
       <div class="span3">
         <div class="card">
           <h3>            
@@ -90,8 +90,7 @@
           <p><span>Current Sprint: <%= project.sprints.last.name %></span></p>
         </div>
         <br />
-      </div>  
-    <% else %>   
+      </div>      
     <% end %>   
   <% end %>   
 </div>
