@@ -26,7 +26,7 @@ class SprintsController < ApplicationController
   
   def create
     authorize! :create, @sprint, :message => 'Not authorized as an administrator.'
-    @sprint = Sprint.new(params[:sprint])
+    @sprint = Sprint.new(params[:sprint], :as => :master)
     if @sprint.save
       redirect_to sprints_path, :notice => "Sprint created."
     else      

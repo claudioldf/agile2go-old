@@ -27,8 +27,7 @@ class TasksController < ApplicationController
   
   def create
     authorize! :create, @task, :message => 'Not authorized as an administrator.'
-    @task = Task.new(params[:task])
-    
+    @task = Task.new(params[:task], :as => :master)    
     if @task.save
       redirect_to tasks_path, :notice => "Task created."
     else
@@ -39,7 +38,7 @@ class TasksController < ApplicationController
   def update
     authorize! :destroy, @task, :message => 'Not authorized as an administrator.'    
     @task = Task.find(params[:id])      
-    if @task.update_attributes(params[:task], :as => :admin)
+    if @task.update_attributes(params[:task], :as => :master)
       redirect_to tasks_path, :notice => "Task updated."
     else      
       render action: "edit", :alert => "Unable to update task."

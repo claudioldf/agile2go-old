@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
   
   def create
     authorize! :create, @project, :message => 'Not authorized as an administrator.'        
-    @project = Project.new(params[:project])
+    @project = Project.new(params[:project], :as => :master)
     if @project.save
       redirect_to projects_path, :notice => "Project updated."
     else      

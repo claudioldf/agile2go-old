@@ -35,20 +35,60 @@
         </div>          
       </div>
     </div>          
-<% else %>   
+  <% else %>   
+<br />
+<div class="row-fluid">
+  <div id="chart" style="width:100%; height:400px;"></div>
+    <script type="text/javascript">        
+      $(function(){ 
+        $('#content').removeClass('content')
+          $('#chart').highcharts({
+            chart: {
+              type: 'bar'
+            },
+            title: {
+              text: 'Dashboard'
+            },
+            xAxis: {
+              categories: [ <% @projects.map do |p| %> '<%= p.name %>', <% end %> ]
+            },
+            yAxis: {
+              title: {
+                  text: 'Qtd'
+              }
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                }
+            },
+            series: [                         
+            <% @tasks.map do |t| %>                        
+            {
+              name: '<%= t.status %>',                
+              data: <%= raw qtd_by(t.status , @projects) %>
+            },                         
+              <% end %>                              
+              ]            
+          });        
+      });    
+    </script>
+  </div>
+  <br />
+  <div class="row-fluid">
+    <% @projects.each do |project| %>        
+      <div class="span4">
+        <div class="card">
+          <h3>            
+            <a style="color: white; important!" href="<%= projects_path %>"><%= project.name %></a>
+          </h3>                
+          <p><span>Current Sprint: <%= project.sprints.last.name %></span></p>
+        </div>
+        <br />
+      </div>  
+    <% end %>   
+  </div>           
   <hr />
-  <% @projects.each do |project| %>    
-    <div class="card">
-      <h3>
-        <a id="home-tootip" href="<%= projects_path %>" title="<%= project.description %>"><%= project.name %></a>
-      </h3>      
-      <p class="text-warn"><span><%= project.description %></span></p>
-      <p class="text-info"><span>Current Sprint: <%= project.sprints.last.name %></span></p>
-    </div>
-    <br />
-  <% end %>            
-  <hr />
-  </div>  
 </div>
 <% end %>  
 
