@@ -37,7 +37,7 @@
       </div>
     </div>
   </div>    
-        
+
 <% else %>   
 
 <br />
@@ -80,20 +80,19 @@
   </div>
 <br />
 <br />
-    <% @projects.each do |project| %>        
-      <div class="span3">
-        <div class="card">
-          <h3>            
-            <a style="color: white; important!" href="<%= projects_path %>"><%= project.name %></a>
-          </h3>                
-          <p><span>Current Sprint: <%= project.sprints.last.name %></span></p>
-        </div>
-        <br />
-      </div>  
-    <% end %>   
-
-<hr />
+  <% @projects.each do |project| %>        
+    <div class="span3">
+      <div class="card">
+        <h3>            
+          <a style="color: white; important!" href="<%= projects_path %>"><%= project.name %></a>
+        </h3>                
+        <p><span>Current Sprint: <%= project.sprints.last.name %></span></p>
+      </div>
+      <br />
+    </div>  
+  <% end %>   
 <% end %>  
+<hr />
 
 
     
