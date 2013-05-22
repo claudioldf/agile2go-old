@@ -39,6 +39,14 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  # Ativa output colorido
+  config.color_enabled = true
+
+  #config.debug = true
+
+  # Exibe backtrace completo caso algum exemplo falhe.
+  config.full_backtrace = true
+  
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
   end
