@@ -17,54 +17,54 @@
 # puts 'user: ' << user.name
 # user.add_role :master
 
-Project.destroy_all
-Sprint.destroy_all
-Task.destroy_all
+# Project.destroy_all
+# Sprint.destroy_all
+# Task.destroy_all
 
-p1 = Project.new
-p1.name = 'Agile2Go'
-p1.description = 'Welcome to Agile2Go! This is will be your best tool to develop complex projects'
-p1.company = 'Criativa'
-p1.save
+# p1 = Project.new
+# p1.name = 'Agile2Go'
+# p1.description = 'Welcome to Agile2Go! This is will be your best tool to develop complex projects'
+# p1.company = 'Criativa'
+# p1.save
 
-p2 = Project.new
-p2.name = 'FASCE'
-p2.description = 'Integration between SAP and yous needs never was so easy. You can with FASCE!'
-p2.company = 'Embraer'
-p2.save
+# p2 = Project.new
+# p2.name = 'FASCE'
+# p2.description = 'Integration between SAP and yous needs never was so easy. You can with FASCE!'
+# p2.company = 'Embraer'
+# p2.save
 
-p3 = Project.new
-p3.name = 'M-Payment'
-p3.description = 'Very soon mobile payment solution'
-p3.company = 'Criativa'
-p3.save
+# p3 = Project.new
+# p3.name = 'M-Payment'
+# p3.description = 'Very soon mobile payment solution'
+# p3.company = 'Criativa'
+# p3.save
 
-s1 = Sprint.new
-s1.name = 'Sprint1'
-s1.daily_scrum = '10:00'
-s1.start_date = '2013/06/01'
-s1.end_date = '2013/06/10'
-s1.goal = 'Delivery as values as possible to colect feed back very soon'
-s1.project_id = 1
-s1.save
+# s1 = Sprint.new
+# s1.name = 'Sprint1'
+# s1.daily_scrum = '10:00'
+# s1.start_date = '2013/06/01'
+# s1.end_date = '2013/06/10'
+# s1.goal = 'Delivery as values as possible to colect feed back very soon'
+# s1.project_id = p1.id
+# s1.save
 
-s2 = Sprint.new
-s2.name = 'Sprint2'
-s2.daily_scrum = '10:00'
-s2.start_date = '2013/06/20'
-s2.end_date = '2013/07/01'
-s2.goal = 'Delivery as values as possible to colect feed back very soon'
-s2.project_id = 2
-s2.save
+# s2 = Sprint.new
+# s2.name = 'Sprint2'
+# s2.daily_scrum = '10:00'
+# s2.start_date = '2013/06/20'
+# s2.end_date = '2013/07/01'
+# s2.goal = 'Delivery as values as possible to colect feed back very soon'
+# s2.project_id = 2
+# s2.save
 
-s3 = Sprint.new
-s3.name = 'Sprint3'
-s3.daily_scrum = '10:00'
-s3.start_date = '2013/07/10'
-s3.end_date = '2013/07/20'
-s3.goal = 'Delivery as values as possible to colect feed back very soon'
-s3.project_id = 3
-s3.save
+# s3 = Sprint.new
+# s3.name = 'Sprint3'
+# s3.daily_scrum = '10:00'
+# s3.start_date = '2013/07/10'
+# s3.end_date = '2013/07/20'
+# s3.goal = 'Delivery as values as possible to colect feed back very soon'
+# s3.project_id = 3
+# s3.save
 
 33.times do 
 	t = Task.new
@@ -72,7 +72,7 @@ s3.save
 	t.priority = 3 
 	t.status = 'TODO'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = 1
+	t.sprint_id = 11
 	t.save
 end
 
@@ -82,7 +82,7 @@ end
 	t.priority = 3 
 	t.status = 'ONGOING'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = 1
+	t.sprint_id = 11
 	t.save
 end
 
@@ -92,7 +92,7 @@ end
 	t.priority = 3 
 	t.status = 'TEST'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = 1
+	t.sprint_id = 11
 	t.save
 end
 
@@ -102,7 +102,7 @@ end
 	t.priority = 3 
 	t.status = 'DONE'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = 1
+	t.sprint_id = 11
 	t.save
 end
 
@@ -112,7 +112,7 @@ end
 	t.priority = 2 
 	t.status = 'TODO'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = 2
+	t.sprint_id = 12
 	t.save
 end
 
@@ -122,7 +122,7 @@ end
 	t.priority = 3 
 	t.status = 'ONGOING'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = 2
+	t.sprint_id = 12
 	t.save
 end
 
@@ -132,7 +132,7 @@ end
 	t.priority = 3 
 	t.status = 'TEST'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = 2
+	t.sprint_id = 12
 	t.save
 end
 
@@ -142,7 +142,7 @@ end
 	t.priority = 3 
 	t.status = 'DONE'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = 2
+	t.sprint_id = 12
 	t.save
 end
 
@@ -153,7 +153,7 @@ end
 	t.priority = 1 
 	t.status = 'TODO'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = 3
+	t.sprint_id = 13
 	t.save
 end
 
@@ -163,7 +163,7 @@ end
 	t.priority = 3 
 	t.status = 'ONGOING'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = 3
+	t.sprint_id = 13
 	t.save
 end
 
@@ -173,7 +173,7 @@ end
 	t.priority = 3 
 	t.status = 'TEST'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = 3
+	t.sprint_id = 13
 	t.save
 end
 
@@ -183,7 +183,7 @@ end
 	t.priority = 1 
 	t.status = 'DONE'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = 3
+	t.sprint_id = 13
 	t.save
 end
 
