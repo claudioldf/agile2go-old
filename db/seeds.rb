@@ -66,6 +66,8 @@
 # s3.project_id = 3
 # s3.save
 
+Task.destroy_all
+
 33.times do 
 	t = Task.new
 	t.hours = '06:00'
