@@ -53,7 +53,7 @@
               text: 'Dashboard'
             },
             xAxis: {
-              categories: [ <% @projects.map do |p| %> '<%= p.name %>', <% end %> ]
+              categories: [ <% @projects.reverse.map do |p| %> '<%= p.name %>', <% end %> ]
             },
             yAxis: {
               title: {
@@ -66,7 +66,7 @@
                 }
             },
             series: [                         
-            <% @tasks.map do |t| %>                        
+            <% @tasks.reverse.map do |t| %>                        
             {
               name: '<%= t.status %>',                
               data: <%= raw qtd_by(t.status , @projects) %>
@@ -77,22 +77,17 @@
       });    
     </script>
   </div>
-<br />
-<br />
 <div>
-  <% @projects.each do |project| %> 
-    <% if project.sprints.nil? %>      
-      <div class="span3">
+  <% @projects.each do |project| %>     
+      <div class="span4">
         <div class="card">
           <h3>            
-            <a style="color: white; important!" href="<%= projects_path %>"><%= project.name %></a>
+            <a href="<%= projects_path %>"><%= project.name %></a>
           </h3>                
           <p><span>Current Sprint: <%= project.sprints.last.name %></span></p>
         </div>
         <br />
-      </div>      
-      <% else %>
-    <% end %>   
+      </div>                
   <% end %>   
 </div>
 <% end %>  
