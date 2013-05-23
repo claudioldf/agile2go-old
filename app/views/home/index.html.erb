@@ -53,7 +53,7 @@
               text: 'Dashboard'
             },
             xAxis: {
-              categories: [ <% @projects.reverse.map do |p| %> '<%= p.name %>', <% end %> ]
+              categories: [ <% @projects.map do |p| %> '<%= p.name %>', <% end %> ]
             },
             yAxis: {
               title: {
