@@ -1,9 +1,9 @@
 <%= simple_form_for @project, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors @project %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :company %>
+  <%= f.input :name, :placeholder => 'Name' %>  
+  <%= f.input :company, :placeholder => 'What company are you?' %>
+  <%= f.input :description, as: :text, :placeholder => 'Description of the Project' %>
   <%= f.association :users, collection: @users %>  
   <div class="form-actions">            
     <%= f.button :submit, :class => 'btn-primary' %>        
