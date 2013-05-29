@@ -10,10 +10,6 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //        
-//= require jquery
-//= require jquery_ujs
-//= require highcharts    
-//= require exporting    
 //= require twitter/bootstrap
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
@@ -25,7 +21,7 @@
 //= require twitter/bootstrap/bootstrap-modal
 //= require twitter/bootstrap/bootstrap-button
 //= require twitter/bootstrap/bootstrap-collapse
-//= require_tree .
+
 
 $(document).ready(function(){	
   loadTooltip();
