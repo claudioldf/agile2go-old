@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :task do
-    storie "MyText"
+    storie "As a... I want to... so I'll be able to..."
     priority 1
-    hours "MyString"
-    status "MyString"
+    hours "08:00"
+    status "TODO"
     sprint nil
   end
 end

@@ -11,7 +11,7 @@ describe User do
     }
   end
 
-  it "should create a new instance given a valid attribute" do
+  it "should create a new user given a valid attribute" do
     User.create!(@attr)
   end
 
@@ -66,7 +66,7 @@ describe User do
 
   describe "password validations" do
 
-    it "should require a password" do
+    it "should require a password and password_confirmation" do
       User.new(@attr.merge(:password => "", :password_confirmation => "")).
         should_not be_valid
     end
