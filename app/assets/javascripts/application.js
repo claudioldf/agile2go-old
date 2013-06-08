@@ -13,6 +13,7 @@
 //= require twitter/bootstrap
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
+//= require application_
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require twitter/bootstrap/bootstrap-transition

@@ -70,7 +70,7 @@ s3.save
 
 33.times do 
 	t = Task.new
-	t.hours = '06:00'
+	t.hours = '6'
 	t.priority = 3 
 	t.status = 'TODO'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
@@ -80,7 +80,7 @@ end
 
 46.times do 
 	t = Task.new
-	t.hours = '05:00'
+	t.hours = '5'
 	t.priority = 3 
 	t.status = 'ONGOING'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
@@ -90,7 +90,7 @@ end
 
 13.times do 
 	t = Task.new
-	t.hours = '08:00'
+	t.hours = '8'
 	t.priority = 3 
 	t.status = 'TEST'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
@@ -100,7 +100,7 @@ end
 
 5.times do 
 	t = Task.new
-	t.hours = '08:00'
+	t.hours = '8'
 	t.priority = 3 
 	t.status = 'DONE'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
@@ -110,7 +110,7 @@ end
 
 47.times do 
 	t = Task.new
-	t.hours = '06:00'
+	t.hours = '6'
 	t.priority = 2 
 	t.status = 'TODO'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
@@ -120,7 +120,7 @@ end
 
 16.times do 
 	t = Task.new
-	t.hours = '05:00'
+	t.hours = '5'
 	t.priority = 3 
 	t.status = 'ONGOING'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
@@ -130,7 +130,7 @@ end
 
 6.times do 
 	t = Task.new
-	t.hours = '08:00'
+	t.hours = '8'
 	t.priority = 3 
 	t.status = 'TEST'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
@@ -140,7 +140,7 @@ end
 
 2.times do 
 	t = Task.new
-	t.hours = '08:00'
+	t.hours = '8'
 	t.priority = 3 
 	t.status = 'DONE'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
@@ -151,7 +151,7 @@ end
 
 89.times do 
 	t = Task.new
-	t.hours = '06:00'
+	t.hours = '6'
 	t.priority = 1 
 	t.status = 'TODO'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
@@ -161,7 +161,7 @@ end
 
 4.times do 
 	t = Task.new
-	t.hours = '05:00'
+	t.hours = '5'
 	t.priority = 3 
 	t.status = 'ONGOING'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
@@ -171,7 +171,7 @@ end
 
 12.times do 
 	t = Task.new
-	t.hours = '08:00'
+	t.hours = '8'
 	t.priority = 3 
 	t.status = 'TEST'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
@@ -181,7 +181,7 @@ end
 
 3.times do 
 	t = Task.new
-	t.hours = '08:00'
+	t.hours = '8'
 	t.priority = 1 
 	t.status = 'DONE'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
