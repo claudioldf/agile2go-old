@@ -21,10 +21,15 @@ describe Task do
 		no_story.should_not be_valid 
 	end
 	
-	it "should require a sprint_id on a given task" do	
+	it "should require a sprint on a given task" do	
 		no_sprint = Task.new @attr.merge(:sprint_id => nil)
 		no_sprint.should_not be_valid
-	end	
-	
+	end		
+
+	it "should have at least one associated sprint" do
+		task = Task.new @attr		
+		task.sprint_id.should be(1)
+	end				
+
 
 end

@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe Project do	
-	
-	#it { should have_many :sprints }
-
+		
 	before(:each) do
 		@attr = {
 			:company => "Company Example",
@@ -22,9 +20,10 @@ describe Project do
 	end
 	
 	it "should be ok with a associated sprint" do
-		project = Project.new
-		sprint = Sprint.new
-		project.should have(:no).errors_on(:sprint)		
+		project = Project.new @attr		
+		project.sprints.build 
+		project.should have(:no).errors_on(:sprints)		
 	end			
+	
 
 end

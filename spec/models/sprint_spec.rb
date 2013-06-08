@@ -23,9 +23,14 @@ describe Sprint do
 	end
 
 	it "should be ok with a associated task" do
-		sprint = Sprint.new
-		task = Task.new
-		sprint.should have(:no).errors_on(:task)		
+		sprint = Sprint.new @attr		
+		sprint.tasks.build 
+		sprint.should have(:no).errors_on(:taks)		
 	end			
+
+	it "should have at least one associated project" do
+		sprint = Sprint.new @attr		
+		sprint.project_id.should be(1)
+	end				
 
 end
