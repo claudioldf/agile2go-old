@@ -22,4 +22,10 @@ describe Sprint do
 		no_sprint_name.should_not be_valid 
 	end
 
+	it "should be ok with a associated task" do
+		sprint = Sprint.new
+		task = Task.new
+		sprint.should have(:no).errors_on(:task)		
+	end			
+
 end

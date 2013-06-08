@@ -16,9 +16,15 @@ describe Task do
 		Task.create! @attr
 	end
 
-	it "should required a task story" do
+	it "should require a task story" do
 		no_story = Task.new @attr.merge(:storie => "")
 		no_story.should_not be_valid 
 	end
+	
+	it "should require a sprint_id on a given task" do	
+		no_sprint = Task.new @attr.merge(:sprint_id => nil)
+		no_sprint.should_not be_valid
+	end	
+	
 
 end
