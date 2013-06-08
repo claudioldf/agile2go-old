@@ -3,7 +3,7 @@ class Sprint < ActiveRecord::Base
   has_many :tasks 
   accepts_nested_attributes_for :tasks, :allow_destroy => true  
   attr_accessible :daily_scrum, :end_date, :goal, :name, :start_date, :project_id
-  validates_presence_of :daily_scrum, :end_date, :goal, :name, :start_date, :project_id
+  validates_presence_of :daily_scrum, :end_date, :goal, :name, :start_date, :project_id  
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
