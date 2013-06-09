@@ -19,7 +19,7 @@
   <dt><strong>Members:</strong></dt>
   <dd><ul class="nav nav-pills">
     <% @task.sprint.project.users.each do |u| %>
-      <li><img id="menu-table" src="<%= u.avatar_url %>"></li>
+      <li><a href="#"><img id="menu-table" src="<%= u.avatar_url %>"></a></li>
     <% end %></ul>  
   </dd>
 </dl>
