@@ -13,7 +13,15 @@
   <dt><strong>Status:</strong></dt>
   <dd><%= @task.status %></dd>
   <dt><strong>Sprint:</strong></dt>
-  <dd><%= @task.sprint_id %></dd>
+  <dd><%= @task.sprint.name%></dd>
+  <dt><strong>Project:</strong></dt>
+  <dd><%= @task.sprint.project.name %></dd>
+  <dt><strong>Members:</strong></dt>
+  <dd><ul class="nav nav-pills">
+    <% @task.sprint.project.users.each do |u| %>
+      <li><img id="menu-table" src="<%= u.avatar_url %>"></li>
+    <% end %></ul>  
+  </dd>
 </dl>
 
 <div class="form-actions">
