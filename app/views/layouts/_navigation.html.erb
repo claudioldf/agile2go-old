@@ -1,23 +1,29 @@
 <%= link_to "Agile2Go", root_path, :class => 'brand icon-home active' %>
 <div class="nav-collapse collapse">
-<ul class="nav">
   <% if user_signed_in? %>    
-    <li><%= link_to "Users", users_path %></li>        
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Agile <b class="caret"></b></a>
-        <ul class="dropdown-menu">    
-        <% if current_user.has_role? :master %>
-          <li><%= link_to "Projects", projects_path %></li>      
-        <% end %>
-          <li><%= link_to "Sprints", sprints_path %></li>    
-          <li><%= link_to "Tasks", tasks_path %></li>                        
-        </ul>
-        <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-        <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
-      </li>
-  <% else %>
-    <li><%= link_to 'Login', new_user_session_path %></li>
-    <li><%= link_to 'Sign up', new_user_registration_path %></li>  
+    <p class="navbar-text pull-right">
+      <%= current_user.name %> <img id="menu-table" src="<%= current_user.avatar_url %>">
+    </p>
   <% end %>
-</ul>
+  <ul class="nav">
+    <% if user_signed_in? %>    
+      <li><%= link_to "Users", users_path %></li>        
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Agile <b class="caret"></b></a>
+          <ul class="dropdown-menu">    
+          <% if current_user.has_role? :master %>
+            <li><%= link_to "Projects", projects_path %></li>      
+          <% end %>
+            <li><%= link_to "Sprints", sprints_path %></li>    
+            <li><%= link_to "Tasks", tasks_path %></li>                        
+          </ul>
+          <li><%= link_to 'Edit account', edit_user_registration_path %></li>
+          <li><%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %></li>
+          
+        </li>
+    <% else %>
+      <li><%= link_to 'Login', new_user_session_path %></li>
+      <li><%= link_to 'Sign up', new_user_registration_path %></li>  
+    <% end %>
+  </ul>
 </div>

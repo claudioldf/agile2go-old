@@ -24,69 +24,18 @@
 //= require twitter/bootstrap/bootstrap-collapse
 
 
-$(document).ready(function(){	
-  loadTooltip();
-	dataTable();	
+$(document).ready(function(){	  
+  dataTable();	
 });
-
-function loadTooltip(){
-  editTooltip();
-  delTooltip(); 
-  changeRoleTootip();  
-  homeTooltip();
-  cvsTooltip();
-}
-
-function cvsTooltip(){
-  $("a#csv-tip").each(function(){
-    $(this).tooltip();       
-  });
-  $("a#xls-tip").each(function(){
-    $(this).tooltip();       
-  });       
-  return false;
-}
-
-function changeRoleTootip(){
-  $("a#change-role").each(function(){
-    $(this).tooltip();       
-  });       
-  return false;
-}
-
-function homeTooltip(){
-  $("a#home-tootip").each(function(){
-    $(this).tooltip();       
-  });       
-  return false;
-}
-
-function editTooltip(){
-  $("a#edit-tooltip").each(function(){
-    $(this).tooltip();       
-  });     	
-  return false;
-}
-
-function delTooltip(){
-  $("a#del-tooltip").each(function(){
-    $(this).tooltip();       
-  });       
-  return false;
-}
 
 function dataTable(){
 	$('.datatable').dataTable({
     	"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
     	"sPaginationType": "bootstrap",    	 
   		"sScrollX": "100%",
-  		"bScrollCollapse": true
-      //"aoColumns": [null, null]  		
+  		"bScrollCollapse": true      
  	});
 }
 
-$(document).on("focus", "[data-behaviour~='datepicker']", function(e){
-    $(this).datepicker({"format": "yyyy-mm-dd", "weekStart": 1, "autoclose": true})
-});
 
         
