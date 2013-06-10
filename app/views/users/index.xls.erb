@@ -4,14 +4,13 @@
     <th>Email</th>            
     <th>Registered</th>
     <th>Role</th>      
-  </tr>    
-  <!-- @users are nil on heroku, so data are populated here -->
-  <% User.order(:name).each do |user| %>    
+  </tr>      
+  <% @users.each do |user| %>    
     <tr>                
       <td><%= user.name %></td>    
       <td><%= user.email %></td>
       <td><%= user.created_at.to_date %></td>
-      <td><%= user.roles.first.name.titleize  %></td>        
+      <td><%= user.roles.first.name.titleize %></td>        
     </tr>
   <% end %>  
 </table>    
