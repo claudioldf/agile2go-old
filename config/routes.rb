@@ -4,7 +4,7 @@ Agile::Application.routes.draw do
   resources :projects
   resources :users  
 
-  match 'dashboard', :to => 'dashboard#index'   	  
+  match 'dashboard', :to => 'dashboard#index'   	    
 
   authenticated :user do    
     root :to => "home#index"      

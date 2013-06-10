@@ -5,7 +5,8 @@
     <th>Registered</th>
     <th>Role</th>      
   </tr>    
-  <% @users.each do |user| %>    
+  <!-- @users are nil on heroku, so data are populated here -->
+  <% User.order(:name).each do |user| %>    
     <tr>                
       <td><%= user.name %></td>    
       <td><%= user.email %></td>
