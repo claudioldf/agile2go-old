@@ -1,6 +1,8 @@
 class Task < ActiveRecord::Base
   belongs_to :sprint
+  has_many :users  
   attr_accessible :hours, :priority, :status, :storie, :sprint_id
+  attr_accessible :user_ids
   validates_presence_of :hours, :priority, :status, :storie, :sprint_id     
   validates :priority, :numericality => { :only_integer => true }
 

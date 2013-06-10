@@ -1,7 +1,7 @@
 class Sprint < ActiveRecord::Base
-  belongs_to :project  
-  has_many :tasks 
-  accepts_nested_attributes_for :tasks, :allow_destroy => true  
+  has_many :tasks   
+  belongs_to :project      
+  #accepts_nested_attributes_for :tasks, :allow_destroy => true  
   attr_accessible :daily_scrum, :end_date, :goal, :name, :start_date, :project_id
   validates_presence_of :daily_scrum, :end_date, :goal, :name, :start_date, :project_id  
 

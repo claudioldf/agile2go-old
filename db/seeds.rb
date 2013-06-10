@@ -7,6 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 # Environment variables (ENV['...']) are set in the file config/application.yml.
 # See http://railsapps.github.com/rails-environment-variables.html
+User.destroy_all
+Project.destroy_all
+Sprint.destroy_all
+Task.destroy_all
+
  puts 'ROLES'
  YAML.load(ENV['ROLES']).each do |role|
   Role.find_or_create_by_name({ :name => role }, :without_protection => true)
@@ -17,9 +22,6 @@ user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => EN
 puts 'user: ' << user.name
 user.add_role :master
 
- #Project.destroy_all
- #Sprint.destroy_all
- #Task.destroy_all
 
 p1 = Project.new
 p1.name = 'Agile2Go'
@@ -66,7 +68,6 @@ s3.goal = 'Delivery as values as possible to colect feed back very soon'
 s3.project_id = p3.id
 s3.save
 
-#Task.destroy_all
 
 33.times do 
 	t = Task.new
@@ -74,7 +75,7 @@ s3.save
 	t.priority = 3 
 	t.status = 'TODO'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = s1.id
+	t.sprint_id = s1.id		
 	t.save
 end
 
@@ -84,7 +85,7 @@ end
 	t.priority = 3 
 	t.status = 'ONGOING'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = s1.id
+	t.sprint_id = s1.id	
 	t.save
 end
 
@@ -94,7 +95,7 @@ end
 	t.priority = 3 
 	t.status = 'TEST'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = s1.id
+	t.sprint_id = s1.id	
 	t.save
 end
 
@@ -104,7 +105,7 @@ end
 	t.priority = 3 
 	t.status = 'DONE'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = s1.id
+	t.sprint_id = s1.id	
 	t.save
 end
 
@@ -114,7 +115,7 @@ end
 	t.priority = 2 
 	t.status = 'TODO'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = s2.id
+	t.sprint_id = s2.id	
 	t.save
 end
 
@@ -124,7 +125,7 @@ end
 	t.priority = 3 
 	t.status = 'ONGOING'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = s2.id
+	t.sprint_id = s2.id	
 	t.save
 end
 
@@ -134,7 +135,7 @@ end
 	t.priority = 3 
 	t.status = 'TEST'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = s2.id
+	t.sprint_id = s2.id	
 	t.save
 end
 
@@ -144,7 +145,7 @@ end
 	t.priority = 3 
 	t.status = 'DONE'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = s2.id
+	t.sprint_id = s2.id	
 	t.save
 end
 
@@ -155,7 +156,7 @@ end
 	t.priority = 1 
 	t.status = 'TODO'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = s3.id
+	t.sprint_id = s3.id	
 	t.save
 end
 
@@ -165,7 +166,7 @@ end
 	t.priority = 3 
 	t.status = 'ONGOING'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = s3.id
+	t.sprint_id = s3.id	
 	t.save
 end
 
@@ -175,7 +176,7 @@ end
 	t.priority = 3 
 	t.status = 'TEST'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = s3.id
+	t.sprint_id = s3.id	
 	t.save
 end
 
@@ -185,7 +186,7 @@ end
 	t.priority = 1 
 	t.status = 'DONE'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
-	t.sprint_id = s3.id
+	t.sprint_id = s3.id	
 	t.save
 end
 

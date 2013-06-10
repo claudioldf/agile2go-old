@@ -6,7 +6,7 @@
 <table class="datatable table table-striped table-bordered table-condensed">  
   <thead>
     <tr>
-      <th>#Id</th>      
+      <th>#Id</th>           
       <th>Priority</th>
       <th>Hours</th>
       <th>Status</th>
@@ -16,9 +16,9 @@
     </tr>
   </thead>
   <tbody>
-    <% @tasks.each do |task| %>
+    <% @tasks.each do |task| %>        
       <tr>
-        <td><%= link_to task.id, task_path(task) %></td>        
+        <td><%= link_to task.id, task_path(task) %></td>                
         <td><%= task.priority %></td>
         <td><%= task.hours %></td>
         <% if task.status == 'TODO' %>    
@@ -32,7 +32,7 @@
         <% end %>
         <% if task.status == 'DONE' %>    
           <td><span class="label label-info"><%= task.status %></span></td>
-        <% end %>
+        <% end %>                
         <td><%= task.sprint.name %> - <%= task.sprint.project.name %></td>
         <td><%=l task.created_at.to_date %></td>
         <td>          

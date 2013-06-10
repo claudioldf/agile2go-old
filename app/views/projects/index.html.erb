@@ -4,7 +4,7 @@
 </div>
 <table class="datatable table table-striped table-bordered table-condensed">  
   <thead>
-    <tr>      
+    <tr class="error">      
       <th>Name</th>
       <th>Description</th>
       <th>Company</th>
@@ -16,14 +16,14 @@
     <% @projects.each do |project| %>
       <tr>        
         <td><%= link_to project.name, project_path(project) %></td>
-        <td><%= project.description %></td>
+        <td ><%= project.description %></td>
         <td><%= project.company %></td>
         <td><%=l project.created_at.to_date %></td>
         <td>
           <%= link_to content_tag('i', '', class: 'icon-edit'), edit_project_path(project), :id => 'edit-tooltip', :title => 'edit' %>
           <%= link_to content_tag('i', '', class: 'icon-trash '), project, :id => 'del-tooltip', :title => 'delete', confirm: "Are you sure you want to delete '#{project.name}'?", method: :delete  %>
         </td>
-      </tr>
+      
     <% end %>
   </tbody>
 </table>

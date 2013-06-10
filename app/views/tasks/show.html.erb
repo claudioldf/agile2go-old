@@ -18,7 +18,7 @@
   <dd><%= @task.sprint.project.name %></dd>
   <dt><strong>Members:</strong></dt>
   <dd><ul class="nav nav-pills">
-    <% @task.sprint.project.users.each do |u| %>
+    <% @task.users.each do |u| %>
       <li><a href="#"><img id="menu-table" src="<%= u.avatar_url %>"></a></li>
     <% end %></ul>  
   </dd>

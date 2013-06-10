@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_filter :authenticate_user!
     
   def index
-    @tasks = Task.order(:id)        
+    @tasks = Task.all         
     respond_to do |format|
       format.html
       format.csv { send_data @tasks.to_csv }
@@ -17,12 +17,15 @@ class TasksController < ApplicationController
   def new    
     authorize! :new, @task, :message => 'Not authorized as an administrator.'              
     @task = Task.new        
+    users
     sprints    
   end
   
   def edit
     authorize! :edit, @task, :message => 'Not authorized as an administrator.'
-    @task = Task.find(params[:id])
+    @task = Task.find(params[:id])        
+    users
+    sprints
   end
   
   def create
@@ -36,9 +39,9 @@ class TasksController < ApplicationController
   end
   
   def update
-    authorize! :destroy, @task, :message => 'Not authorized as an administrator.'    
+    authorize! :update, @task, :message => 'Not authorized as an administrator.'    
     @task = Task.find(params[:id])      
-    if @task.update_attributes(params[:task], :as => :master)
+    if @task.update_attributes(params[:task])
       redirect_to tasks_path, :notice => "Task updated."
     else      
       render action: "edit", :alert => "Unable to update task."
@@ -54,12 +57,12 @@ class TasksController < ApplicationController
 
   private
   
-  def sprints
-    @sprints = Array.new
-      @list = Sprint.all
-      @list.map do |s|
-          @sprints << s.name + ' - ' + s.project.name
-      end     
+  def users
+    @users = User.all(order: 'name')
+  end
+
+  def sprints    
+    @sprints = Sprint.all(order: 'name')      
   end  
 
 end

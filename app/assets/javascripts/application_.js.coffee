@@ -36,6 +36,10 @@ App =
     $("a").each ->
       $(@).tooltip()    
 
+    $("img").each ->
+      $(@).tooltip()    
+
+
   showCalendar: ->
     $("[data-behaviour~='datepicker']").on "mouseover", (event) ->
       $(@).datepicker({"format": 'yyyy-mm-dd', "weekStart": 1, "autoclose": true})

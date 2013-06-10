@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130518234856) do
+ActiveRecord::Schema.define(:version => 20130609161837) do
 
   create_table "dashboards", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -80,11 +80,13 @@ ActiveRecord::Schema.define(:version => 20130518234856) do
     t.string   "name"
     t.string   "avatar_url"
     t.integer  "project_id"
+    t.integer  "task_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["project_id"], :name => "index_users_on_project_id"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["task_id"], :name => "index_users_on_task_id"
 
   create_table "users_roles", :id => false, :force => true do |t|
     t.integer "user_id"

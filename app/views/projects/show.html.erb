@@ -10,6 +10,12 @@
   <dd><%= @project.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:company) %>:</strong></dt>
   <dd><%= @project.company %></dd>
+  <dt><strong>Members:</strong></dt>
+  <dd><ul class="nav nav-pills">
+    <% @project.users.each do |u| %>
+      <li><a href="#"><img id="menu-table" src="<%= u.avatar_url %>"></a></li>
+    <% end %></ul>  
+  </dd>
 </dl>
 
 <div class="form-actions">
