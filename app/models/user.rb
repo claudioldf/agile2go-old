@@ -11,16 +11,6 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :email
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
 
-  private
-
-	def prep_email
-    	self.email = self.email.strip.downcase if self.email
-	end  
-
-	def create_avatar_url
-   	 self.avatar_url = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email)}?s=50"
-	end
-
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
       csv << %w(Name Email Registered Role)
@@ -29,5 +19,15 @@ class User < ActiveRecord::Base
       end
     end
   end
+  
+  private
+
+	def prep_email
+    	self.email = self.email.strip.downcase if self.email
+	end  
+
+	def create_avatar_url
+   	 self.avatar_url = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email)}?s=50"
+	end  
 
 end
