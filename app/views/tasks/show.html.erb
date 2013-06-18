@@ -1,6 +1,6 @@
 <%- model_class = Task -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1 class="muted"><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
 
 <dl class="dl-horizontal">
@@ -19,7 +19,7 @@
   <dt><strong>Members:</strong></dt>
   <dd><ul class="nav nav-pills">
     <% @task.users.each do |u| %>
-      <li><a href="#"><img id="menu-table" src="<%= u.avatar_url %>"></a></li>
+      <li><a href="#"><img class="avatar-2" title="<%= u.name %>  <%= u.email %>" src="<%= u.avatar_url %>"></a></li>
     <% end %></ul>  
   </dd>
 </dl>

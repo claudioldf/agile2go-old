@@ -15,7 +15,6 @@
   <%= f.input :daily_scrum, placeholder: "Daily Scrum", input_html: { class: 'text_field input-xlarge' } %>      
   <%= f.input :goal, as: :text, placeholder: "Goal of the Sprint", input_html: { class: 'text_field input-xlarge' } %>      
   <%= f.association :project, prompt: "Select Project", collection: Project.all, input_html: { class: 'text_field input-xlarge' } %>    
-
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

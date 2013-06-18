@@ -2,7 +2,7 @@
 <div class="nav-collapse collapse">
   <% if user_signed_in? %>    
     <p class="navbar-text pull-right">
-      <%= current_user.name %> <img id="menu-table" src="<%= current_user.avatar_url %>">
+      <%= current_user.name %> <img class="avatar-2" src="<%= current_user.avatar_url %>">
     </p>
   <% end %>
   <ul class="nav">

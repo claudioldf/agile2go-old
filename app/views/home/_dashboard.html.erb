@@ -37,6 +37,9 @@
       });    
     </script>
   </div>
+
+<%= will_paginate(@projects) %>
+
 <div>
   <% @projects.map do |project| %>     
       <div class="span4">
@@ -44,9 +47,10 @@
           <h3>            
             <a href="<%= projects_path %>"><%= project.name %></a>
           </h3>                
-          <p><span>Current Sprint: <%= project.sprints.last.name %></span></p>
+          <p><span>Current Sprint: <%= project.sprints.last.name unless project.sprints.empty? %></span></p>
         </div>
         <br />
       </div>                
   <% end %>   
 </div>
+
