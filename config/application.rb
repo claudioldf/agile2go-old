@@ -26,9 +26,9 @@ module Agile
       g.fixture_replacement :factory_girl, dir: 'spec/factories'            
       g.view_specs false
       g.helper_specs false
-      #g.stylesheets = false
-      #g.javascripts = false
-      #g.helper = false
+      g.stylesheets = false
+      g.javascripts = false
+      g.helper = false
     end
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -76,7 +76,7 @@ module Agile
     config.active_record.whitelist_attributes = false
 
     # Enable the asset pipeline
-    #config.assets.enabled = true
+    config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
