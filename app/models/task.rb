@@ -6,7 +6,7 @@ class Task < ActiveRecord::Base
   validates_presence_of :hours, :priority, :status, :storie, :sprint_id     
   validates :priority, :numericality => { :only_integer => true }
 
-  scope :names, select("distinct status")
+  scope :names, select("distinct status").order('status desc')
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|

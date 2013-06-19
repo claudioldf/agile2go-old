@@ -9,7 +9,7 @@
             chart: {
               type: 'bar'
             },
-            colors: ['#AA4643', '#4572A7', '#89A54E', '#80699B' ],
+            colors: ['#AA4643', '#80699B', '#4572A7', '#89A54E' ],
 
             plotOptions: {
               column: {
@@ -33,7 +33,7 @@
                 }
             },
             series: [                         
-            <% @tasks.sort.map do |t| %>                        
+            <% @tasks.map do |t| %>                        
             {
               name: '<%= t.status %>',                
               data: <%= raw(qtd_by(t.status , @projects)) %>
