@@ -33,7 +33,7 @@
                 }
             },
             series: [                         
-            <% @tasks.map do |t| %>                        
+            <% @tasks.sort.map do |t| %>                        
             {
               name: '<%= t.status %>',                
               data: <%= raw(qtd_by(t.status , @projects)) %>
