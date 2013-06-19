@@ -29,7 +29,7 @@ $.rails.allowAction = (element) ->
 
 $ ->
   App.appTooltip()
-  App.showCalendar()  
+  App.showCalendar()      
 
 App =   
   appTooltip: ->

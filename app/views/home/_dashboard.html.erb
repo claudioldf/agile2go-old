@@ -9,6 +9,13 @@
             chart: {
               type: 'bar'
             },
+            colors: ['#AA4643', '#4572A7', '#80699B', '#89A54E' ],
+
+            plotOptions: {
+              column: {
+                colorByPoint: true
+              }
+            }, 
             title: {
               text: 'Dashboard'
             },
@@ -29,7 +36,7 @@
             <% @tasks.map do |t| %>                        
             {
               name: '<%= t.status %>',                
-              data: <%= raw qtd_by(t.status , @projects) %>
+              data: <%= raw(qtd_by(t.status , @projects)) %>
             },                         
               <% end %>                              
               ]            

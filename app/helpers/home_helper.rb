@@ -1,8 +1,8 @@
 module HomeHelper
 
-	def qtd_by(sts, projects)
+	def qtd_by(status, projects)
 		@projects.map do |p|
-      		project = Project.where("t.status = ? and projects.name = ?", [sts], [p.name]).select('count(t.id) as qtd').joins('join sprints s on s.project_id = projects.id join tasks t on t.sprint_id = s.id').group('t.status')  
+      		project = Project.qty_tasks(status, p.name)
       		data = project.detect{ |pr| pr.name = p}
       		data && data.qtd.to_i || 0      
     	end
