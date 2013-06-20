@@ -26,7 +26,7 @@ class SprintsController < ApplicationController
   
   def create
     authorize! :create, @sprint, :message => 'Not authorized as an administrator.'
-    @sprint = Sprint.new(params[:sprint], :as => :master)
+    @sprint = Sprint.new(params[:sprint])
     if @sprint.save
       redirect_to sprints_path, :notice => "Sprint created."
     else      
@@ -37,7 +37,7 @@ class SprintsController < ApplicationController
   def update
     authorize! :update, @sprint, :message => 'Not authorized as an administrator.'    
     @sprint = Sprint.find(params[:id])
-    if @sprint.update_attributes(params[:sprint], :as => :master)
+    if @sprint.update_attributes(params[:sprint])
       redirect_to sprints_path, :notice => "Sprint updated."
     else      
       render action: "edit", :alert => "Unable to update project."

@@ -1,29 +1,71 @@
 require 'spec_helper'
 
+# Returns a User instance that's not saved
+# user = FactoryGirl.build(:user)
+
+# Returns a saved User instance
+# user = FactoryGirl.create(:user)
+
+# Returns a hash of attributes that can be used to build a User instance
+# attrs = FactoryGirl.attributes_for(:user)
+
+# Returns an object with all defined attributes stubbed out
+# stub = FactoryGirl.build_stubbed(:user)
+
+# Passing a block to any of the methods above will yield the return object
+# FactoryGirl.create(:user) do |user|
+  # user.posts.create(attributes_for(:post))
+# end
+
+# Build a User instance and override the first_name property
+# user = FactoryGirl.build(:user, first_name: "Joe")
+# user.first_name
+# => "Joe"
+
 describe Project do	
-		
-	before(:each) do
-		@attr = {
-			:company => "Company Example",
-			:description => "Company Example",
-			:name => "Company Example",			
-		}
-	end
-
+			
 	it "should create a new project given a valid attribute" do
-		Project.create! @attr
+		@project = FactoryGirl.attributes_for(:project)
+		p = Project.create!(@project)		
+		p.should be_valid
 	end
 
-	it "should required a project name" do
-		no_project_name = Project.new @attr.merge(:name => "")
-		no_project_name.should_not be_valid 
-	end
-	
-	it "should be ok with a associated sprint" do
-		project = Project.new @attr		
+
+	describe "attributes validations" do
+	  it "should required a name" do
+	    no_project_name = FactoryGirl.build(:project, name: "")		
+	    no_project_name.should_not be_valid 
+	  end
+
+	  it "should required a company" do
+	    no_project_name = FactoryGirl.build(:project, company: "")		
+	    no_project_name.should_not be_valid 
+      end
+
+      it "should required a description" do
+	    no_project_name = FactoryGirl.build(:project, description: "")		
+	    no_project_name.should_not be_valid 
+      end
+	end		
+
+	describe "associations" do
+	  it "should project and sprint association be ok" do 	  	
+		project = FactoryGirl.build(:project)
 		project.sprints.build 
 		project.should have(:no).errors_on(:sprints)		
-	end			
-	
+	  end				
 
+	  it "should project and user association be ok" do 	  	
+		project = FactoryGirl.build(:project)		
+		project.should have(:no).errors_on(:users)		
+	  end				
+
+ 	  it "should associate sprint to project" do 	  	
+		project = FactoryGirl.build(:project)
+		project.sprints.build
+		expect(project.sprints.size).to eq 1
+		project.should have(:no).errors_on(:sprints)		
+	  end				
+	end	
+	
 end

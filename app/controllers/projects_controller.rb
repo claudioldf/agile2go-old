@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
   
   def create
     authorize! :create, @project, :message => 'Not authorized as an administrator.'        
-    @project = Project.new(params[:project], :as => :master)
+    @project = Project.new(params[:project])
     if @project.save
       redirect_to projects_path, :notice => "Project updated."
     else      
@@ -40,7 +40,7 @@ class ProjectsController < ApplicationController
   def update
     authorize! :update, @project, :message => 'Not authorized as an administrator.'        
     @project = Project.find(params[:id])    
-    if @project.update_attributes(params[:project], :as => :master)
+    if @project.update_attributes(params[:project])
       redirect_to projects_path, :notice => "Project updated."
     else      
       render action: "edit", :alert => "Unable to update project."

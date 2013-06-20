@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :sprint do
+  	sprints
     daily_scrum "10:00"
     end_date "2013-04-06"
     start_date "2013-05-06"

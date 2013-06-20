@@ -30,7 +30,7 @@ class TasksController < ApplicationController
   
   def create
     authorize! :create, @task, :message => 'Not authorized as an administrator.'
-    @task = Task.new(params[:task], :as => :master)    
+    @task = Task.new(params[:task])    
     if @task.save
       redirect_to tasks_path, :notice => "Task created."
     else
