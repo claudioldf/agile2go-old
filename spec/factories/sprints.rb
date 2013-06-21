@@ -1,13 +1,11 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
-  factory :sprint do
-  	sprints
+  factory :sprint do  	
     daily_scrum "10:00"
-    end_date "2013-04-06"
-    start_date "2013-05-06"
+    end_date "2013-04-06".to_date
+    start_date "2013-05-06".to_date
     goal "Make it awsome"
     name "Iterarion"
-    project 1
+    project 
   end
+  
 end

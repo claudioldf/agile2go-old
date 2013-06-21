@@ -24,10 +24,9 @@ require 'spec_helper'
 
 describe Project do	
 			
-	it "should create a new project given a valid attribute" do
-		@project = FactoryGirl.attributes_for(:project)
-		p = Project.create!(@project)		
-		p.should be_valid
+	it "should create a new project given a valid attribute" do		
+		project = FactoryGirl.create(:project)
+		project.should be_valid
 	end
 
 
@@ -65,6 +64,13 @@ describe Project do
 		project.sprints.build
 		expect(project.sprints.size).to eq 1
 		project.should have(:no).errors_on(:sprints)		
+	  end				
+
+	  it "should associate user to project" do 	  	
+		project = FactoryGirl.build(:project)
+		project.users.build
+		expect(project.users.size).to eq 1
+		project.should have(:no).errors_on(:users)		
 	  end				
 	end	
 	
