@@ -3,10 +3,10 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
-    if user.has_role? :master
-        can :manage, :all        
-    elsif user.has_role? :team        
-        can :manage, Sprint, Task
+    if user.has_role? :master        
+        can [:read, :create, :update,:destroy], [Project, User, Role]                    
+    elsif user.has_role? :team                
+        can [:read, :create, :update,:destroy], [Sprint, Task]                
     else        
         can :read, :all
     end
