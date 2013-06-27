@@ -1,8 +1,19 @@
 class Sprint < ActiveRecord::Base
+  before_validation :generate_slug
   has_many :tasks   
   belongs_to :project        
-  attr_accessible :daily_scrum, :end_date, :goal, :name, :start_date, :project_id
+  attr_accessible :daily_scrum, :end_date, :goal, :name, :start_date, :project_id, :slug
   validates_presence_of :daily_scrum, :end_date, :goal, :name, :start_date, :project_id  
+
+  def generate_slug
+    self.slug ||= name.parameterize
+  end
+
+  def to_param
+    slug    
+  end
+
+  private
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|

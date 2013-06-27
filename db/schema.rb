@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130627001301) do
+ActiveRecord::Schema.define(:version => 20130627221223) do
 
   create_table "dashboards", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -26,7 +26,10 @@ ActiveRecord::Schema.define(:version => 20130627001301) do
     t.string   "company"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "slug"
   end
+
+  add_index "projects", ["slug"], :name => "index_projects_on_slug"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -48,9 +51,11 @@ ActiveRecord::Schema.define(:version => 20130627001301) do
     t.integer  "project_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "slug"
   end
 
   add_index "sprints", ["project_id"], :name => "index_sprints_on_project_id"
+  add_index "sprints", ["slug"], :name => "index_sprints_on_slug"
 
   create_table "tasks", :force => true do |t|
     t.text     "storie"
@@ -60,8 +65,10 @@ ActiveRecord::Schema.define(:version => 20130627001301) do
     t.integer  "sprint_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "slug"
   end
 
+  add_index "tasks", ["slug"], :name => "index_tasks_on_slug"
   add_index "tasks", ["sprint_id"], :name => "index_tasks_on_sprint_id"
 
   create_table "users", :force => true do |t|

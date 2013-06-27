@@ -6,8 +6,7 @@ class User < ActiveRecord::Base
   belongs_to :task
   rolify  
 
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable  
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable  
 
   attr_accessible :role_ids, :as => :master  
   attr_accessible :user_ids, :as => :master  

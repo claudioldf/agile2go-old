@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :find_task, only: [:show, :edit, :update, :destroy]  
     
   def index
     @tasks = Task.all         
@@ -11,7 +12,7 @@ class TasksController < ApplicationController
   end
   
   def show
-    @task = Task.find(params[:id])    
+    
   end
   
   def new    
@@ -22,8 +23,7 @@ class TasksController < ApplicationController
   end
   
   def edit
-    authorize! :edit, @task, :message => 'Not authorized as an administrator.'
-    @task = Task.find(params[:id])        
+    authorize! :edit, @task, :message => 'Not authorized as an administrator.'    
     users
     sprints
   end
@@ -39,8 +39,7 @@ class TasksController < ApplicationController
   end
   
   def update
-    authorize! :update, @task, :message => 'Not authorized as an administrator.'    
-    @task = Task.find(params[:id])      
+    authorize! :update, @task, :message => 'Not authorized as an administrator.'        
     if @task.update_attributes(params[:task])
       redirect_to tasks_path, :notice => "Task updated."
     else      
@@ -49,8 +48,7 @@ class TasksController < ApplicationController
   end
   
   def destroy
-    authorize! :destroy, @task, :message => 'Not authorized as an administrator.'
-    @task = Task.find(params[:id])
+    authorize! :destroy, @task, :message => 'Not authorized as an administrator.'    
     @task.destroy
     redirect_to tasks_path, :notice => "Task deleted."    
   end  
@@ -64,5 +62,9 @@ class TasksController < ApplicationController
   def sprints    
     @sprints = Sprint.all(order: 'name')      
   end  
+
+  def find_task
+    @task = Task.find(params[:id])   
+  end
 
 end

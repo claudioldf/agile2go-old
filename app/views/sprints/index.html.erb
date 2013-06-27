@@ -4,8 +4,7 @@
 </div>
 <table id="sprintTable" class="datatable table table-striped table-bordered table-condensed">  
   <thead>
-    <tr>
-      <th>#Id</th>
+    <tr>      
       <th>Name</th>
       <th>Start Date</th>
       <th>End Date</th>
@@ -17,9 +16,8 @@
   </thead>
   <tbody>
     <% @sprints.each do |sprint| %>
-      <tr>
-        <td><%= link_to sprint.id, sprint_path(sprint) %></td>
-        <td><%= sprint.name %></td>
+      <tr>        
+        <td><%= link_to sprint.name, sprint_path(sprint) %></td>
         <td><%= sprint.start_date %></td>
         <td><%= sprint.end_date %></td>
         <td><%= sprint.daily_scrum %></td>        

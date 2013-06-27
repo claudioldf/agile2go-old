@@ -1,5 +1,6 @@
 class SprintsController < ApplicationController
   before_filter :authenticate_user!   
+  before_filter :find_sprint, only: [:show, :edit, :update, :destroy]
   
   def index    
     @sprints = Sprint.order(:name)        
@@ -10,8 +11,7 @@ class SprintsController < ApplicationController
     end
   end
 
-  def show
-    @sprint = Sprint.find(params[:id])    
+  def show    
   end
   
   def new    
@@ -19,8 +19,7 @@ class SprintsController < ApplicationController
     authorize! :new, @sprint, :message => 'Not authorized as an administrator.'
   end
   
-  def edit    
-    @sprint = Sprint.find(params[:id])
+  def edit        
     authorize! :edit, @sprint, :message => 'Not authorized as an administrator.'
   end
   
@@ -34,8 +33,7 @@ class SprintsController < ApplicationController
     end
   end
   
-  def update    
-    @sprint = Sprint.find(params[:id])
+  def update        
     authorize! :update, @sprint, :message => 'Not authorized as an administrator.'    
     if @sprint.update_attributes(params[:sprint])
       redirect_to sprints_path, :notice => "Sprint updated."
@@ -44,10 +42,16 @@ class SprintsController < ApplicationController
     end
   end
   
-  def destroy    
-    @sprint = Sprint.find(params[:id])
+  def destroy        
     authorize! :destroy, @sprint, :message => 'Not authorized as an administrator.'
     @sprint.destroy
     redirect_to sprints_path, :notice => "Sprint deleted."    
   end
+
+  private 
+
+  def find_sprint
+    @sprint = Sprint.find_by_slug!(params[:id])   
+  end
+
 end

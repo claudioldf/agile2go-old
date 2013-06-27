@@ -1,12 +1,13 @@
-class Task < ActiveRecord::Base
+class Task < ActiveRecord::Base  
   belongs_to :sprint
   has_many :users  
-  attr_accessible :hours, :priority, :status, :storie, :sprint_id
-  attr_accessible :user_ids
+  attr_accessible :hours, :priority, :status, :storie, :sprint_id, :user_ids
   validates_presence_of :hours, :priority, :status, :storie, :sprint_id     
   validates :priority, :numericality => { :only_integer => true }
 
   scope :names, select("distinct status").order('status desc')
+  
+  private
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
