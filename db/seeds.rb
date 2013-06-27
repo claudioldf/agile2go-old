@@ -1,4 +1,8 @@
-User.find_each(&:save)
+# User.find_each(&:save)
+
+User.all.each do |u|
+  u.save!
+end
 # User.destroy_all
 # Project.destroy_all
 # Sprint.destroy_all
