@@ -1,12 +1,10 @@
-Agile::Application.routes.draw do
-  devise_for :users, :path => "auth" 
+Agile::Application.routes.draw do  
   resources :tasks
   resources :sprints
   resources :projects    
-  resources :users, only: [:index, :new, :create]
-  resources :users, path: "", except: [:index, :new, :create]
+  resources :users   
   
-  get '*id', to: 'users#show'
+  devise_for :users, :path => "auth" 
 
   match 'dashboard', :to => 'dashboard#index'   	    
 
