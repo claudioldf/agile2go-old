@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :find_user, only: [:show, :update, :destroy]
 
   def index    
     @users = User.order(:name)
@@ -10,12 +11,10 @@ class UsersController < ApplicationController
     end
   end
 
-  def show    
-    @user = User.find(params[:id])
+  def show        
   end
 
-  def update    
-    @user = User.find(params[:id])
+  def update        
     authorize! :update, @user, :message => 'Not authorized as an administrator.'
     if @user.update_attributes(params[:user], :as => :master)
       redirect_to users_path, :notice => "User updated."
@@ -24,8 +23,7 @@ class UsersController < ApplicationController
     end
   end
     
-  def destroy    
-    @user = User.find(params[:id])
+  def destroy        
     authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
     #unless @user == current_user
       @user.destroy
@@ -33,6 +31,12 @@ class UsersController < ApplicationController
     #else
      # redirect_to users_path, :notice => "Can't delete yourself."
     #end
+  end
+
+  private
+
+  def find_user
+    @user ||= User.find_by_slug!(params[:id].split("/").last)   
   end
   
 end

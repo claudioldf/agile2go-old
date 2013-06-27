@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :authenticate_user!  
+  before_filter :find_project, only: [:show, :edit, :update, :destroy]
   
   def index    
     authorize! :index, Project, :message => 'Not authorized as an administrator.'
@@ -11,8 +12,7 @@ class ProjectsController < ApplicationController
     end
   end
   
-  def show    
-    @project = Project.find(params[:id])    
+  def show          
     authorize! :show, @project, :message => 'Not authorized as an administrator.'
   end
   
@@ -22,8 +22,7 @@ class ProjectsController < ApplicationController
     @users = User.all(order: 'name')
   end
   
-  def edit        
-    @project = Project.find(params[:id])        
+  def edit            
     authorize! :edit, @project, :message => 'Not authorized as an administrator.'
     @users = User.all(order: 'name')    
   end
@@ -38,8 +37,7 @@ class ProjectsController < ApplicationController
     end
   end
   
-  def update    
-    @project = Project.find(params[:id])    
+  def update        
     authorize! :update, @project, :message => 'Not authorized as an administrator.'        
     if @project.update_attributes(params[:project])
       redirect_to projects_path, :notice => "Project updated."
@@ -48,11 +46,16 @@ class ProjectsController < ApplicationController
     end
   end
   
-  def destroy    
-    @project = Project.find(params[:id])
+  def destroy        
     authorize! :destroy, @project, :message => 'Not authorized as an administrator.'
     @project.destroy    
     redirect_to projects_path, :notice => "Project deleted."
+  end
+
+  private 
+
+  def find_project
+    @project = Project.find(params[:id])    
   end
   
 end
