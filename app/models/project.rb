@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
 
 	has_many :users
   has_many :sprints   
+  has_many :tasks, :through => :sprints
   
   accepts_nested_attributes_for :users, :allow_destroy => true  
   accepts_nested_attributes_for :sprints, :allow_destroy => true  
@@ -11,10 +12,10 @@ class Project < ActiveRecord::Base
   
   scope :names, select("name")  
   scope :qty_tasks, ->(status, project_name) {
-                                     select('count(t.id) as qtd').                                     
-                                     joins('join sprints s on s.project_id = projects.id join tasks t on t.sprint_id = s.id').
-                                     where("t.status = ? and projects.name = ?", status, project_name).                                     
-                                     group('t.status') }
+                                     select('count(tasks.id) as qtd').                                     
+                                     joins(:sprints, :tasks).
+                                     where("tasks.status = ? and projects.name = ?", status, project_name).                                     
+                                     group('tasks.status') }
 
   def generate_slug
     self.slug ||= name.parameterize
