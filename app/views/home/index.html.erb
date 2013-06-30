@@ -1,15 +1,8 @@
-<script type="text/javascript">        
-  $(function(){ 
-    $('#content').removeClass('content')
-  });
-</script>
-
-<% if !user_signed_in? %>    
+<% if !user_signed_in? %>
   <%= render 'home/home_page' %>
-<% else %>   
+<% else %>
   <%= render 'home/dashboard' %>
-<% end %>  
+<% end %>
 <hr />
 
 
-    

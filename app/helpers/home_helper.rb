@@ -4,8 +4,8 @@ module HomeHelper
 		@projects.map do |p|
       		project = Project.qty_tasks(status, p.name)
       		data = project.detect{ |pr| pr.name = p}
-      		data && data.qtd.to_i || 0      
+      		data && data.qtd.to_i || 0
     	end
-	end	
+	end
 
 end

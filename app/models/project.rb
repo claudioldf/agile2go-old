@@ -2,19 +2,19 @@ class Project < ActiveRecord::Base
   before_validation :generate_slug
 
 	has_many :users
-  has_many :sprints   
+  has_many :sprints
   has_many :tasks, :through => :sprints
-  
-  accepts_nested_attributes_for :users, :allow_destroy => true  
-  accepts_nested_attributes_for :sprints, :allow_destroy => true  
+
+  accepts_nested_attributes_for :users, :allow_destroy => true
+  accepts_nested_attributes_for :sprints, :allow_destroy => true
   attr_accessible :company, :description, :name, :slug, :user_ids
   validates_presence_of :company, :description, :name
-  
-  scope :names, select("name")  
+
+  scope :names, select("name")
   scope :qty_tasks, ->(status, project_name) {
-                                     select('count(tasks.id) as qtd').                                     
+                                     select('count(tasks.id) as qtd').
                                      joins(:sprints, :tasks).
-                                     where("tasks.status = ? and projects.name = ?", status, project_name).                                     
+                                     where("tasks.status = ? and projects.name = ?", status, project_name).
                                      group('tasks.status') }
 
   def generate_slug
@@ -22,10 +22,10 @@ class Project < ActiveRecord::Base
   end
 
   def to_param
-    slug    
+    slug
   end
 
-  private                                  
+  private
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
@@ -35,5 +35,5 @@ class Project < ActiveRecord::Base
       end
     end
   end
-  
+
 end
