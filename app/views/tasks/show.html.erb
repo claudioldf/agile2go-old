@@ -19,8 +19,8 @@
   <dt><strong>Members:</strong></dt>
   <dd><ul class="nav nav-pills">
     <% @task.users.each do |u| %>
-      <li><a href="#"><img class="avatar-2" title="<%= u.name %>  <%= u.email %>" src="<%= u.avatar_url %>"></a></li>
-    <% end %></ul>  
+      <li><img id="tooltip-bottom" class="avatar-2" title="<%= u.name %>  <%= u.email %>" src="<%= u.avatar_url %>"></li>
+    <% end %></ul>
   </dd>
 </dl>
 

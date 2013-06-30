@@ -1,10 +1,10 @@
-$.rails.allowAction = (element) ->    
-    message = element.data('confirm')# The message is something like "Are you sure?"    
-    return true unless message # If there's no message, there's no data-confirm attribute, which means there's nothing to confirm    
-    $link = element.clone() # Clone the clicked element (probably a delete link) so we can use it in the dialog box.      
-      .removeAttr('class') # We don't necessarily want the same styling as the original link/button.      
-      .removeAttr('data-confirm') # We don't want to pop up another confirmation (recursion)      
-      .addClass('btn').addClass('btn-danger') # We want a button      
+$.rails.allowAction = (element) ->
+    message = element.data('confirm')# The message is something like "Are you sure?"
+    return true unless message # If there's no message, there's no data-confirm attribute, which means there's nothing to confirm
+    $link = element.clone() # Clone the clicked element (probably a delete link) so we can use it in the dialog box.
+      .removeAttr('class') # We don't necessarily want the same styling as the original link/button.
+      .removeAttr('data-confirm') # We don't want to pop up another confirmation (recursion)
+      .addClass('btn').addClass('btn-danger') # We want a button
       .html("Yes, I'm positively certain.")# We want it to sound confirmy
     # Create the modal box with the message
     modal_html = """
@@ -21,30 +21,33 @@ $.rails.allowAction = (element) ->
                    </div>
                  </div>
                  """
-    $modal_html = $(modal_html)    
-    $modal_html.find('.modal-footer').append($link)# Add the new button to the modal box    
+    $modal_html = $(modal_html)
+    $modal_html.find('.modal-footer').append($link)# Add the new button to the modal box
     $modal_html.modal()# Pop it up
     # Prevent the original link from working
     return false
 
 $ ->
   App.appTooltip()
-  App.showCalendar()      
+  App.showCalendar()
 
-App =   
+App =
   appTooltip: ->
+    $("img#avatar-1").each ->
+      $(@).tooltip({ placement: 'right' })
+
     $("a").each ->
-      $(@).tooltip()    
+      $(@).tooltip()
 
     $("img").each ->
-      $(@).tooltip()    
+      $(@).tooltip({ placement: 'bottom' })
 
 
   showCalendar: ->
     $("[data-behaviour~='datepicker']").on "mouseover", (event) ->
       $(@).datepicker({"format": 'yyyy-mm-dd', "weekStart": 1, "autoclose": true})
-  
-    
 
-      
+
+
+
 

@@ -1,70 +1,63 @@
 class TasksController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_task, only: [:show, :edit, :update, :destroy]  
-    
+  before_filter :find_task, only: [:show, :edit, :update, :destroy]
+  before_filter :list_users_and_sprints, only: [:new, :edit]
+
   def index
-    @tasks = Task.all         
+    @tasks = Task.all
     respond_to do |format|
       format.html
       format.csv { send_data @tasks.to_csv }
       format.xls #{ send_data @tasks.to_csv(col_sep: "\t") }
     end
   end
-  
+
   def show
-    
   end
-  
-  def new    
-    authorize! :new, @task, :message => 'Not authorized as an administrator.'              
-    @task = Task.new        
-    users
-    sprints    
+
+  def new
+    @task = Task.new
+    authorize! :new, @task, :message => 'Not authorized as an administrator.'
   end
-  
+
   def edit
-    authorize! :edit, @task, :message => 'Not authorized as an administrator.'    
-    users
-    sprints
+    authorize! :edit, @task, :message => 'Not authorized as an administrator.'
   end
-  
+
   def create
+    @task = Task.new(params[:task])
     authorize! :create, @task, :message => 'Not authorized as an administrator.'
-    @task = Task.new(params[:task])    
     if @task.save
       redirect_to tasks_path, :notice => "Task created."
     else
-      render action: "new", :alert => "Unable to create task."    
-    end        
+      render action: "new", :alert => "Unable to create task."
+    end
   end
-  
+
   def update
-    authorize! :update, @task, :message => 'Not authorized as an administrator.'        
     if @task.update_attributes(params[:task])
+      authorize! :update, @task, :message => 'Not authorized as an administrator.'
       redirect_to tasks_path, :notice => "Task updated."
-    else      
+    else
       render action: "edit", :alert => "Unable to update task."
-    end        
+    end
   end
-  
+
   def destroy
-    authorize! :destroy, @task, :message => 'Not authorized as an administrator.'    
     @task.destroy
-    redirect_to tasks_path, :notice => "Task deleted."    
-  end  
+    authorize! :destroy, @task, :message => 'Not authorized as an administrator.'
+    redirect_to tasks_path, :notice => "Task deleted."
+  end
 
   private
-  
-  def users
+
+  def list_users_and_sprints
     @users = User.all(order: 'name')
+    @sprints = Sprint.all(order: 'name')
   end
 
-  def sprints    
-    @sprints = Sprint.all(order: 'name')      
-  end  
-
   def find_task
-    @task = Task.find(params[:id])   
+    @task = Task.find(params[:id])
   end
 
 end
