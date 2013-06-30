@@ -1,6 +1,6 @@
 class Task < ActiveRecord::Base
 
-  after_commit :flush_cache
+  # after_commit :flush_cache
 
   belongs_to :sprint
   has_many :users
@@ -10,13 +10,13 @@ class Task < ActiveRecord::Base
 
   scope :names, select("distinct status").order('status desc')
 
-  def self.cached_tasks
-    Rails.cache.fetch([self, 'tasks'], expires_in: 5.minutes) { Task.all }
-  end
+  # def self.cached_tasks
+  #   Rails.cache.fetch([self, 'tasks'], expires_in: 5.minutes) { Task.all }
+  # end
 
-  def flush_cache
-    Rails.cache.delete([self.class.name, id])
-  end
+  # def flush_cache
+  #   Rails.cache.delete([self.class.name, id])
+  # end
 
   private
 
