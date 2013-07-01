@@ -1,9 +1,9 @@
 <br />
-<%= javascript_include_tag "highcharts" %>    
-<%= javascript_include_tag "exporting" %>    
+<%= javascript_include_tag "highcharts" %>
+<%= javascript_include_tag "exporting" %>
   <div id="chart" style="width:100%; height:400px;"></div>
-    <script type="text/javascript">        
-      $(function(){ 
+    <script type="text/javascript">
+      $(function(){
         $('#content').removeClass('content')
           $('#chart').highcharts({
             chart: {
@@ -15,7 +15,7 @@
               column: {
                 colorByPoint: true
               }
-            }, 
+            },
             title: {
               text: 'Dashboard'
             },
@@ -32,32 +32,32 @@
                     stacking: 'normal'
                 }
             },
-            series: [                         
-            <% @tasks.map do |t| %>                        
+            series: [
+            <% @tasks.map do |t| %>
             {
-              name: '<%= t.status %>',                
+              name: '<%= t.status %>',
               data: <%= raw(qtd_by(t.status , @projects)) %>
-            },                         
-              <% end %>                              
-              ]            
-          });        
-      });    
+            },
+              <% end %>
+              ]
+          });
+      });
     </script>
   </div>
 
 <%= will_paginate(@projects) %>
 
 <div>
-  <% @projects.map do |project| %>     
+  <% @projects.map do |project| %>
       <div class="span4">
         <div class="card">
-          <h3>            
+          <h3>
             <a href="<%= projects_path %>"><%= project.name %></a>
-          </h3>                
+          </h3>
           <p><span>Current Sprint: <%= project.sprints.last.name unless project.sprints.empty? %></span></p>
         </div>
         <br />
-      </div>                
-  <% end %>   
+      </div>
+  <% end %>
 </div>
 

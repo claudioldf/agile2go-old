@@ -22,11 +22,20 @@ class Task < ActiveRecord::Base
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << %w(Id Status Priority Hours Registered Sprint Project)
+      csv << csv_headers
         all.each do |task|
-        csv << [task.id, task.status, task.priority, task.hours, task.created_at.to_date, task.sprint.name, task.sprint.project.name]
+        csv << csv_attrs_for(task)
       end
     end
   end
+
+  def self.csv_headers
+    %w(Id Status Priority Hours Registered Sprint Project)
+  end
+
+  def self.csv_attrs_for(task)
+    [task.id, task.status, task.priority, task.hours, task.created_at.to_date, task.sprint.name, task.sprint.project.name]
+  end
+
 
 end

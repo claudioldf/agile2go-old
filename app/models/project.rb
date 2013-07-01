@@ -29,11 +29,19 @@ class Project < ActiveRecord::Base
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
-      csv << %w(Name Description Company Registered)
+      csv << csv_headers
         all.each do |project|
-        csv << [project.name, project.description, project.company, project.created_at.to_date]
+        csv << csv_attrs_for(project)
       end
     end
+  end
+
+  def self.csv_headers
+    %w(Name Description Company Registered)
+  end
+
+  def self.csv_attrs_for(project)
+    [project.name, project.description, project.company, project.created_at.to_date]
   end
 
 end
