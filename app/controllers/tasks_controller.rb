@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   before_filter :list_users_and_sprints, only: [:new, :edit]
 
   def index
-    @tasks = Task.all
+    @tasks = Task.cached_tasks
     respond_to do |format|
       format.html
       format.csv { send_data @tasks.to_csv }

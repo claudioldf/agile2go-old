@@ -1,18 +1,16 @@
-# User.find_each(&:save)
-
 Project.destroy_all
 Sprint.destroy_all
 Task.destroy_all
 
-#  puts 'ROLES'
-#  YAML.load(ENV['ROLES']).each do |role|
-#   Role.find_or_create_by_name({ :name => role }, :without_protection => true)
-#    puts 'role: ' << role
-#  end
-# puts 'DEFAULT USERS'
-# user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
-# puts 'user: ' << user.name
-# user.add_role :master
+ puts 'ROLES'
+ YAML.load(ENV['ROLES']).each do |role|
+  Role.find_or_create_by_name({ :name => role }, :without_protection => true)
+   puts 'role: ' << role
+ end
+puts 'DEFAULT USERS'
+user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+puts 'user: ' << user.name
+user.add_role :master
 
 
 p1 = Project.new
@@ -47,7 +45,7 @@ p5.save
 
 p6 = Project.new
 p6.name = 'Trial Map'
-p6.description = 'Trails to help designers and developers learn various topics.'
+p6.description = 'Trail Map to help designers and developers learn various topics.'
 p6.company = 'Thoughtbot'
 p6.save
 

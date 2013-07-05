@@ -1,16 +1,16 @@
-<table>    
-  <tr>            
+<table>
+  <tr>
     <th>Name</th>
-    <th>Email</th>            
+    <th>Email</th>
     <th>Registered</th>
-    <th>Role</th>      
-  </tr>      
-  <% @users.each do |user| %>    
-    <tr>                
-      <td><%= user.name %></td>    
+    <th>Role</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td><%= user.created_at.to_date %></td>
-      <td><%= user.roles.first.name.titleize %></td>        
+      <td><%= user.roles.first.name.titleize unless user.roles.empty? %></td>
     </tr>
-  <% end %>  
-</table>    
+  <% end %>
+</table>
