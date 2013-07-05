@@ -1,10 +1,10 @@
 <%= simple_form_for @task, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :storie, as: :text,  placeholder: "As a ... I want .... So I will be able to...", input_html: { class: 'text_field input-xlarge' } %>  
+  <%= f.input :storie, as: :text,  placeholder: "As a ... I want .... So I will be able to...", input_html: { class: 'text_field input-xlarge' } %>
   <%= f.input :hours, placeholder: "Hours", input_html: { class: 'text_field input-xlarge' } %>
   <%= f.input :status, placeholder: "Status", prompt: "Select Status", collection: [ "TODO", "ONGOING", "TEST", "DONE"], input_html: { class: 'text_field input-xlarge' } %>
   <%= f.input :priority, collection: 1..5, prompt: "Select Priority", input_html: { class: 'text_field input-xlarge' } %>
   <%= f.association :sprint, collection: @sprints, prompt: "Select Sprint", input_html: { class: 'text_field input-xlarge' } %>
-  <%= f.association :users, collection: @users, input_html: { class: 'text_field input-xlarge' } %>  
+  <%= f.association :users, collection: @users, as: :check_boxes, input_html: { class: 'text_field input-xlarge' } %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

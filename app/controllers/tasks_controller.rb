@@ -30,6 +30,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_path, :notice => "Task created."
     else
+      list_users_and_sprints
       render action: "new", :alert => "Unable to create task."
     end
   end
@@ -39,6 +40,7 @@ class TasksController < ApplicationController
       authorize! :update, @task, :message => 'Not authorized as an administrator.'
       redirect_to tasks_path, :notice => "Task updated."
     else
+      list_users_and_sprints
       render action: "edit", :alert => "Unable to update task."
     end
   end
@@ -52,8 +54,8 @@ class TasksController < ApplicationController
   private
 
   def list_users_and_sprints
-    @users = User.all(order: 'name')
     @sprints = Sprint.all(order: 'name')
+    @users = User.all(order: 'name')
   end
 
   def find_task

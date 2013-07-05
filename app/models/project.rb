@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
 
   accepts_nested_attributes_for :users, :allow_destroy => true
   accepts_nested_attributes_for :sprints, :allow_destroy => true
+
   attr_accessible :company, :description, :name, :slug, :user_ids
   validates_presence_of :company, :description, :name
 

@@ -1,10 +1,9 @@
 <br />
 <%= javascript_include_tag "highcharts" %>
 <%= javascript_include_tag "exporting" %>
-  <div id="chart" style="width:100%; height:400px;"></div>
+  <div id="chart" style="width:100%; height:500px;"></div>
     <script type="text/javascript">
       $(function(){
-        $('#content').removeClass('content')
           $('#chart').highcharts({
             chart: {
               type: 'bar'
@@ -52,7 +51,7 @@
       <div class="span4">
         <div class="card">
           <h3>
-            <a href="<%= projects_path %>"><%= project.name %></a>
+            <%= link_to project.name, project_path(project) %>
           </h3>
           <p><span>Current Sprint: <%= project.sprints.last.name unless project.sprints.empty? %></span></p>
         </div>

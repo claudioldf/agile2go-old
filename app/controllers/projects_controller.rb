@@ -19,12 +19,12 @@ class ProjectsController < ApplicationController
   def new
     @project = Project.new
     authorize! :new, @project, :message => 'Not authorized as an administrator.'
-    @users = User.all(order: 'name')
+    users
   end
 
   def edit
     authorize! :edit, @project, :message => 'Not authorized as an administrator.'
-    @users = User.all(order: 'name')
+    users
   end
 
   def create
@@ -33,7 +33,8 @@ class ProjectsController < ApplicationController
     if @project.save
       redirect_to projects_path, :notice => "Project created."
     else
-      render action: "new", :alert => "Unable to update project."
+      users
+      render action: "new", :alert => "Unable to create project."
     end
   end
 
@@ -42,6 +43,7 @@ class ProjectsController < ApplicationController
     if @project.update_attributes(params[:project])
       redirect_to projects_path, :notice => "Project updated."
     else
+      users
       render action: "edit", :alert => "Unable to update project."
     end
   end
@@ -56,6 +58,10 @@ class ProjectsController < ApplicationController
 
   def find_project
     @project = Project.find_by_slug!(params[:id])
+  end
+
+  def users
+    @users = User.all(order: 'name')
   end
 
 end
