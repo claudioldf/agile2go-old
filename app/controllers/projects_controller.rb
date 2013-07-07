@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   def index
     authorize! :index, Project, :message => 'Not authorized as an administrator.'
-    @projects = Project.order(:name)
+    @projects = Project.ordered
     respond_to do |format|
       format.html
       format.csv { send_data @projects.to_csv }
@@ -61,7 +61,7 @@ class ProjectsController < ApplicationController
   end
 
   def users
-    @users = User.all(order: 'name')
+    @users = User.ordered
   end
 
 end

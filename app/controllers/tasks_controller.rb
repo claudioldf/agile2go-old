@@ -4,7 +4,6 @@ class TasksController < ApplicationController
   before_filter :users_and_sprints, only: [:new, :edit]
 
   def index
-    # @tasks = Task.cached_tasks
     @tasks = Task.ordered_by_last
     respond_to do |format|
       format.html
@@ -18,11 +17,11 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    # authorize! :new, @task, :message => 'Not authorized as an administrator.'
+    authorize! :new, @task, :message => 'Not authorized as an administrator.'
   end
 
   def edit
-    # authorize! :edit, @task, :message => 'Not authorized as an administrator.'
+    authorize! :edit, @task, :message => 'Not authorized as an administrator.'
   end
 
   def create

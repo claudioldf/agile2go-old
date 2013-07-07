@@ -1,7 +1,5 @@
 class Task < ActiveRecord::Base
 
-  # after_commit :flush_cache
-
   belongs_to :sprint
   has_many :users
   attr_accessible :hours, :priority, :status, :storie, :sprint_id, :user_ids
@@ -9,15 +7,7 @@ class Task < ActiveRecord::Base
   validates :priority, :numericality => { :only_integer => true }
 
   scope :names, select("distinct status").order('status desc')
-  scope :ordered_by_last, order('created_at')
-
-  # def self.cached_tasks
-  #   Rails.cache.fetch([self, 'tasks'], expires_in: 5.minutes) { Task.all }
-  # end
-
-  # def flush_cache
-  #   Rails.cache.delete([self.class.name, id])
-  # end
+  scope :ordered_by_last, order('created_at desc')
 
   private
 
