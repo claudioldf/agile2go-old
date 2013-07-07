@@ -12,6 +12,7 @@ class Project < ActiveRecord::Base
   validates_presence_of :company, :description, :name
 
   scope :names, select("name")
+  scope :ordered, order(:name)
   scope :qty_tasks, ->(status, project_name) {
                                      select('count(tasks.id) as qtd').
                                      joins(:sprints, :tasks).
