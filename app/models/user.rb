@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true, presence: true
   validates :slug, uniqueness: true, presence: true, exclusion: {in: %w[signup login]}
 
+  scope :ordered, order(:name)
+
   def generate_slug
     self.slug ||= name.parameterize
   end

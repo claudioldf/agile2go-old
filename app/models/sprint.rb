@@ -5,6 +5,8 @@ class Sprint < ActiveRecord::Base
   attr_accessible :daily_scrum, :end_date, :goal, :name, :start_date, :project_id, :slug
   validates_presence_of :daily_scrum, :end_date, :goal, :name, :start_date, :project_id
 
+  scope :ordered, order(:name)
+
   def generate_slug
     self.slug ||= name.parameterize
   end

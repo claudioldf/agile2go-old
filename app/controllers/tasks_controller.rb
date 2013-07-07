@@ -1,10 +1,11 @@
 class TasksController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_task, only: [:show, :edit, :update, :destroy]
-  before_filter :list_users_and_sprints, only: [:new, :edit]
+  before_filter :users_and_sprints, only: [:new, :edit]
 
   def index
-    @tasks = Task.cached_tasks
+    # @tasks = Task.cached_tasks
+    @tasks = Task.ordered_by_last
     respond_to do |format|
       format.html
       format.csv { send_data @tasks.to_csv }
@@ -17,11 +18,11 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    authorize! :new, @task, :message => 'Not authorized as an administrator.'
+    # authorize! :new, @task, :message => 'Not authorized as an administrator.'
   end
 
   def edit
-    authorize! :edit, @task, :message => 'Not authorized as an administrator.'
+    # authorize! :edit, @task, :message => 'Not authorized as an administrator.'
   end
 
   def create
@@ -30,7 +31,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to tasks_path, :notice => "Task created."
     else
-      list_users_and_sprints
+      users_and_sprints
       render action: "new", :alert => "Unable to create task."
     end
   end
@@ -40,7 +41,7 @@ class TasksController < ApplicationController
       authorize! :update, @task, :message => 'Not authorized as an administrator.'
       redirect_to tasks_path, :notice => "Task updated."
     else
-      list_users_and_sprints
+      users_and_sprints
       render action: "edit", :alert => "Unable to update task."
     end
   end
@@ -53,9 +54,9 @@ class TasksController < ApplicationController
 
   private
 
-  def list_users_and_sprints
-    @sprints = Sprint.all(order: 'name')
-    @users = User.all(order: 'name')
+  def users_and_sprints
+    @sprints = Sprint.ordered
+    @users = User.ordered
   end
 
   def find_task
