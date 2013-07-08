@@ -11,7 +11,7 @@ class Project < ActiveRecord::Base
   attr_accessible :company, :description, :name, :slug, :user_ids
   validates_presence_of :company, :description, :name
 
-  scope :names, select("name")
+  scope :names, select("name")  
   scope :ordered, order(:name)
   scope :qty_tasks, ->(status, project_name) {
                                      select('count(tasks.id) as qtd').
@@ -25,6 +25,7 @@ class Project < ActiveRecord::Base
 
   def to_param
     slug
+
   end
 
   private
