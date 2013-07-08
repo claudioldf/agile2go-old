@@ -23,7 +23,8 @@ Deploy at Heroku:
     heroku run rake db:migrate
     heroku restart
 
-h2. Development
+Development
+-----------
 
 * Template Engine: ERB
 * Testing Framework: RSpec and Factory Girl and Cucumber
@@ -31,16 +32,20 @@ h2. Development
 * Form Builder: SimpleForm
 * Authentication: Devise
 * Authorization: CanCan
+* Charts: Hightcharts
+* Database: PostgresSQL
 
 Contribute
 ----------
 
 See the [style guide](https://github.com/copycopter/style-guide).
 
-h2. Maintainers
+Maintainers
+-----------
 
 * Rafael Jesus (https://github.com/rafaeljesus)
 
-h2. Demo
+Demo
+----
 
 http://agile2go.herokuapp.com/
