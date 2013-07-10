@@ -4,7 +4,7 @@ FactoryGirl.define do
     end_date "2013-04-06".to_date
     start_date "2013-05-06".to_date
     goal "Make it awsome"
-    name "Iterarion"
+    name "Iterarion"    
     project 
   end
   

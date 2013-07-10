@@ -36,8 +36,8 @@ class TasksController < ApplicationController
   end
 
   def update
-    if @task.update_attributes(params[:task])
-      authorize! :update, @task, :message => 'Not authorized as an administrator.'
+    authorize! :update, @task, :message => 'Not authorized as an administrator.'
+    if @task.update_attributes(params[:task])      
       redirect_to tasks_path, :notice => "Task updated."
     else
       users_and_sprints

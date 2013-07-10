@@ -50,8 +50,8 @@ describe Project do
 	describe "associations" do
 	  it "should project and sprint association be ok" do
 			project = FactoryGirl.build(:project)
-			# project.sprints.build
-			# project.should have(:no).errors_on(:sprints)
+			project.sprints.build
+			project.should have(:no).errors_on(:sprints)
 	  end
 
 	  it "should project and user association be ok" do

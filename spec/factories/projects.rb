@@ -6,16 +6,16 @@ FactoryGirl.define do
     name 'Project Test'
   end
 
-  factory :member do
-  	iterations
+  factory :member do  
+    members	
     name 'Test User'
     email 'example@example.com'
     password 'changeme'
     password_confirmation 'changeme'    
   end
 
-  factory :iteration do
-  	members
+  factory :iteration do  	
+    iterations
     daily_scrum "10:00"
     end_date "2013-04-06".to_date
     start_date "2013-05-06".to_date
