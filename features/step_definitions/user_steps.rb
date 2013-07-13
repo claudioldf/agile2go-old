@@ -90,7 +90,42 @@ When /^I sign out$/ do
   visit '/auth/sign_out'
 end
 
+When /^I sign in with a wrong email$/ do
+  @visitor = FactoryGirl.build(:user, email: 'wrong@example.com')
+  sign_in
+end
+
+When /^I sign in with a wrong password$/ do
+  @visitor = FactoryGirl.build(:user, password: 'wrongpass')
+  sign_in
+end
+
+When /^I edit my account name$/ do
+  click_link "Edit account"
+  fill_in "user_name", :with => "newname"
+  fill_in "user_current_password", :with => @visitor.password
+  click_button "Update"
+end
+
+When /^I change my password$/ do  
+  @current_password = @visitor.password
+  @visitor = FactoryGirl.build(:user, password: 'newpassword', password_confirmation: 'newpassword')
+  click_link "Edit account"  
+  fill_in "user_password", :with => @visitor.password
+  fill_in "user_password_confirmation", :with => @visitor.password_confirmation
+  fill_in "user_current_password", :with => @current_password
+  click_button "Update"  
+end
+
+When /^I sign in$/ do
+  sign_in
+end
+
 ## Then ##
+Then /^I should see an account edited message$/ do
+  page.should have_content "You updated your account successfully."
+end
+
 Then /^I see an invalid login message$/ do
   page.should have_content "Invalid email or password."
 end
@@ -129,11 +164,3 @@ end
 Then /^I should see a missing password confirmation message$/ do
   page.should have_content "doesn't match confirmation"
 end
-
-
-
-
-
-
-
-
