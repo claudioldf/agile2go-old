@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :role_ids, :as => :master
   attr_accessible :user_ids, :as => :master
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :avatar_url, :project_id, :task_id
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :avatar_url, :project_id, :task_id  
 
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates :name, uniqueness: true, presence: true
@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   scope :ordered, order(:name)
 
   def generate_slug
-    self.slug ||= name.parameterize
+    self.slug ||= self.name.parameterize
   end
 
   def to_param

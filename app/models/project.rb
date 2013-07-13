@@ -20,15 +20,18 @@ class Project < ActiveRecord::Base
                                      group('tasks.status') }
 
   def generate_slug
-    self.slug ||= name.parameterize
+    self.slug ||= name_param
   end
 
   def to_param
     slug
-
   end
-
+  
   private
+
+  def name_param
+    self.name.parameterize
+  end
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|
