@@ -121,7 +121,16 @@ When /^I sign in$/ do
   sign_in
 end
 
+When /^I look at the list of users$/ do
+  visit '/users'
+end
+
 ## Then ##
+Then /^I should see my name$/ do
+  create_user
+  page.should have_content @user.name
+end
+
 Then /^I should see an account edited message$/ do
   page.should have_content "You updated your account successfully."
 end
