@@ -1,17 +1,17 @@
+
+#  puts 'ROLES'
+#  YAML.load(ENV['ROLES']).each do |role|
+#   Role.find_or_create_by_name({ :name => role }, :without_protection => true)
+#    puts 'role: ' << role
+#  end
+# puts 'DEFAULT USERS'
+# user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
+# puts 'user: ' << user.name
+# user.add_role :master
+
 Project.destroy_all
 Sprint.destroy_all
 Task.destroy_all
-
- puts 'ROLES'
- YAML.load(ENV['ROLES']).each do |role|
-  Role.find_or_create_by_name({ :name => role }, :without_protection => true)
-   puts 'role: ' << role
- end
-puts 'DEFAULT USERS'
-user = User.find_or_create_by_email :name => ENV['ADMIN_NAME'].dup, :email => ENV['ADMIN_EMAIL'].dup, :password => ENV['ADMIN_PASSWORD'].dup, :password_confirmation => ENV['ADMIN_PASSWORD'].dup
-puts 'user: ' << user.name
-user.add_role :master
-
 
 p1 = Project.new
 p1.name = 'Agile2Go'
@@ -109,7 +109,7 @@ s6.save
 	t = Task.new
 	t.hours = '8'
 	t.priority = 3
-	t.status = 'TODO'
+	t.status = 'todo'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
 	t.sprint_id = s1.id
 	t.save
@@ -119,7 +119,7 @@ end
 	t = Task.new
 	t.hours = '5'
 	t.priority = 3
-	t.status = 'ONGOING'
+	t.status = 'ongoing'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
 	t.sprint_id = s1.id
 	t.save
@@ -129,7 +129,7 @@ end
 	t = Task.new
 	t.hours = '5'
 	t.priority = 3
-	t.status = 'TEST'
+	t.status = 'test'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
 	t.sprint_id = s1.id
 	t.save
@@ -139,7 +139,7 @@ end
 	t = Task.new
 	t.hours = '15'
 	t.priority = 3
-	t.status = 'DONE'
+	t.status = 'done'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
 	t.sprint_id = s1.id
 	t.save
@@ -149,7 +149,7 @@ end
 	t = Task.new
 	t.hours = '6'
 	t.priority = 2
-	t.status = 'TODO'
+	t.status = 'todo'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
 	t.sprint_id = s2.id
 	t.save
@@ -159,7 +159,7 @@ end
 	t = Task.new
 	t.hours = '5'
 	t.priority = 3
-	t.status = 'ONGOING'
+	t.status = 'ongoing'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
 	t.sprint_id = s2.id
 	t.save
@@ -169,7 +169,7 @@ end
 	t = Task.new
 	t.hours = '8'
 	t.priority = 3
-	t.status = 'TEST'
+	t.status = 'test'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
 	t.sprint_id = s2.id
 	t.save
@@ -179,7 +179,7 @@ end
 	t = Task.new
 	t.hours = '8'
 	t.priority = 3
-	t.status = 'DONE'
+	t.status = 'done'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
 	t.sprint_id = s2.id
 	t.save
@@ -190,7 +190,7 @@ end
 	t = Task.new
 	t.hours = '6'
 	t.priority = 1
-	t.status = 'TODO'
+	t.status = 'todo'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
 	t.sprint_id = s3.id
 	t.save
@@ -200,7 +200,7 @@ end
 	t = Task.new
 	t.hours = '5'
 	t.priority = 3
-	t.status = 'ONGOING'
+	t.status = 'ongoing'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
 	t.sprint_id = s3.id
 	t.save
@@ -210,7 +210,7 @@ end
 	t = Task.new
 	t.hours = '8'
 	t.priority = 3
-	t.status = 'TEST'
+	t.status = 'test'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
 	t.sprint_id = s3.id
 	t.save
@@ -220,7 +220,7 @@ end
 	t = Task.new
 	t.hours = '8'
 	t.priority = 1
-	t.status = 'DONE'
+	t.status = 'done'
 	t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
 	t.sprint_id = s3.id
 	t.save
@@ -230,7 +230,7 @@ end
   t = Task.new
   t.hours = '6'
   t.priority = 1
-  t.status = 'TODO'
+  t.status = 'todo'
   t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
   t.sprint_id = s4.id
   t.save
@@ -240,7 +240,7 @@ end
   t = Task.new
   t.hours = '5'
   t.priority = 3
-  t.status = 'ONGOING'
+  t.status = 'ongoing'
   t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
   t.sprint_id = s4.id
   t.save
@@ -250,7 +250,7 @@ end
   t = Task.new
   t.hours = '8'
   t.priority = 3
-  t.status = 'TEST'
+  t.status = 'test'
   t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
   t.sprint_id = s4.id
   t.save
@@ -260,7 +260,7 @@ end
   t = Task.new
   t.hours = '8'
   t.priority = 1
-  t.status = 'DONE'
+  t.status = 'done'
   t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
   t.sprint_id = s4.id
   t.save
@@ -270,7 +270,7 @@ end
   t = Task.new
   t.hours = '6'
   t.priority = 1
-  t.status = 'TODO'
+  t.status = 'todo'
   t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
   t.sprint_id = s5.id
   t.save
@@ -279,7 +279,7 @@ end
   t = Task.new
   t.hours = '5'
   t.priority = 3
-  t.status = 'ONGOING'
+  t.status = 'ongoing'
   t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
   t.sprint_id = s5.id
   t.save
@@ -289,7 +289,7 @@ end
   t = Task.new
   t.hours = '8'
   t.priority = 3
-  t.status = 'TEST'
+  t.status = 'test'
   t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
   t.sprint_id = s5.id
   t.save
@@ -299,7 +299,7 @@ end
   t = Task.new
   t.hours = '8'
   t.priority = 1
-  t.status = 'DONE'
+  t.status = 'done'
   t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
   t.sprint_id = s5.id
   t.save
@@ -310,7 +310,7 @@ end
   t = Task.new
   t.hours = '6'
   t.priority = 1
-  t.status = 'TODO'
+  t.status = 'todo'
   t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
   t.sprint_id = s6.id
   t.save
@@ -320,7 +320,7 @@ end
   t = Task.new
   t.hours = '5'
   t.priority = 3
-  t.status = 'ONGOING'
+  t.status = 'ongoing'
   t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
   t.sprint_id = s6.id
   t.save
@@ -330,7 +330,7 @@ end
   t = Task.new
   t.hours = '21'
   t.priority = 3
-  t.status = 'TEST'
+  t.status = 'test'
   t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
   t.sprint_id = s6.id
   t.save
@@ -340,7 +340,7 @@ end
   t = Task.new
   t.hours = '8'
   t.priority = 1
-  t.status = 'DONE'
+  t.status = 'done'
   t.storie = 'As a Scrum Master I want to see a dashboard with all taks by every project'
   t.sprint_id = s6.id
   t.save
@@ -352,10 +352,6 @@ Project.all.each do |u|
 end
 
 Sprint.all.each do |u|
-  u.save!
-end
-
-Task.all.each do |u|
   u.save!
 end
 

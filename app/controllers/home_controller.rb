@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   def index
     @projects = Project.paginate(:per_page => 10, :page => params[:page])
-	@tasks = Task.names
+		@tasks = Task.names
   end
 
 end

@@ -1,9 +1,15 @@
 class Task < ActiveRecord::Base
+  STATUSES = %w(todo ongoing test done)
 
-  belongs_to :sprint
   has_many :users
-  attr_accessible :hours, :priority, :status, :storie, :sprint_id, :user_ids
-  validates_presence_of :hours, :priority, :status, :storie, :sprint_id
+  belongs_to :sprint
+  
+  attr_accessible :hours, :priority, :status, :storie, :sprint_id, :user_ids  
+
+  validates :hours, presence: true  
+  validates :status, presence: true, inclusion: { in: STATUSES }
+  validates :storie, presence: true
+  validates :sprint_id, presence: true
   validates :priority, :numericality => { :only_integer => true }
 
   scope :names, select("distinct status").order('status desc')
