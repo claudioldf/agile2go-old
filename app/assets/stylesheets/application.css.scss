@@ -5,8 +5,30 @@
  *= require_tree .
 */
 
+textarea {
+  height: 10em;
+}
+
+input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover, select:hover, textarea:hover {      
+  border-radius:0px !important;
+  border: 2px solid rgba(82, 168, 236, 0.8) !important;
+}
+
+input[type="text"], input[type="email"], input[type="password"], textarea select {
+  border: 2px solid #ccc !important;
+  border-radius:0px !important;    
+}
+
+input[type="submit"] {
+  border-radius:0px !important;
+}
+
 a:hover {
   text-decoration: none !important;
+}
+
+a {
+   border-radius:0px !important;
 }
 
 select#project_user_ids {
