@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :find_project, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!  
+  helper_method :project
+  helper_method :users
 
   def index
     authorize! :index, Project, :message => 'Not authorized as an administrator.'
@@ -8,29 +9,28 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv { send_data @projects.to_csv }
-      format.xls #{ send_data @projects.to_csv(col_sep: "\t") }
+      format.xls
     end
   end
 
   def show
-    authorize! :show, @project, :message => 'Not authorized as an administrator.'
+    authorize! :show, project, :message => 'Not authorized as an administrator.'
   end
 
-  def new
-    @project = Project.new
-    authorize! :new, @project, :message => 'Not authorized as an administrator.'
+  def new    
+    authorize! :new, project, :message => 'Not authorized as an administrator.'
     users
   end
 
   def edit
-    authorize! :edit, @project, :message => 'Not authorized as an administrator.'
+    authorize! :edit, project, :message => 'Not authorized as an administrator.'
     users
   end
 
-  def create
-    @project = Project.new(params[:project])
-    authorize! :create, @project, :message => 'Not authorized as an administrator.'
-    if @project.save
+  def create    
+    authorize! :create, project, :message => 'Not authorized as an administrator.'
+    project.attributes=(params[:project])
+    if project.save
       redirect_to projects_path, :notice => "Project created."
     else
       users
@@ -39,8 +39,8 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    authorize! :update, @project, :message => 'Not authorized as an administrator.'
-    if @project.update_attributes(params[:project])
+    authorize! :update, project, :message => 'Not authorized as an administrator.'
+    if project.update_attributes(params[:project])
       redirect_to projects_path, :notice => "Project updated."
     else
       users
@@ -49,19 +49,19 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, @project, :message => 'Not authorized as an administrator.'
-    @project.destroy
+    authorize! :destroy, project, :message => 'Not authorized as an administrator.'
+    project.destroy
     redirect_to projects_path, :notice => "Project deleted."
   end
 
   private
-
-  def find_project
-    @project = Project.find_by_slug!(params[:id])
+  
+  def project
+    @cached_project ||= Project.find_or_initialize_by_slug(params[:id])
   end
 
   def users
-    @users = User.ordered
+    @cached_users ||= User.ordered
   end
 
 end

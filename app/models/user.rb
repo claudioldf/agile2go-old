@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  before_save :create_avatar_url
+  before_save :gravatar_url
   before_validation :generate_slug
 
   belongs_to :project
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   attr_accessible :role_ids, :as => :master
   attr_accessible :user_ids, :as => :master
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :avatar_url, :project_id, :task_id  
-
+  
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates :name, uniqueness: true, presence: true
   validates :email, uniqueness: true, presence: true
@@ -20,32 +20,31 @@ class User < ActiveRecord::Base
   scope :ordered, order(:name)
 
   def generate_slug
-    self.slug ||= self.name.parameterize
-  end
+    Slug.new(self).generate
+  end  
 
   def to_param
     slug
   end
 
-  private
+  def is_scrum_master
+    self.has_role? :master
+  end
 
-	def prep_email
-    self.email = self.email.strip.downcase if self.email
-	end
+  def is_dev_team
+    self.has_role? :team
+  end
+        
+  def gravatar_url
+    Gravatar.new(email).url
+  end
 
-	def create_avatar_url
-   	self.avatar_url = "http://www.gravatar.com/avatar/#{Digest::MD5.hexdigest(self.email)}?s=50"
-	end
-
-  def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
-      csv << %w(Name Email Registered Role)
-        all.each do |user|
-        csv_header = [user.name, user.email, user.created_at.to_date]
-        csv_header << user.roles.first.name unless user.roles.empty?
-        csv << csv_header
-      end
-    end
+  def has_role
+    self.roles.first.nil?
+  end
+      
+  def self.export(options = {})
+    UserExport.new(self, options).to_csv
   end
 
 end

@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-  before_validation :generate_slug
+  before_validation :generate_slug  
 
 	has_many :users
   has_many :sprints
@@ -18,20 +18,20 @@ class Project < ActiveRecord::Base
                                      joins(:sprints, :tasks).
                                      where("tasks.status = ? and projects.name = ?", status, project_name).
                                      group('tasks.status') }
+  
+  def generate_slug        
+    self.slug ||= name_param     
+  end    
 
-  def generate_slug
-    self.slug ||= name_param
-  end
+  def name_param    
+    self.name.parameterize unless self
+  end                                 
 
   def to_param
     slug
   end
-  
+    
   private
-
-  def name_param
-    self.name.parameterize
-  end
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|

@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @users = User.order(:name)
       respond_to do |format|
         format.html
-        format.csv { send_data @users.to_csv }
+        format.csv { send_data @users.export }
         format.xls #{ send_data @users.to_csv(col_sep: "\t") }
     end
   end

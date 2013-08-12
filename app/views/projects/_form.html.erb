@@ -1,13 +1,15 @@
-<%= simple_form_for @project, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for project, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
-  <%= display_base_errors @project %>
+  <%= display_base_errors project %>
   <%= f.input :name, :placeholder => 'Name', input_html: { class: 'text_field input-xlarge' } %>
   <%= f.input :company, :placeholder => 'What company are you?', input_html: { class: 'text_field input-xlarge' } %>
   <%= f.input :description, as: :text, :placeholder => 'Description of the Project', input_html: { class: 'text_field input-xlarge' } %>
-  <%= f.association :users, collection: @users, as: :check_boxes, input_html: { class: 'text_field input-xlarge' } %>
+  <%= f.association :users, collection: users, as: :check_boxes, input_html: { class: 'text_field input-xlarge' } %>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                projects_path, :class => 'btn' %>
+    <%= link_to t('.cancel', 
+                :default => t("helpers.links.cancel")),
+                projects_path, 
+                :class => 'btn' %>
   </div>
 <% end %>

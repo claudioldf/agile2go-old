@@ -3,9 +3,9 @@ class Ability
 
   def initialize(user)
     user ||= User.new # guest user (not logged in)
-    if user.has_role? :master        
+    if user.is_scrum_master        
         can [:read, :create, :update,:destroy], [Project, User, Role]                    
-    elsif user.has_role? :team                
+    elsif user.is_dev_team                
         can [:read, :create, :update,:destroy], [Sprint, Task]                
     else        
         can :read, :all

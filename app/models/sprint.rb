@@ -1,5 +1,6 @@
 class Sprint < ActiveRecord::Base
   before_validation :generate_slug
+
   has_many :tasks
   belongs_to :project
   attr_accessible :daily_scrum, :end_date, :goal, :name, :start_date, :project_id, :slug
@@ -8,14 +9,18 @@ class Sprint < ActiveRecord::Base
   scope :ordered, order(:name)
 
   def generate_slug
-    self.slug ||= name.parameterize
+    self.slug ||= param_name
   end
-
+  
   def to_param
     slug
   end
 
   private
+
+  def param_name
+    self.name.parameterize unless self
+  end
 
   def self.to_csv(options = {})
     CSV.generate(options) do |csv|

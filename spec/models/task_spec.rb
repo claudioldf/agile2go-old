@@ -6,7 +6,7 @@ describe Task do
 		@attr = {			
 			:hours => "08:00",
 			:priority => 1,
-			:status => "Status Example",
+			:status => "todo",
 			:storie => "Storie Example",
 			:sprint_id => 1
 		}
