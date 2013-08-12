@@ -10,8 +10,9 @@ class UserExport
 		CSV.generate(@options) do |csv|
       csv << headers
         @user.all.each do |user|        
-        csv << attributes_for(user)
-        csv << user.roles.first.name unless user.roles.empty?        
+        attrs = attributes_for(user)
+        attrs << user.roles.first.name unless user.has_role     
+        csv << attrs        
       end
     end
 	end

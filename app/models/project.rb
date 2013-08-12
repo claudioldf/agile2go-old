@@ -24,7 +24,7 @@ class Project < ActiveRecord::Base
   end    
 
   def name_param    
-    self.name.parameterize unless self
+    self.name.parameterize 
   end                                 
 
   def to_param
