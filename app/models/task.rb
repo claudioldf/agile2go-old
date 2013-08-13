@@ -1,38 +1,22 @@
 class Task < ActiveRecord::Base
   STATUSES = %w(todo ongoing test done)
+  CSV_HEADERS = %w(Id Status Priority Hours Registered Sprint Project)
 
-  has_many :users
-  belongs_to :sprint
-  
-  attr_accessible :hours, :priority, :status, :storie, :sprint_id, :user_ids  
-
-  validates :hours, presence: true  
+  validates :hours, presence: true
   validates :status, presence: true, inclusion: { in: STATUSES }
   validates :storie, presence: true
   validates :sprint_id, presence: true
   validates :priority, :numericality => { :only_integer => true }
+  
+  has_many :users
+  belongs_to :sprint
 
+  attr_accessible :hours, :priority, :status, :storie, :sprint_id, :user_ids
+  
   scope :names, select("distinct status").order('status desc')
-  scope :ordered_by_last, order('created_at desc')
+  scope :ordered_by_last, order('created_at')
 
-  private
-
-  def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
-      csv << csv_headers
-        all.each do |task|
-        csv << csv_attrs_for(task)
-      end
-    end
+  def self.export(options = {})
+    TaskExport.new(self, options).to_csv
   end
-
-  def self.csv_headers
-    %w(Id Status Priority Hours Registered Sprint Project)
-  end
-
-  def self.csv_attrs_for(task)
-    [task.id, task.status, task.priority, task.hours, task.created_at.to_date, task.sprint.name, task.sprint.project.name]
-  end
-
-
 end

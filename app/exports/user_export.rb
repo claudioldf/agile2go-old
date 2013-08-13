@@ -1,4 +1,5 @@
 class UserExport
+  CSV_HEADERS = %w(Name Email Registered Role)
 	attr_reader :user
 
 	def initialize(user, options = {})
@@ -18,10 +19,6 @@ class UserExport
 	end
 
 	private
-
-	def headers
-    %w(Name Email Registered Role)
-  end
 
   def attributes_for(user)
     [user.name, user.email, user.created_at.to_date]    

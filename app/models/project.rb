@@ -1,5 +1,6 @@
-class Project < ActiveRecord::Base
-  before_validation :generate_slug  
+class Project < ActiveRecord::Base  
+  before_validation :generate_slug
+  validates_presence_of :company, :description, :name
 
 	has_many :users
   has_many :sprints
@@ -8,46 +9,25 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :users, :allow_destroy => true
   accepts_nested_attributes_for :sprints, :allow_destroy => true
 
-  attr_accessible :company, :description, :name, :slug, :user_ids
-  validates_presence_of :company, :description, :name
+  attr_accessible :company, :description, :name, :slug, :user_ids  
 
-  scope :names, select("name")  
+  scope :names, select("name")
   scope :ordered, order(:name)
   scope :qty_tasks, ->(status, project_name) {
                                      select('count(tasks.id) as qtd').
                                      joins(:sprints, :tasks).
                                      where("tasks.status = ? and projects.name = ?", status, project_name).
                                      group('tasks.status') }
-  
-  def generate_slug        
-    self.slug ||= name_param     
-  end    
 
-  def name_param    
-    self.name.parameterize 
-  end                                 
+  def generate_slug
+    Slug.new(self).generate
+  end
 
   def to_param
     slug
   end
-    
-  private
 
-  def self.to_csv(options = {})
-    CSV.generate(options) do |csv|
-      csv << csv_headers
-        all.each do |project|
-        csv << csv_attrs_for(project)
-      end
-    end
+  def self.export(options = {})
+    ProjectExport.new(self, options).to_csv
   end
-
-  def self.csv_headers
-    %w(Name Description Company Registered)
-  end
-
-  def self.csv_attrs_for(project)
-    [project.name, project.description, project.company, project.created_at.to_date]
-  end
-
 end

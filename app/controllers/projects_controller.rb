@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
     @projects = Project.ordered
     respond_to do |format|
       format.html
-      format.csv { send_data @projects.to_csv }
+      format.csv { send_data @projects.export }
       format.xls
     end
   end

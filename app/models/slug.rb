@@ -1,4 +1,4 @@
-class Slug 	
+class Slug
 
 	def initialize(model)
 		@model = model

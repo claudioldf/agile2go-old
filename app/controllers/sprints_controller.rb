@@ -6,7 +6,7 @@ class SprintsController < ApplicationController
     @sprints = Sprint.order(:name)        
     respond_to do |format|
       format.html
-      format.csv { send_data @sprints.to_csv }
+      format.csv { send_data @sprints.export }
       format.xls #{ send_data @sprints.to_csv(col_sep: "\t") }
     end
   end

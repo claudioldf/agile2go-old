@@ -53,7 +53,9 @@
           <h3>
             <%= link_to project.name, project_path(project) %>
           </h3>
-          <p><span>Current Sprint: <%= project.sprints.last.name unless project.sprints.empty? %></span></p>
+          <p>
+            <span>Current Sprint: <%= project.sprints.last.name unless project.sprints.empty? %></span>
+          </p>
         </div>
         <br />
       </div>
