@@ -1,4 +1,4 @@
-class Sprint < ActiveRecord::Base  
+class Sprint < ActiveRecord::Base
   before_validation :generate_slug
 
   has_many :tasks
@@ -9,7 +9,7 @@ class Sprint < ActiveRecord::Base
   scope :ordered, order(:name)
 
   def generate_slug
-    Slug.new(self).generate
+    self.slug ||= name.parameterize
   end
 
   def to_param
@@ -19,5 +19,5 @@ class Sprint < ActiveRecord::Base
   def self.export(options = {})
     SprintExport.new(self, options).to_csv
   end
-  
+
 end

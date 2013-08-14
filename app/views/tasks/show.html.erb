@@ -5,22 +5,26 @@
 
 <dl class="dl-horizontal">
   <dt><strong>Storie:</strong></dt>
-  <dd><%= @task.storie %></dd>
+  <dd><%= task.storie %></dd>
   <dt><strong>Priority:</strong></dt>
-  <dd><%= @task.priority %></dd>
+  <dd><%= task.priority %></dd>
   <dt><strong>Hours:</strong></dt>
-  <dd><%= @task.hours %></dd>
+  <dd><%= task.hours %></dd>
   <dt><strong>Status:</strong></dt>
-  <dd><%= @task.status %></dd>
+  <dd><%= task.status %></dd>
   <dt><strong>Sprint:</strong></dt>
-  <dd><%= @task.sprint.name%></dd>
+  <dd><%= task.sprint.name%></dd>
   <dt><strong>Project:</strong></dt>
-  <dd><%= @task.sprint.project.name %></dd>
+  <dd><%= task.sprint.project.name %></dd>
   <dt><strong>Members:</strong></dt>
   <dd>
     <ul class="nav nav-pills">
-      <% @task.users.each do |u| %>
-        <li><a href="javascript:void(0);"><img id="tooltip-bottom" class="avatar-2" title="<%= u.name %> - <%= u.email %>" src="<%= u.avatar_url %>" /></a></li>
+      <% task.users.each do |u| %>
+        <li>
+          <a href="javascript:void(0);">
+            <img id="tooltip-bottom" class="avatar-2" title="<%= u.name %> - <%= u.email %>" src="<%= u.avatar_url %>" />
+          </a>
+        </li>
       <% end %>
     </ul>
   </dd>
@@ -30,9 +34,9 @@
   <%= link_to t('.back', :default => t("helpers.links.back")),
               tasks_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_task_path(@task), :class => 'btn' %>
+              edit_task_path(task), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              task_path(@task),
+              task_path(task),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>

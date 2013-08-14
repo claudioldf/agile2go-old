@@ -1,4 +1,4 @@
-class Project < ActiveRecord::Base  
+class Project < ActiveRecord::Base
   before_validation :generate_slug
   validates_presence_of :company, :description, :name
 
@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :users, :allow_destroy => true
   accepts_nested_attributes_for :sprints, :allow_destroy => true
 
-  attr_accessible :company, :description, :name, :slug, :user_ids  
+  attr_accessible :company, :description, :name, :slug, :user_ids
 
   scope :names, select("name")
   scope :ordered, order(:name)
@@ -20,7 +20,7 @@ class Project < ActiveRecord::Base
                                      group('tasks.status') }
 
   def generate_slug
-    Slug.new(self).generate
+    self.slug ||= name.parameterize
   end
 
   def to_param

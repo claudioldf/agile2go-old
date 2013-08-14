@@ -1,57 +1,43 @@
 class SprintsController < ApplicationController
-  before_filter :authenticate_user!   
-  before_filter :find_sprint, only: [:show, :edit, :update, :destroy]
-  
-  def index    
-    @sprints = Sprint.order(:name)        
+  load_and_authorize_resource :except => [:index]
+  before_filter :authenticate_user!
+  helper_method :sprint
+
+  def index
+    @sprints = Sprint.order(:name)
     respond_to do |format|
       format.html
       format.csv { send_data @sprints.export }
-      format.xls #{ send_data @sprints.to_csv(col_sep: "\t") }
+      format.xls
     end
   end
 
-  def show    
-  end
-  
-  def new    
-    @sprint = Sprint.new    
-    authorize! :new, @sprint, :message => 'Not authorized as an administrator.'
-  end
-  
-  def edit        
-    authorize! :edit, @sprint, :message => 'Not authorized as an administrator.'
-  end
-  
-  def create    
-    @sprint = Sprint.new(params[:sprint])
-    authorize! :create, @sprint, :message => 'Not authorized as an administrator.'
-    if @sprint.save
+  def create
+    sprint.atttibutes=(params[:sprint])
+    if sprint.save
       redirect_to sprints_path, :notice => "Sprint created."
-    else      
+    else
       render action: "new", :alert => "Unable to create sprint."
     end
   end
-  
-  def update        
-    authorize! :update, @sprint, :message => 'Not authorized as an administrator.'    
-    if @sprint.update_attributes(params[:sprint])
+
+  def update
+    if sprint.update_attributes(params[:sprint])
       redirect_to sprints_path, :notice => "Sprint updated."
-    else      
+    else
       render action: "edit", :alert => "Unable to update project."
     end
   end
-  
-  def destroy        
-    authorize! :destroy, @sprint, :message => 'Not authorized as an administrator.'
-    @sprint.destroy
-    redirect_to sprints_path, :notice => "Sprint deleted."    
+
+  def destroy
+    sprint.destroy
+    redirect_to sprints_path, :notice => "Sprint deleted."
   end
 
-  private 
+  private
 
-  def find_sprint
-    @sprint = Sprint.find_by_slug!(params[:id])   
+  def sprint
+    @cached_sprint ||= Sprint.find_or_initialize_by_slug(params[:id])
   end
 
 end

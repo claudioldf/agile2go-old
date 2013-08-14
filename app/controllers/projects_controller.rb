@@ -1,10 +1,10 @@
 class ProjectsController < ApplicationController
-  before_filter :authenticate_user!  
+  load_and_authorize_resource
+  before_filter :users, :only  => [:new, :edit]
   helper_method :project
   helper_method :users
 
   def index
-    authorize! :index, Project, :message => 'Not authorized as an administrator.'
     @projects = Project.ordered
     respond_to do |format|
       format.html
@@ -13,22 +13,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def show
-    authorize! :show, project, :message => 'Not authorized as an administrator.'
-  end
-
-  def new    
-    authorize! :new, project, :message => 'Not authorized as an administrator.'
-    users
-  end
-
-  def edit
-    authorize! :edit, project, :message => 'Not authorized as an administrator.'
-    users
-  end
-
-  def create    
-    authorize! :create, project, :message => 'Not authorized as an administrator.'
+  def create
     project.attributes=(params[:project])
     if project.save
       redirect_to projects_path, :notice => "Project created."
@@ -39,7 +24,6 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    authorize! :update, project, :message => 'Not authorized as an administrator.'
     if project.update_attributes(params[:project])
       redirect_to projects_path, :notice => "Project updated."
     else
@@ -49,13 +33,12 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, project, :message => 'Not authorized as an administrator.'
     project.destroy
     redirect_to projects_path, :notice => "Project deleted."
   end
 
   private
-  
+
   def project
     @cached_project ||= Project.find_or_initialize_by_slug(params[:id])
   end

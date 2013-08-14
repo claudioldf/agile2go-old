@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   before_save :gravatar_url
   before_validation :generate_slug
-  
+
   validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates :name, uniqueness: true, presence: true
   validates :email, uniqueness: true, presence: true
@@ -16,11 +16,11 @@ class User < ActiveRecord::Base
   attr_accessible :role_ids, :as => :master
   attr_accessible :user_ids, :as => :master
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :avatar_url, :project_id, :task_id
-  
+
   scope :ordered, order(:name)
 
   def generate_slug
-    Slug.new(self).generate
+    self.slug ||= name.parametize
   end
 
   def self.export(options = {})

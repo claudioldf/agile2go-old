@@ -1,4 +1,4 @@
-<%= simple_form_for @task, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_form_for task, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :storie, as: :text,  placeholder: "As a ... I want .... So I will be able to...", input_html: { class: 'text_field input-xlarge' } %>
   <%= f.input :hours, placeholder: "Hours", input_html: { class: 'text_field input-xlarge' } %>
   <%= f.input :status, placeholder: "Status", prompt: "Select Status", collection: Task::STATUSES, input_html: { class: 'text_field input-xlarge' } %>
