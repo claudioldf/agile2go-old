@@ -11,6 +11,7 @@ Task.all.each do |t|
   elsif t.status == 'DONE'
     t.status = 'done'
     t.save!
+  end
 end
 
 # Project.destroy_all
