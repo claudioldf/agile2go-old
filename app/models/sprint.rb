@@ -3,8 +3,15 @@ class Sprint < ActiveRecord::Base
 
   has_many :tasks
   belongs_to :project
+
   attr_accessible :daily_scrum, :end_date, :goal, :name, :start_date, :project_id, :slug
-  validates_presence_of :daily_scrum, :end_date, :goal, :name, :start_date, :project_id
+
+  validates :daily_scrum, presence: true
+  validates :end_date, presence: true
+  validates :start_date, presence: true
+  validates :goal, presence: true
+  validates :name, presence: true
+  validates :project_id, presence: true
 
   scope :ordered, order(:name)
 

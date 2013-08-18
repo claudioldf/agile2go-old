@@ -1,0 +1,16 @@
+<div>
+  <% @tasks.map do |task| %>
+      <div class="span4">
+        <div class="card">
+          <h3>
+            <%= link_to task.id, task_path(task) %>
+          </h3>
+          <p>
+            <span><%= task.status %></span>
+          </p>
+        </div>
+        <br />
+      </div>
+  <% end %>
+</div>
+

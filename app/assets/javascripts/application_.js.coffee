@@ -42,6 +42,9 @@ App =
     $("img").each ->
       $(@).tooltip({ placement: 'bottom' })
 
+    $(".card span").each ->
+      $(@).tooltip({ placement: 'bottom' })
+
 
   showCalendar: ->
     $("[data-behaviour~='datepicker']").on "mouseover", (event) ->

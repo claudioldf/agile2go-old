@@ -2,25 +2,25 @@ class User < ActiveRecord::Base
   before_save :gravatar_url
   before_validation :generate_slug
 
-  validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
-  validates :name, uniqueness: true, presence: true
-  validates :email, uniqueness: true, presence: true
-  validates :slug, uniqueness: true, presence: true, exclusion: {in: %w[signup login]}
-
+  rolify
   belongs_to :project
   belongs_to :task
-  rolify
-
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessible :role_ids, :as => :master
   attr_accessible :user_ids, :as => :master
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :avatar_url, :project_id, :task_id
 
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+
+  validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
+  validates :name, uniqueness: true, presence: true
+  validates :email, uniqueness: true, presence: true
+  validates :slug, uniqueness: true, presence: true, exclusion: {in: %w[signup login]}
+
   scope :ordered, order(:name)
 
   def generate_slug
-    self.slug ||= name.parametize
+    self.slug ||= name.parameterize
   end
 
   def self.export(options = {})

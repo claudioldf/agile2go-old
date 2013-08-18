@@ -23,9 +23,12 @@
 //= require twitter/bootstrap/bootstrap-button
 //= require twitter/bootstrap/bootstrap-collapse
 
-
-$(document).ready(function(){	  
-  dataTable();	
+$(function() {
+  dataTable();  
+  /*$(".pagination a").on("click", function() {    
+    $.getScript(this.href);
+    return false;
+  });*/
 });
 
 function dataTable(){

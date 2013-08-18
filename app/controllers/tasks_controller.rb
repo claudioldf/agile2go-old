@@ -4,11 +4,11 @@ class TasksController < ApplicationController
   helper_method :task
 
   def index
-    @tasks = Task.ordered_by_last
+    @tasks = Task.paginate(:page => params[:page], :per_page => 30)
     respond_to do |format|
       format.html
       format.csv { send_data @tasks.export }
-      format.xls #{ send_data @tasks.to_csv(col_sep: "\t") }
+      format.xls
     end
   end
 

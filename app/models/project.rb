@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
   before_validation :generate_slug
-  validates_presence_of :company, :description, :name
+
+  attr_accessible :company, :description, :name, :slug, :user_ids
 
 	has_many :users
   has_many :sprints
@@ -9,7 +10,9 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :users, :allow_destroy => true
   accepts_nested_attributes_for :sprints, :allow_destroy => true
 
-  attr_accessible :company, :description, :name, :slug, :user_ids
+  validates :name, uniqueness: true, presence: true
+  validates :company, presence: true
+  validates :description, presence: true
 
   scope :names, select("name")
   scope :ordered, order(:name)
