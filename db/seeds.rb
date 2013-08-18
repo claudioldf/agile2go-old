@@ -1,4 +1,4 @@
-Task.all.each do |t| {
+Task.all.each do |t| 
   if t.status == 'TODO'
     t.status = 'todo'
     t.save!
@@ -11,7 +11,7 @@ Task.all.each do |t| {
   elsif t.status == 'DONE'
     t.status = 'done'
     t.save!
-}
+end
 
 # Project.destroy_all
 # Sprint.destroy_all
