@@ -47,4 +47,8 @@ class User < ActiveRecord::Base
     self.roles.first.nil?
   end
 
+  def name_and_email
+    "#{self.name} #{self.email}"
+  end
+
 end

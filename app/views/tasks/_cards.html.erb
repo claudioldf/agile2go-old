@@ -8,7 +8,7 @@
             <p>Hours - <%= task.hours %></p>
             <p>Priority - <%= task.priority %></p>
             <% task.users.each do |u| %>
-                <img style="float: right; margin-top: -8%;" id="tooltip-bottom" class="avatar-1" title="<%= u.name %> - <%= u.email %>" src="<%= u.gravatar_url %>" />
+                <img id="tooltip-bottom" class="avatar-1" title="<%= u.name_and_email %>" src="<%= u.gravatar_url %>" />
             <% end %>
             <p>
               <span title="<%= task.storie %>"><%= link_to 'more...', task_path(task) %></span>
