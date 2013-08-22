@@ -1,18 +1,18 @@
-Task.all.each do |t| 
-  if t.status == 'TODO'
-    t.status = 'todo'
-    t.save!
-  elsif t.status == 'ONGOING'
-    t.status = 'ongoing'
-    t.save!
-  elsif t.status == 'TEST'
-    t.status = 'test'
-    t.save!
-  elsif t.status == 'DONE'
-    t.status = 'done'
-    t.save!
-  end
-end
+# Task.all.each do |t|
+#   if t.status == 'TODO'
+#     t.status = 'todo'
+#     t.save!
+#   elsif t.status == 'ONGOING'
+#     t.status = 'ongoing'
+#     t.save!
+#   elsif t.status == 'TEST'
+#     t.status = 'test'
+#     t.save!
+#   elsif t.status == 'DONE'
+#     t.status = 'done'
+#     t.save!
+#   end
+# end
 
 # Project.destroy_all
 # Sprint.destroy_all
@@ -360,13 +360,13 @@ end
 #   t.save
 # end
 
-# Project.all.each do |u|
-#   u.save!
-# end
+Project.all.each do |u|
+  u.save!
+end
 
-# Sprint.all.each do |u|
-#   u.save!
-# end
+Sprint.all.each do |u|
+  u.save!
+end
 
 # Task.all.each do |u|
 #   u.save!

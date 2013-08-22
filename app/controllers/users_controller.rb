@@ -7,7 +7,7 @@ class UsersController < ApplicationController
       respond_to do |format|
         format.html
         format.csv { send_data @users.export }
-        format.xls #{ send_data @users.to_csv(col_sep: "\t") }
+        format.xls
     end
   end
 

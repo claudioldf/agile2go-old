@@ -50,5 +50,4 @@ class User < ActiveRecord::Base
   def name_and_email
     "#{self.name} #{self.email}"
   end
-
 end

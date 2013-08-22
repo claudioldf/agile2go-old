@@ -7,8 +7,8 @@ class TaskExport
 		@options = options
 	end
 
-	def to_csv(options = {})
-    CSV.generate(options) do |csv|
+	def to_csv()
+    CSV.generate(@options) do |csv|
       csv << CSV_HEADERS
         @task.all.each do |task|
         csv << csv_attrs_for(task)
