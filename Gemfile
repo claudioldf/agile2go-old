@@ -7,13 +7,14 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem "less-rails"
-  gem "twitter-bootstrap-rails"  
+  gem "twitter-bootstrap-rails"
   gem "bootstrap-sass", ">= 2.3.0.0"
   gem 'jquery-rails'
 end
 group :production do
-  gem 'pg'  
+  gem 'pg'
 end
+gem "binding_of_caller", ">= 0.7.1"
 gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]
 gem "database_cleaner", ">= 1.0.0.RC1", :group => :test
 gem "email_spec", ">= 1.4.0", :group => :test

@@ -1,6 +1,5 @@
 class SprintsController < ApplicationController
-  load_and_authorize_resource :except => [:index]
-  before_filter :authenticate_user!
+  load_and_authorize_resource find_by: :slug, except: [:index]
   helper_method :sprint
 
   def index

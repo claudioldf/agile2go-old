@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :find_user, only: [:show, :update, :destroy]
+  load_and_authorize_resource find_by: :slug, only: [:show, :update, :destroy]
 
   def index
     @users = User.order(:name)
@@ -11,11 +10,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def update
-    authorize! :update, @user, :message => 'Not authorized as an administrator.'
     if @user.update_attributes(params[:user], :as => :master)
       redirect_to users_path, :notice => "User updated."
     else
@@ -24,7 +19,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, @user, :message => 'Not authorized as an administrator.'
     @user.destroy
     redirect_to users_path, :notice => "User deleted."
   end
@@ -32,7 +26,7 @@ class UsersController < ApplicationController
   private
 
   def find_user
-    @user = User.find_by_slug!(params[:id])
+    @user ||= User.find_by_slug(params[:id])
   end
 
 end

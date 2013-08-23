@@ -4,5 +4,4 @@ class HomeController < ApplicationController
     @projects = Project.paginate(:per_page => 10, :page => params[:page])
 		@tasks = Task.names
   end
-
 end

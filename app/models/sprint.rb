@@ -16,7 +16,11 @@ class Sprint < ActiveRecord::Base
   scope :ordered, order(:name)
 
   def generate_slug
-    self.slug ||= name.parameterize
+    self.slug ||= param_name
+  end
+
+  def param_name
+    self.name.parameterize
   end
 
   def to_param
