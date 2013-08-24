@@ -1,0 +1,7 @@
+<div id="todo" class="row">
+<% @tasks.map do |task| %>
+  <% if task.is_status.todo %>
+    <%= render 'tasks/tasks', task: task %>
+  <% end %>
+<% end %>
+</div>

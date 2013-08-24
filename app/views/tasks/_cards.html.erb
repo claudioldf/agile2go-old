@@ -1,3 +1,4 @@
+<div id="cards">
 <div class="row">
 <% @tasks.map do |task| %>
   <% if task.is_status.todo %>
@@ -6,7 +7,7 @@
 <% end %>
 </div>
 
-<div class="row">
+<div id="ongoing" class="row">
 <% @tasks.map do |task| %>
   <% if task.is_status.ongoing %>
     <%= render 'tasks/tasks', task: task %>
@@ -14,7 +15,7 @@
 <% end %>
 </div>
 
-<div class="row">
+<div "test" class="row">
 <% @tasks.map do |task| %>
   <% if task.is_status.test %>
     <%= render 'tasks/tasks', task: task %>
@@ -22,10 +23,11 @@
 <% end %>
 </div>
 
-<div class="row">
+<div id="done" class="row">
 <% @tasks.map do |task| %>
   <% if task.is_status.done %>
     <%= render 'tasks/tasks', task: task %>
   <% end %>
 <% end %>
+</div>
 </div>

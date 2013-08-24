@@ -15,6 +15,12 @@ class Task < ActiveRecord::Base
   scope :names, select("distinct status").order('status desc')
   scope :ordered, order('created_at DESC')
 
+  def self.search(status)
+    return find(:all, :conditions => ['status like ?', '%todo%']) unless status
+    condition = "%" + status + "%"
+    find(:all, :conditions => ['status like ?', condition])
+  end
+
   def self.export(options = {})
     TaskExport.new(self, options).to_csv
   end

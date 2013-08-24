@@ -1,20 +1,25 @@
-<div class="page-header">
-  <span class="label label-important">todo</span>
-  <span class="label label-success">done</span>
-  <span class="label label-info">ongoing</span>
-  <span class="label label-inverse">test</span>
-</div>
+<%= form_tag(tasks_path, method: 'get') do %>
+  <div class="page-header">
+    <ul class="nav nav-pills">
+      <span class="label label-important">
+        <%= link_to 'todo', tasks_path(status: 'todo'), remote: true %>
+      </span>
+      <span id="done" class="label label-success">
+        <%= link_to 'done', tasks_path(status: 'done'), remote: true %>
+      </span>
+      <span id="ongoing" class="label label-info">
+        <%= link_to 'ongoing', tasks_path(status: 'ongoing'), remote: true %>
+      </span>
+      <span id"test" class="label label-inverse">
+        <%= link_to 'test', tasks_path(status: 'test'), remote: true %>
+      </span>
+    </ul>
+  </div>
+<% end %>
 
 <%= render 'actions' %>
 
-<div class="pagination pagination-centered">
-  <%= will_paginate @tasks %>
-</div>
+<%= render 'tasks/cards' %>
 
-<%= render 'cards' %>
-
-<div class="pagination pagination-centered">
-  <%= will_paginate @tasks %>
-</div>
 
 
