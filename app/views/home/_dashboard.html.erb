@@ -46,19 +46,4 @@
 
 <%= will_paginate(@projects) %>
 
-<div>
-  <% @projects.map do |project| %>
-      <div class="span4">
-        <div class="card-home">
-          <h3>
-            <%= link_to project.name, project_path(project) %>
-          </h3>
-          <p>
-            <span>Current Sprint: <%= project.sprints.last.name unless project.sprints.empty? %></span>
-          </p>
-        </div>
-        <br />
-      </div>
-  <% end %>
-</div>
-
+<%= render 'home/projects' %>

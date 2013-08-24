@@ -1,0 +1,16 @@
+<div class="row">
+<% @projects.map do |project| %>
+    <div class="span4">
+      <div class="card-home">
+        <h3>
+          <%= link_to project.name, project_path(project) %>
+        </h3>
+        <p>
+          <span>Current Sprint: <%= project.sprint_name %></span>
+        </p>
+      </div>
+      <br />
+    </div>
+<% end %>
+</div>
+

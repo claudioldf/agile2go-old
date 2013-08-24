@@ -33,4 +33,8 @@ class Project < ActiveRecord::Base
   def self.export(options = {})
     ProjectExport.new(self, options).to_csv
   end
+
+  def sprint_name
+    self.sprints.last.name unless self.sprints.empty?
+  end
 end

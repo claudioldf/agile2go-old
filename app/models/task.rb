@@ -18,4 +18,9 @@ class Task < ActiveRecord::Base
   def self.export(options = {})
     TaskExport.new(self, options).to_csv
   end
+
+  def is_status
+    StatusTask.new(self)
+  end
+
 end

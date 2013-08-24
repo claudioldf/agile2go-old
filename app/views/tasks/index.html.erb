@@ -1,14 +1,20 @@
 <div class="page-header">
-  <h1 class="muted">
-    Tasks
-  </h1>
+  <span class="label label-important">todo</span>
+  <span class="label label-success">done</span>
+  <span class="label label-info">ongoing</span>
+  <span class="label label-inverse">test</span>
 </div>
+
 <%= render 'actions' %>
 
-<%= will_paginate @tasks %>
+<div class="pagination pagination-centered">
+  <%= will_paginate @tasks %>
+</div>
+
 <%= render 'cards' %>
-<%= will_paginate @tasks %>
 
-<%= render 'actions' %>
+<div class="pagination pagination-centered">
+  <%= will_paginate @tasks %>
+</div>
 
 

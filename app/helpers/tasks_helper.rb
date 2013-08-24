@@ -12,12 +12,12 @@ module TasksHelper
     end
   end
 
-  def background_color(task)
-    if task.status == "todo"
+  def background_color(status)
+    if status == "todo"
       '#9d261d'
-    elsif task.status == "ongoing"
+    elsif status == "ongoing"
       '#4bb1cf'
-    elsif task.status == "test"
+    elsif status == "test"
       '#80699B'
     else
       '#5eb95e'

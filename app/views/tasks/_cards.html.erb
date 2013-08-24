@@ -1,20 +1,31 @@
-<div>
-  <% @tasks.map do |task| %>
-      <div class="span3">
-        <div class="card" style="background-color: <%= background_color(task) %>">
-          <h3 style="float: left;">
-            <%= task.id %>
-          </h3>
-            <p>Hours - <%= task.hours %></p>
-            <p>Priority - <%= task.priority %></p>
-            <% task.users.each do |u| %>
-                <img id="tooltip-bottom" class="avatar-1" title="<%= u.name_and_email %>" src="<%= u.gravatar_url %>" />
-            <% end %>
-            <p>
-              <span title="<%= task.storie %>"><%= link_to 'more...', task_path(task) %></span>
-            </p>
-        </div>
-        <br />
-      </div>
+<div class="row">
+<% @tasks.map do |task| %>
+  <% if task.is_status.todo %>
+    <%= render 'tasks/tasks', task: task %>
   <% end %>
+<% end %>
+</div>
+
+<div class="row">
+<% @tasks.map do |task| %>
+  <% if task.is_status.ongoing %>
+    <%= render 'tasks/tasks', task: task %>
+  <% end %>
+<% end %>
+</div>
+
+<div class="row">
+<% @tasks.map do |task| %>
+  <% if task.is_status.test %>
+    <%= render 'tasks/tasks', task: task %>
+  <% end %>
+<% end %>
+</div>
+
+<div class="row">
+<% @tasks.map do |task| %>
+  <% if task.is_status.done %>
+    <%= render 'tasks/tasks', task: task %>
+  <% end %>
+<% end %>
 </div>
