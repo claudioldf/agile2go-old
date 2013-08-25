@@ -13,6 +13,7 @@ class Project < ActiveRecord::Base
   validates :name, uniqueness: true, presence: true
   validates :company, presence: true
   validates :description, presence: true
+  validates :slug, presence: true
 
   scope :names, select("name")
   scope :ordered, order(:name)
@@ -23,7 +24,7 @@ class Project < ActiveRecord::Base
                                      group('tasks.status') }
 
   def generate_slug
-    self.slug ||= name.parameterize
+    self.slug ||= self.name.parameterize if self.name
   end
 
   def to_param

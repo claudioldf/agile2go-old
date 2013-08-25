@@ -12,7 +12,7 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Agile <b class="caret"></b></a>
           <ul class="dropdown-menu">
-          <% if current_user.is_scrum_master %>
+            <% if current_user.has_role? :master %>
             <li><%= link_to "Projects", projects_path %></li>
           <% end %>
             <li><%= link_to "Sprints", sprints_path %></li>

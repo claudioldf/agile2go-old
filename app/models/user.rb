@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   scope :ordered, order(:name)
 
   def generate_slug
-    self.slug ||= name.parameterize
+    self.slug ||= param_name
   end
 
   def self.export(options = {})
@@ -29,6 +29,10 @@ class User < ActiveRecord::Base
 
   def gravatar_url
     Gravatar.new(email).url
+  end
+
+  def param_name
+    self.name.parameterize if self.name
   end
 
   def to_param

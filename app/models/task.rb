@@ -6,7 +6,6 @@ class Task < ActiveRecord::Base
 
   attr_accessible :hours, :priority, :status, :storie, :sprint_id, :user_ids
 
-  validates :hours, presence: true
   validates :status, presence: true, inclusion: { in: STATUSES }
   validates :storie, presence: true
   validates :sprint_id, presence: true

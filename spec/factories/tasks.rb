@@ -4,6 +4,6 @@ FactoryGirl.define do
     priority 1
     hours "08:00"
     status "todo"
-    sprint nil
+    sprint
   end
 end

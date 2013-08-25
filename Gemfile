@@ -22,6 +22,8 @@ gem "cucumber-rails", ">= 1.3.1", :group => :test, :require => false
 gem "launchy", ">= 2.2.0", :group => :test
 gem "capybara", ">= 2.0.2", :group => :test
 gem "factory_girl_rails", ">= 4.2.0", :group => [:development, :test]
+gem 'shoulda', :group => [:test]
+gem 'shoulda-matchers', :group => [:test]
 gem 'roo'
 gem 'rails', '3.2.12'
 gem 'bootstrap-datepicker-rails'

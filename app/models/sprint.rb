@@ -6,10 +6,7 @@ class Sprint < ActiveRecord::Base
 
   attr_accessible :daily_scrum, :end_date, :goal, :name, :start_date, :project_id, :slug
 
-  validates :daily_scrum, presence: true
-  validates :end_date, presence: true
   validates :start_date, presence: true
-  validates :goal, presence: true
   validates :name, presence: true
   validates :project_id, presence: true
 
@@ -20,7 +17,7 @@ class Sprint < ActiveRecord::Base
   end
 
   def param_name
-    self.name.parameterize
+    self.name.parameterize if self.name
   end
 
   def to_param

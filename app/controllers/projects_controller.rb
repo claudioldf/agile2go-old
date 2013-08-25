@@ -16,25 +16,25 @@ class ProjectsController < ApplicationController
   def create
     project.attributes=(params[:project])
     if project.save
-      redirect_to projects_path, :notice => "Project created."
+      redirect_to projects_path, notice: 'Project created.'
     else
       users
-      render action: "new", :alert => "Unable to create project."
+      render action: 'new', alert: 'Unable to create project.'
     end
   end
 
   def update
     if project.update_attributes(params[:project])
-      redirect_to projects_path, :notice => "Project updated."
+      redirect_to projects_path, notice: 'Project updated.'
     else
       users
-      render action: "edit", :alert => "Unable to update project."
+      render action: 'edit', alert: 'Unable to update project.'
     end
   end
 
   def destroy
     project.destroy
-    redirect_to projects_path, :notice => "Project deleted."
+    redirect_to projects_path, notice: 'Project deleted.'
   end
 
   private
