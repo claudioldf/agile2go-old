@@ -10,8 +10,7 @@ Setup
     git clone git://github.com/rafaeljesus/agile.git
     cd agile
     bundle
-    rake db:migrate
-    rake db:seed
+    rake db:setup
 
 Deploy
 ------
