@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Project do
-	it { should validate_presence_of(:name) }
+describe Project, 'attributes' do
+  it { should validate_presence_of(:name) }
   it { should validate_presence_of(:company) }
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:slug) }
@@ -9,12 +9,17 @@ describe Project do
   it { should_not allow_mass_assignment_of(:created_at) }
   it { should_not allow_mass_assignment_of(:updated_at) }
 
+  it "should create a new project" do
+    project = FactoryGirl.create(:project)
+    project.should be_valid
+  end
+end
+
+describe Project, 'associations' do
   it { should have_many(:users) }
   it { should have_many(:sprints) }
   it { should have_many(:tasks).through(:sprints) }
 
-	it "should create a new project" do
-		project = FactoryGirl.create(:project)
-		project.should be_valid
-	end
+  it { should accept_nested_attributes_for(:users).allow_destroy(true) }
+  it { should accept_nested_attributes_for(:sprints).allow_destroy(true) }
 end

@@ -1,5 +1,5 @@
 class Task < ActiveRecord::Base
-  STATUSES = %w(todo ongoing test done)
+  STATUSES = %w(todo ongoing test done).freeze
 
   has_many :users
   belongs_to :sprint
@@ -16,8 +16,7 @@ class Task < ActiveRecord::Base
 
   def self.search(status)
     return find(:all, :conditions => ['status like ?', '%todo%']) unless status
-    condition = "%" + status + "%"
-    find(:all, :conditions => ['status like ?', condition])
+    find(:all, :conditions => ['status like ?', "%" + status + "%"])
   end
 
   def self.export(options = {})

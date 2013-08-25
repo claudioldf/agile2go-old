@@ -1,4 +1,6 @@
 class Sprint < ActiveRecord::Base
+  DATE_REGEX = /^\d{4}-\d{2}-\d{2}/
+
   before_validation :generate_slug
 
   has_many :tasks
@@ -6,19 +8,12 @@ class Sprint < ActiveRecord::Base
 
   attr_accessible :daily_scrum, :end_date, :goal, :name, :start_date, :project_id, :slug
 
-  validates :start_date, presence: true
+  validates :start_date, presence: true , format: DATE_REGEX
+  validates :end_date, format: DATE_REGEX
   validates :name, presence: true
   validates :project_id, presence: true
 
   scope :ordered, order(:name)
-
-  def generate_slug
-    self.slug ||= param_name
-  end
-
-  def param_name
-    self.name.parameterize if self.name
-  end
 
   def to_param
     slug
@@ -28,4 +23,13 @@ class Sprint < ActiveRecord::Base
     SprintExport.new(self, options).to_csv
   end
 
+  private
+
+  def generate_slug
+    self.slug ||= param_name
+  end
+
+  def param_name
+    self.name.parameterize if self.name
+  end
 end
