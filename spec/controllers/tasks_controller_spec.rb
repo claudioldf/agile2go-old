@@ -1,9 +1,11 @@
-require 'spec_helper'
+require "spec_helper"
 
-describe SprintsController, "#show" do
-  context "index sprint" do
+describe TasksController, "#show" do
+  context "show task" do
     before do
-      get :show, slug: 'a2g-sprint1'
+      task = Task.create(status: 'todo', storie: 'bla', priority: 1, sprint_id: 1)
+      task.save!
+      get :show, id: task.id
     end
 
     it { should respond_with(:success) }
@@ -12,8 +14,8 @@ describe SprintsController, "#show" do
   end
 end
 
-describe SprintsController, "#index" do
-  context "index sprint" do
+describe TasksController, "#index" do
+  context "index task" do
     before do
       get :index
     end
@@ -24,8 +26,8 @@ describe SprintsController, "#index" do
   end
 end
 
-describe SprintsController, "#new" do
-  context "new sprint" do
+describe TasksController, "#new" do
+  context "new task" do
     before do
       get :new
     end
@@ -35,4 +37,3 @@ describe SprintsController, "#new" do
     it { should_not set_the_flash.to('"You are not authorized to access this page.') }
   end
 end
-
