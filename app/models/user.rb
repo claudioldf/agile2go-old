@@ -6,13 +6,13 @@ class User < ActiveRecord::Base
   belongs_to :project
   belongs_to :task
 
-  attr_accessible :role_ids, :as => :master
-  attr_accessible :user_ids, :as => :master
+  attr_accessible :role_ids, as: :master
+  attr_accessible :user_ids, as: :master
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :avatar_url, :project_id, :task_id
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  validates_format_of :email, :with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
+  validates_format_of :email, with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   validates :name, uniqueness: true, presence: true
   validates :email, uniqueness: true, presence: true
   validates :slug, uniqueness: true, presence: true, exclusion: {in: %w[signup login]}
