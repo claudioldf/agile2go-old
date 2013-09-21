@@ -1,19 +1,20 @@
 class SprintsController < ApplicationController
-  load_and_authorize_resource find_by: :slug, except: [:index]
-  respond_to :html, :xls
+  #load_and_authorize_resource find_by: :slug, except: [:index]
+  respond_to :html
   helper_method :sprint
 
   def index
     @sprints = Sprint.order(:name)
     respond_with(@sprints) do |format|
       format.csv { send_data @sprints.export }
+      format.xls
     end
   end
 
   def create
     sprint.atttibutes=(params[:sprint])
     if sprint.save
-      redirect_to sprints_path, notice: 'Sprint created.'
+      respond_with(sprint, notice: 'Sprint created.')
     else
       render action: 'new', alert: 'Unable to create sprint.'
     end
@@ -21,7 +22,7 @@ class SprintsController < ApplicationController
 
   def update
     if sprint.update_attributes(params[:sprint])
-      redirect_to sprints_path, notice: 'Sprint updated.'
+      respond_with(sprint, notice: 'Sprint updated.')
     else
       render action: 'edit', alert: 'Unable to update project.'
     end
@@ -29,7 +30,7 @@ class SprintsController < ApplicationController
 
   def destroy
     sprint.destroy
-    redirect_to sprints_path, notice: 'Sprint deleted.'
+    respond_with(sprint, notice: 'Sprint deleted.')
   end
 
   private

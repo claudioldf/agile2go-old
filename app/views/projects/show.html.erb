@@ -13,7 +13,7 @@
   <dt><strong>Members:</strong></dt>
   <dd><ul class="nav nav-pills">
     <% project.users.each do |u| %>
-      <li><a href="#"><img class="avatar-2" src="<%= u.avatar_url %>" title="<%= u.name %>"></a></li>
+      <li><a href="#"><img class="avatar-2" src="<%= u.gravatar_url %>" title="<%= u.name %>"></a></li>
     <% end %></ul>
   </dd>
 </dl>

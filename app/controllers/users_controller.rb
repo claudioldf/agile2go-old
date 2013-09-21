@@ -12,15 +12,15 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(params[:user], as: :master)
-      redirect_to users_path, notice: 'User updated.'
+      respond_with(@users, notice: 'User updated.')
     else
-      redirect_to users_path, alert: 'Unable to update user.'
+      respond_with(users, alert: 'Unable to update user.')
     end
   end
 
   def destroy
     @user.destroy
-    redirect_to users_path, notice: 'User deleted.'
+    respond_with(@users, notice: 'User deleted.')
   end
 
   private

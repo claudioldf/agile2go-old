@@ -13,22 +13,16 @@
 
 ActiveRecord::Schema.define(:version => 20130808225626) do
 
-  create_table "dashboards", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "status"
-    t.string   "qtd"
-  end
-
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.string   "description"
     t.string   "company"
+    t.string   "slug"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "slug"
   end
 
+  add_index "projects", ["id"], :name => "index_projects_on_id"
   add_index "projects", ["slug"], :name => "index_projects_on_slug"
 
   create_table "roles", :force => true do |t|
@@ -43,11 +37,11 @@ ActiveRecord::Schema.define(:version => 20130808225626) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "sprints", :force => true do |t|
-    t.string   "name"
-    t.date     "start_date"
-    t.date     "end_date"
     t.string   "daily_scrum"
-    t.string   "goal"
+    t.date     "end_date"
+    t.date     "start_date"
+    t.text     "goal"
+    t.string   "name"
     t.integer  "project_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false

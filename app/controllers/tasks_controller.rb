@@ -1,20 +1,22 @@
 class TasksController < ApplicationController
-  load_and_authorize_resource except: [:index]
+ # load_and_authorize_resource except: [:index]
   before_filter :users_and_sprints, only: [:new, :edit]
-  respond_to :html, :xls, :js
+  respond_to :html
   helper_method :task
 
   def index
     @tasks = Task.search(params[:status])
     respond_with(@tasks) do |format|
       format.csv { send_data @tasks.export }
+      format.xls
+      format.js
     end
   end
 
   def create
     task.attributes=(params[:task])
     if task.save
-      redirect_to tasks_path, notice: 'Task created.'
+      respond_with(task, notice: 'Task created.')
     else
       users_and_sprints
       render action: 'new', alert: 'Unable to create task.'
@@ -23,7 +25,7 @@ class TasksController < ApplicationController
 
   def update
     if task.update_attributes(params[:task])
-      redirect_to tasks_path, notice: 'Task updated.'
+      respond_with(task, notice: 'Task updated.')
     else
       users_and_sprints
       render action: 'edit', alert: 'Unable to update task.'
@@ -32,7 +34,7 @@ class TasksController < ApplicationController
 
   def destroy
     task.destroy
-    redirect_to tasks_path, notice: 'Task deleted.'
+    respond_with(task, notice: 'Task deleted.')
   end
 
   private

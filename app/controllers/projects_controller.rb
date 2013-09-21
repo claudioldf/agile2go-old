@@ -3,11 +3,11 @@ class ProjectsController < ApplicationController
   before_filter :users, only: [:new, :edit]
   helper_method :project
   helper_method :users
+  respond_to :html
 
   def index
     @projects = Project.ordered
-    respond_to do |format|
-      format.html
+    respond_with(@projects) do |format|
       format.csv { send_data @projects.export }
       format.xls
     end
@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
   def create
     project.attributes=(params[:project])
     if project.save
-      redirect_to projects_path, notice: 'Project created.'
+      respond_with(project, notice: 'Project created.')
     else
       users
       render action: 'new', alert: 'Unable to create project.'
@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
 
   def update
     if project.update_attributes(params[:project])
-      redirect_to projects_path, notice: 'Project updated.'
+      respond_with(project, notice: 'Project updated.')
     else
       users
       render action: 'edit', alert: 'Unable to update project.'
@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     project.destroy
-    redirect_to projects_path, notice: 'Project deleted.'
+    respond_with(project, notice: 'Project deleted.')
   end
 
   private
@@ -46,5 +46,4 @@ class ProjectsController < ApplicationController
   def users
     @cached_users ||= User.ordered
   end
-
 end

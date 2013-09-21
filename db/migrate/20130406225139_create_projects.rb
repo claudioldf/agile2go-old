@@ -4,10 +4,10 @@ class CreateProjects < ActiveRecord::Migration
       t.string :name
       t.string :description
       t.string :company
-      t.string :slug
+      #t.string :slug
 
       t.timestamps
     end
-    add_index :tasks, :project_id
+    #add_index :projects, :id
   end
 end
