@@ -1,5 +1,5 @@
 class SprintsController < ApplicationController
-  #load_and_authorize_resource find_by: :slug, except: [:index]
+  load_and_authorize_resource find_by: :slug, except: [:index]
   respond_to :html
   helper_method :sprint
 

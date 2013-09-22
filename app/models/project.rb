@@ -1,9 +1,11 @@
 class Project < ActiveRecord::Base
+  include ActiveModel::ForbiddenAttributesProtection
+
   before_validation :generate_slug
 
   attr_accessible :company, :description, :name, :slug, :user_ids
 
-	has_many :users
+  has_many :users
   has_many :sprints
   has_many :tasks, through: :sprints
 

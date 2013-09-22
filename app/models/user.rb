@@ -1,14 +1,11 @@
 class User < ActiveRecord::Base
+  include ActiveModel::ForbiddenAttributesProtection
   before_save :gravatar_url
   before_validation :generate_slug
 
   rolify
   belongs_to :project
   belongs_to :task
-
-  attr_accessible :role_ids, as: :master
-  attr_accessible :user_ids, as: :master
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :avatar_url, :project_id, :task_id
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 

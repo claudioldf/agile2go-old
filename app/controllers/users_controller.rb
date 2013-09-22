@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
   load_and_authorize_resource find_by: :slug, only: [:show,  :destroy]
   before_filter :find_user
-  respond_to :html, :xls
+  respond_to :html
 
   def index
     @users = User.order(:name)
       respond_with(@users)  do |format|
         format.csv { send_data @users.export }
+        format.xls
     end
   end
 

@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  load_and_authorize_resource find_by: :slug, except: [:index]
+  #load_and_authorize_resource find_by: :slug, except: [:index]
   before_filter :users, only: [:new, :edit]
   helper_method :project
   helper_method :users
@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    project.attributes=(params[:project])
+    project.attributes=(project_params)
     if project.save
       respond_with(project, notice: 'Project created.')
     else
@@ -24,7 +24,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if project.update_attributes(params[:project])
+    if project.update_attributes(project_params)
       respond_with(project, notice: 'Project updated.')
     else
       users
@@ -41,6 +41,10 @@ class ProjectsController < ApplicationController
 
   def project
     @cached_project ||= Project.find_or_initialize_by_slug(params[:id])
+  end
+
+  def project_params
+    params.require(:project).permit(:name, :description, :company, :users)
   end
 
   def users

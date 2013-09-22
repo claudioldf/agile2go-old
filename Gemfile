@@ -45,5 +45,5 @@ gem "libv8", ">= 3.11.8"
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate', :git => 'git://github.com/yrgoldteeth/bootstrap-will_paginate.git'
 gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
-
+gem 'strong_parameters'
 
