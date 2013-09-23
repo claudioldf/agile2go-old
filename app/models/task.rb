@@ -1,10 +1,9 @@
 class Task < ActiveRecord::Base
+  include ActiveModel::ForbiddenAttributesProtection
   STATUSES = %w(todo ongoing test done).freeze
 
   has_many :users
   belongs_to :sprint
-
-  attr_accessible :hours, :priority, :status, :storie, :sprint_id, :user_ids
 
   validates :status, presence: true, inclusion: { in: STATUSES }
   validates :storie, presence: true

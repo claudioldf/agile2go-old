@@ -1,5 +1,5 @@
 class SprintsController < ApplicationController
-  load_and_authorize_resource find_by: :slug, except: [:index]
+#  load_and_authorize_resource find_by: :slug, except: [:index]
   respond_to :html
   helper_method :sprint
 
@@ -12,7 +12,7 @@ class SprintsController < ApplicationController
   end
 
   def create
-    sprint.atttibutes=(params[:sprint])
+    sprint.atttibutes=(sprint_params)
     if sprint.save
       respond_with(sprint, notice: 'Sprint created.')
     else
@@ -21,7 +21,7 @@ class SprintsController < ApplicationController
   end
 
   def update
-    if sprint.update_attributes(params[:sprint])
+    if sprint.update_attributes(sprint_params)
       respond_with(sprint, notice: 'Sprint updated.')
     else
       render action: 'edit', alert: 'Unable to update project.'
@@ -37,5 +37,9 @@ class SprintsController < ApplicationController
 
   def sprint
     @cached_sprint ||= Sprint.find_or_initialize_by_slug(params[:id])
+  end
+
+  def sprint_params
+    params.require(:sprint).permit(:name, :start_date, :end_date, project: [:name, :id])
   end
 end

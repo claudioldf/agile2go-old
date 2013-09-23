@@ -3,13 +3,11 @@ class Project < ActiveRecord::Base
 
   before_validation :generate_slug
 
-  attr_accessible :company, :description, :name, :slug, :user_ids
-
   has_many :users
   has_many :sprints
   has_many :tasks, through: :sprints
 
-  accepts_nested_attributes_for :users, allow_destroy: true
+  accepts_nested_attributes_for :users
   accepts_nested_attributes_for :sprints, allow_destroy: true
 
   validates :name, uniqueness: true, presence: true

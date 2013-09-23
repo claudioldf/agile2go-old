@@ -8,13 +8,10 @@ describe Sprint, 'attributes' do
   it { should allow_value(Date.today).for(:start_date) }
   it { should allow_value(Date.today).for(:end_date) }
 
-  it { should_not allow_mass_assignment_of(:created_at) }
-  it { should_not allow_mass_assignment_of(:updated_at) }
-
   it "should create a new sprint given a valid attribute" do
-		sprint = FactoryGirl.create(:sprint)
-		sprint.should be_valid
-	end
+    sprint = FactoryGirl.create(:sprint)
+    sprint.should be_valid
+  end
 end
 
 describe Sprint, 'associations' do

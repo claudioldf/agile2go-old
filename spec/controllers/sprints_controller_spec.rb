@@ -32,7 +32,7 @@ describe SprintsController, "#new" do
 
     it { should respond_with(302) }
     it { should redirect_to(root_path) }
-    it { should_not set_the_flash.to('"You are not authorized to access this page.') }
+    it { should set_the_flash.to('You are not authorized to access this page.') }
   end
 end
 

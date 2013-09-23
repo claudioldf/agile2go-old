@@ -1,19 +1,10 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// the compiled file.
-//
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
-//        
+//
 //= require twitter/bootstrap
+//= require modal
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
-//= require application_
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require twitter/bootstrap/bootstrap-transition
@@ -24,21 +15,46 @@
 //= require twitter/bootstrap/bootstrap-collapse
 
 $(function() {
-  dataTable();  
-  /*$(".pagination a").on("click", function() {    
-    $.getScript(this.href);
-    return false;
-  });*/
+  App.init();
 });
 
-function dataTable(){
-	$('.datatable').dataTable({
-    	"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-    	"sPaginationType": "bootstrap",    	 
-  		"sScrollX": "100%",
-  		"bScrollCollapse": true      
- 	});
+App = {
+
+  init : function() {
+    this.dataTables();
+    this.tooltips();
+    this.calendar();
+  },
+
+  dataTables : function(){
+    $('.datatable').dataTable({
+      "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
+      "sPaginationType": "bootstrap",
+      "sScrollX": "100%",
+      "bScrollCollapse": true
+    });
+  },
+
+  tooltips : function() {
+    $('a[rel=popover]').popover();
+    $.each($('img#avatar-1') ,function(){
+      $(this).tooltip({ placement: 'right' });
+    });
+     $.each($('a .tooltip a[rel=tooltip]'), function(){
+       $(this).tooltip();
+     });
+     $.each($('img .card span'), function(){
+       $(this).tooltip({ placement: 'bottom' });
+     });
+  },
+
+  calendar : function() {
+    $("[data-behaviour˜='datepicker']").on('mouseover', function(){
+      $(this).datepicker({ format : 'yyyy-mm-yy', weekStart : 1, autoclose : true});
+    });
+  }
+
 }
 
 
-        
+

@@ -10,9 +10,6 @@ describe Task, 'attributes' do
   it { should_not allow_value("blah").for(:priority) }
   it { should validate_numericality_of(:priority) }
 
-  it { should_not allow_mass_assignment_of(:created_at) }
-  it { should_not allow_mass_assignment_of(:updated_at) }
-
   it "should create a new task" do
     new_task = FactoryGirl.create(:task)
     new_task.should be_valid

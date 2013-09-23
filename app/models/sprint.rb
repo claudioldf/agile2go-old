@@ -1,12 +1,12 @@
 class Sprint < ActiveRecord::Base
+  include ActiveModel::ForbiddenAttributesProtection
+
   DATE_REGEX = /^\d{4}-\d{2}-\d{2}/
 
   before_validation :generate_slug
 
   has_many :tasks
   belongs_to :project
-
-  attr_accessible :daily_scrum, :end_date, :goal, :name, :start_date, :project_id, :slug
 
   validates :start_date, presence: true , format: DATE_REGEX
   validates :end_date, format: DATE_REGEX

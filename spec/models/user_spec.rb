@@ -5,9 +5,6 @@ describe User do
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:slug) }
 
-  it { should_not allow_mass_assignment_of(:created_at) }
-  it { should_not allow_mass_assignment_of(:updated_at) }
-
   it { should belong_to(:project) }
   it { should belong_to(:task) }
 
