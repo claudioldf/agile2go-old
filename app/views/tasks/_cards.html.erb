@@ -7,7 +7,7 @@
 <% end %>
 </div>
 
-<div id="ongoing" class="row">
+<div  class="row">
 <% @tasks.map do |task| %>
   <% if task.is_status.ongoing %>
     <%= render 'tasks/tasks', task: task %>
@@ -15,7 +15,7 @@
 <% end %>
 </div>
 
-<div "test" class="row">
+<div class="row">
 <% @tasks.map do |task| %>
   <% if task.is_status.test %>
     <%= render 'tasks/tasks', task: task %>
@@ -23,7 +23,7 @@
 <% end %>
 </div>
 
-<div id="done" class="row">
+<div class="row">
 <% @tasks.map do |task| %>
   <% if task.is_status.done %>
     <%= render 'tasks/tasks', task: task %>

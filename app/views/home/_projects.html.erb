@@ -5,8 +5,12 @@
         <h3>
           <%= link_to project.name, project_path(project) %>
         </h3>
-        <p>
+        <hr />
+        <p class="left">
           <span>Current Sprint: <%= project.sprint_name %></span>
+        </p>
+        <p class="right">
+          <span>Total Sprints: <%= project.sprints.size %></span>
         </p>
       </div>
       <br />

@@ -37,10 +37,13 @@ App = {
 
   tooltips : function() {
     $('a[rel=popover]').popover();
+    $('.tooltip').tooltip();
+    $('a[rel=tooltip]').tooltip();
+
     $.each($('img#avatar-1') ,function(){
       $(this).tooltip({ placement: 'right' });
     });
-     $.each($('a .tooltip a[rel=tooltip]'), function(){
+     $.each($('a'), function(){
        $(this).tooltip();
      });
      $.each($('img .card span'), function(){
