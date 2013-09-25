@@ -1,53 +1,27 @@
-<%- model_class = Project -%>
 <div class="page-header">
-  <h1 class="muted"><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+  <h1 class="muted">Projects</h1>
 </div>
-<table class="datatable table table-striped table-bordered table-condensed">  
-  <thead>
-    <tr>      
-      <th>Name</th>
-      <th>Description</th>
-      <th>Company</th>
-      <th>Registered</th>    
-      <th>Actions</th>  
-    </tr>
-  </thead>
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>        
-        <td><%= link_to project.name, project_path(project) %></td>
-        <td ><%= project.description %></td>
-        <td><%= project.company %></td>
-        <td><%=l project.created_at.to_date %></td>
-        <td>
-          <%= link_to content_tag('i', '', class: 'icon-edit'), 
-              edit_project_path(project),
-              :id => 'edit-tooltip', 
-              :title => 'edit' %>
-          <%= link_to content_tag('i', '', class: 'icon-trash '),
-              project,
-              :id => 'del-tooltip',
-              :title => 'delete',
-              confirm: "Are you sure you want to delete '#{project.name}'?",
-              method: :delete  %>
-        </td>
-      
-    <% end %>
-  </tbody>
-</table>
 
-<% if @projects.size > 0 %>
-  <ul class="nav nav-pills">      
-    <li class="active">
-      <%= link_to "CSV", projects_path(format: "csv"), :id => 'csv-tip', :title => 'export to .csv' %>
-    </li>                        
-    <li class="active">
-      <%= link_to "Excel", projects_path(format: "xls"), :id => 'xls-tip', :title => 'export to .xls' %>
-    </li>
-  </ul>                                          
-<% end %>
+<%= link_to t('.new',
+    default: t("helpers.links.new")),
+    new_project_path,
+    class: 'btn btn-primary btn-large'%>
+<div class="row">
+  <% @projects.each do |project| %>
+    <div class="span4">
+      <div class="card-project">
+        <h3>
+          <%= link_to project.name, project_path(project) %>
+        </h3>
+        <hr />
+        <p class="left"><span><%= project.description %> </span></p>
+        <p class="left"><span><%= project.company %> - <%=l project.created_at.to_date %> </span></p>
+        <span class="right"><%= link_to content_tag('span', 'remove', class: 'label label-important'),
+          project,
+          confirm: "Are you sure you want to delete '#{project.name}'?",
+          method: :delete %></span>
+      </div>
+    </div>
+  <% end  %>
+</div>
 
-<%= link_to t('.new', 
-            :default => t("helpers.links.new")),
-            new_project_path,
-            :class => 'btn btn-primary' %>

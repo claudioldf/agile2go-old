@@ -1,7 +1,0 @@
- id | company  |                                   description                                   |   name    |         created_at         |         updated_at         
-----+----------+---------------------------------------------------------------------------------+-----------+----------------------------+----------------------------
- 16 | Criativa | Welcome to Agile2Go! This is will be your best tool to develop complex projects | Agile2Go  | 2013-05-23 01:13:24.662095 | 2013-05-23 01:13:24.662095
- 17 | Embraer  | Integration between SAP and yous needs never was so easy. You can with FASCE!   | FASCE     | 2013-05-23 01:13:26.330747 | 2013-05-23 01:13:26.330747
- 18 | Criativa | Very soon mobile payment solution                                               | M-Payment | 2013-05-23 01:13:26.338928 | 2013-05-23 01:13:26.338928
-(3 rows)
-
