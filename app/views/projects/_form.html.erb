@@ -1,16 +1,15 @@
-<%= simple_form_for project, html: { class: 'form-horizontal' }, defaults: { input_html: { class: 'text_field input-xlarge
-  ' } } do |f| %>
+<%= simple_form_for project, html: { class: 'form-horizontal' }, defaults: { input_html: { class: 'text_field input-xlarge' } } do |f| %>
   <%= f.error_notification %>
   <%= display_base_errors project %>
-  <%= f.input :name, placeholder: 'Name', wrapper_html: { class: 'span5' } %>
+  <%= f.input :name, placeholder: 'Name'  %>
   <%= f.input :company, placieholder: 'What company are you?' %>
-  <%= f.input :description, as: :text, placeholder: 'Description of the Project' , wrapper_html: { class: 'span6' } %>
+  <%= f.input :description, as: :text, placeholder: 'Description of the Project' %>
   <%= f.association :users, collection: users, as: :check_boxes %>
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-primary' %>
+    <%= f.button :submit, class: 'btn btn-primary btn-large' %>
     <%= link_to t('.cancel',
                 default: t("helpers.links.cancel")),
                 projects_path,
-                class: 'btn' %>
+                class: 'btn btn-large' %>
   </div>
 <% end %>
