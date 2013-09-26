@@ -7,7 +7,7 @@
 
 <%= javascript_include_tag "highcharts" %>
 <%= javascript_include_tag "exporting" %>
-  <div id="chart" style="width:100%; height:500px;"></div>
+  <div id="chart" style="width:100%; height:800px;"></div>
     <script type="text/javascript">
       $(function(){
           $('#chart').highcharts({
@@ -49,7 +49,5 @@
       });
     </script>
   </div>
-
-<%= will_paginate(@projects) %>
 
 <%= render 'home/projects' %>
