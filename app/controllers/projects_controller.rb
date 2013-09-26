@@ -16,19 +16,19 @@ class ProjectsController < ApplicationController
   def create
     project.attributes=(project_params)
     if project.save
-      respond_with(project, notice: 'Project created.')
+      redirect_to projects_path, notice: 'Project created.'
     else
       users
-      render action: 'new', alert: 'Unable to create project.'
+      render 'new', alert: 'Unable to create project.'
     end
   end
 
   def update
     if project.update_attributes(project_params)
-      respond_with(project, notice: 'Project updated.')
+      redirect_to edit_project_path(project), notice: 'Project successfully updated.'
     else
       users
-      render action: 'edit', alert: 'Unable to update project.'
+      render 'edit', alert: 'Unable to update project.'
     end
   end
 

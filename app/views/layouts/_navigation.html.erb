@@ -1,10 +1,7 @@
 <%= link_to "Agile2Go", root_path, class: 'brand icon-home active' %>
 <div class="nav-collapse collapse">
   <% if user_signed_in? %>
-    <p class="navbar-text pull-right">
-      <%= current_user.name %> 
-        <img class="avatar-2" src="<%= current_user.gravatar_url %>" title="<%= current_user.email %>" />
-    </p>
+    <%= render 'projects/search' %>
   <% end %>
   <ul class="nav">
     <% if user_signed_in? %>

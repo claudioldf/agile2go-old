@@ -5,6 +5,11 @@
  *= require_tree .
 */
 
+input[type="text"].search-query {
+  border: 0px !important;
+  border-radius: 26px !important;
+}
+
 .btn-center {
   width: 15em;
   margin-left: auto;
@@ -13,7 +18,7 @@
 }
 
 .page-header h1 {
-  text-align: center;
+  #text-align: center;
   font-size: 50px;
 }
 
@@ -59,11 +64,8 @@ span.label a{
 
 textarea {
   height: 10em;
-}
-
-input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover, select:hover, textarea:hover {
-  border-radius:0px !important;
-  border: 2px solid rgba(82, 168, 236, 0.8) !important;
+  border: 2px solid #ccc !important;
+  border-radius: 0px !important;
 }
 
 input[type="text"], input[type="email"], input[type="password"], textarea select {
@@ -92,6 +94,12 @@ select#task_user_ids {
 
 .navbar-inverse .brand {
   color: white !important;
+}
+
+img {
+ -moz-border-radius: 01em !important; /* Firefox */
+ -webkit-border-radius: 1em !important; /* Safari and Chrome */
+ border-radius: 1em !important; /* Opera 10.5+ */
 }
 
 img.avatar-1{

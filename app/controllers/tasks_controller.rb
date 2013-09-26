@@ -19,21 +19,21 @@ class TasksController < ApplicationController
   def create
     task.attributes=(task_params)
     if task.save
-      respond_with(task, notice: 'Task created.')
+      redirect_to tasks_path, notice: 'Task created.' 
     else
       users
       sprints
-      render action: 'new', alert: 'Unable to create task.'
+      render 'new', alert: 'Unable to create task.'
     end
   end
 
   def update
     if task.update_attributes(task_params)
-      respond_with(task, notice: 'Task updated.')
+      redirect_to edit_task_path(task), notice: 'Task updated.'
     else
       users
       sprints
-      render action: 'edit', alert: 'Unable to update task.'
+      render 'edit', alert: 'Unable to update task.'
     end
   end
 

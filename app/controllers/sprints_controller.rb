@@ -14,7 +14,7 @@ class SprintsController < ApplicationController
   def create
     sprint.atttibutes=(sprint_params)
     if sprint.save
-      respond_with(sprint, notice: 'Sprint created.')
+      redirect_to sprints_path, notice: 'Sprint created.'
     else
       render action: 'new', alert: 'Unable to create sprint.'
     end
@@ -22,7 +22,7 @@ class SprintsController < ApplicationController
 
   def update
     if sprint.update_attributes(sprint_params)
-      respond_with(sprint, notice: 'Sprint updated.')
+      redirect_to edit_sprint_path(sprint), notice: 'Sprint updated.'
     else
       render action: 'edit', alert: 'Unable to update project.'
     end
