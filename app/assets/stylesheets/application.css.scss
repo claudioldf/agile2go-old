@@ -5,6 +5,10 @@
  *= require_tree .
 */
 
+.input-xlarge[type="text"], .input-xlarge[type="password"], .input-xlarge[type="email"], textarea {
+  width: 50% !important;
+}
+
 input[type="text"].search-query {
   border: 0px !important;
   border-radius: 26px !important;
@@ -72,17 +76,11 @@ textarea {
   border-radius: 0px !important;
 }
 
-input[type="text"], input[type="email"], input[type="password"], textarea select {
-  border: 2px solid #ccc !important;
-  border-radius:0px !important;
-}
-
-input[type="submit"] {
-  border-radius:0px !important;
+input[type="text"], input[type="email"], input[type="password"], textarea, select {
+  border: 3px solid #ccc !important;
 }
 
 a {
-   border-radius:0px !important;
    &:hover{
     text-decoration: none !important;
    }

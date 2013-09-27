@@ -2,7 +2,7 @@
   <%= f.error_notification %>
   <%= display_base_errors project %>
   <%= f.input :name, placeholder: 'Name'  %>
-  <%= f.input :company, placieholder: 'What company are you?' %>
+  <%= f.input :company, placeholder: 'What company are you?' %>
   <%= f.input :description, as: :text, placeholder: 'Description of the Project' %>
   <%= f.association :users, collection: users, as: :check_boxes %>
   <div class="form-actions">
