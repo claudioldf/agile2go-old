@@ -7,9 +7,11 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.ordered
-    respond_with(@projects) do |format|
-      format.csv { send_data @projects.export }
-      format.xls
+    if stale? etag: @projects.all, last_modified: @projects.maximum(:updated_at)
+      respond_with(@projects) do |format|
+       format.csv { send_data @projects.export }
+       format.xls
+      end
     end
   end
 

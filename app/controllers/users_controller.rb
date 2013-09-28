@@ -5,14 +5,14 @@ class UsersController < ApplicationController
 
   def index
     @users = User.order(:name)
-      respond_with(@users)  do |format|
+      respond_with(@users) do |format|
         format.csv { send_data @users.export }
         format.xls
     end
   end
 
   def update
-    if @user.update_attributes(params[:user], as: :master)
+    if @user.update_attributes(user_params)
       respond_with(@users, notice: 'User updated.')
     else
       respond_with(users, alert: 'Unable to update user.')
@@ -25,6 +25,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
 
   def find_user
     @user ||= User.find_by_slug(params[:id])
