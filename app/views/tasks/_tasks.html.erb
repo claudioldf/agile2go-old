@@ -1,16 +1,16 @@
-<div class="span3">
-  <div class="card" style="background-color: <%= background_color(task.status) %>">
-    <h3 style="float: left;">
-      <%= task.id %>
-    </h3>
-      <p>Hours - <%= task.hours %></p>
-      <p>Priority - <%= task.priority %></p>
+<div class="span4">
+  <div class="card" style="padding: 5% 10% 10%;">
+    <h3><%= task.id %></h3>
+    <div class="progress progress-striped active">
+      <div class="bar <%= progress(task) %>" style="width: 100%;"></div>
+    </div>
+    <p><span><%= task.storie %></span></p>
+    <p>Hours - <%= task.hours %></p>
+    <p>Priority - <%= task.priority %></p>
+    <ul class="left nav nav-pills">
       <% task.users.each do |u| %>
-          <img id="tooltip-bottom" class="avatar-1" title="<%= u.name_and_email %>" src="<%= u.gravatar_url %>" />
+        <img src="<%= u.gravatar_url %>" />
       <% end %>
-      <p>
-        <span title="<%= task.storie %>"><%= link_to 'more...', task_path(task) %></span>
-      </p>
+    </ul>
   </div>
-  <br />
 </div>

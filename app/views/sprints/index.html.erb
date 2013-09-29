@@ -15,7 +15,7 @@
 <div class="row">
   <% @sprints.each do |sprint| %>
     <div class="span4">
-      <div class="card-project" style="padding: 5% 10% 12%;">
+      <div class="card" style="padding: 5% 10% 12%;">
         <h3><%= link_to sprint.name, edit_sprint_path(sprint) %></h3>
         <h5 class="muted"><%= sprint.project.name %></h5>
         <hr />

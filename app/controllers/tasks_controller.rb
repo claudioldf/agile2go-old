@@ -21,7 +21,7 @@ class TasksController < ApplicationController
   def create
     task.attributes=(task_params)
     if task.save
-      redirect_to tasks_path, notice: 'Task created.' 
+      redirect_to tasks_path, notice: 'Task created.'
     else
       users
       sprints

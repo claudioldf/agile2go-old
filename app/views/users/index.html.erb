@@ -12,7 +12,7 @@
 <div class="row">
   <% @users.each do |user| %>
     <div class="span4">
-      <div class="card-project" style="padding: 5% 10% 12%;">
+      <div class="card" style="padding: 5% 10% 12%;">
         <img id="avatar-2" src="<%= user.gravatar_url %>" title="<%= user.email %>" />
         <h3><%= user.name %></h3>
         <hr />

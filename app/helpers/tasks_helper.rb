@@ -1,20 +1,18 @@
 module TasksHelper
 
-  def css_for(task)
+  def progress(task)
     if task.status == "todo"
-      'important'
-    elsif task.status == "ongoing"
-      'warning'
+      'bar-danger'
+    elsif task.status == "done"
+      'bar-success'
     elsif task.status == "test"
-      'success'
-    else
-      'info'
+      'bar-warning bar-task-color'
     end
   end
 
   def background_color(status)
     if status == "todo"
-      '#9d261d'
+      '#c32f34'
     elsif status == "ongoing"
       '#4bb1cf'
     elsif status == "test"

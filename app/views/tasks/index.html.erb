@@ -1,5 +1,19 @@
+<%= link_to 'Create new Task',
+    new_task_path,
+    class: 'btn btn-primary btn-large btn-center' %>
+
+<%= link_to content_tag('i', '.csv', class: 'icon-download-alt'),
+  tasks_path(format: 'csv'),
+  title: 'export to .csv',
+  class: 'ttip-bottom'%>
+
+<%= link_to content_tag('i', '.xls', class: 'icon-download-alt'),
+  tasks_path(format: 'xls'),
+  title: 'export to .xls',
+  class: 'ttip-right' %>
+
+<hr/>
 <%= form_tag(tasks_path, method: 'get') do %>
-  <div class="page-header">
     <ul class="nav nav-pills">
       <span class="label label-important">
         <%= link_to 'todo', tasks_path(status: 'todo'), remote: true %>
@@ -14,10 +28,7 @@
         <%= link_to 'test', tasks_path(status: 'test'), remote: true %>
       </span>
     </ul>
-  </div>
 <% end %>
-
-<%= render 'actions' %>
 
 <%= render 'tasks/cards' %>
 
