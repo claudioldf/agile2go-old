@@ -18,7 +18,7 @@
         <hr />
         <p><span><%= user.email %> </span></p>
         <p><span><%= user.roles.first.name.titleize unless user.has_role %></span></p>
-        <span class="right"><%= link_to content_tag('span', 'remove', class: 'label label-important'),
+        <span class="right"><%= link_to content_tag('span', 'X', class: 'badge badge-important'),
           user,
           confirm: "Are you sure you want to delete '#{user.name}'?",
           method: :delete %></span>

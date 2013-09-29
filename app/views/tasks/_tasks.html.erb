@@ -12,5 +12,9 @@
         <img src="<%= u.gravatar_url %>" />
       <% end %>
     </ul>
+    <span class="right"><%= link_to content_tag('span', 'X', class: 'badge badge-important'),
+      task,
+      confirm: "Are you sure you want to delete '#{task.id}'?",
+      method: :delete %></span>
   </div>
 </div>

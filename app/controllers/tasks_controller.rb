@@ -9,13 +9,13 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.search(params[:status])
-    #if stale? @tasks.last
+    if stale? @tasks.last
       respond_with(@tasks) do |format|
         format.csv { send_data @tasks.export }
         format.xls
         format.js
       end
-    #end
+    end
   end
 
   def create

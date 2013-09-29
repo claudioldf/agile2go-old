@@ -22,7 +22,7 @@
         <p class="left"><span><%= sprint.goal %></span></p>
         <p>Deadline - <span><%= sprint.end_date %> </span></p>
         <p>Daily - <span><%= sprint.daily_scrum %> </span></p>
-        <span class="right"><%= link_to content_tag('span', 'remove', class: 'label label-important'),
+        <span class="right"><%= link_to content_tag('span', 'X', class: 'badge badge-important'),
           sprint,
           confirm: "Are you sure you want to delete '#{sprint.name}'?",
           method: :delete %></span>
