@@ -5,9 +5,11 @@ class UsersController < ApplicationController
 
   def index
     @users = User.order(:name)
+    if stale? etag: @users.all, last_modified: @users.maximum(:updated_at)
       respond_with(@users) do |format|
         format.csv { send_data @users.export }
         format.xls
+      end
     end
   end
 
