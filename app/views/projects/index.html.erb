@@ -23,9 +23,7 @@
         <p class="left"><span><%= project.description %> </span></p>
         <ul class="left nav nav-pills">
           <% project.users.each do |u| %>
-            <li>
-              <img src="<%= u.gravatar_url %>">
-            </li>
+            <img src="<%= u.gravatar_url %>">
           <% end %>
         </ul>
         <p class="left"><span><%= project.company %> - <%=l project.created_at.to_date %> </span></p>
