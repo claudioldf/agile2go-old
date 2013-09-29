@@ -24,7 +24,7 @@ class SprintsController < ApplicationController
 
   def update
     if sprint.update_attributes(sprint_params)
-      redirect_to edit_sprint_path(sprint), notice: 'Sprint updated.'
+      redirect_to sprints_path, notice: 'Sprint updated.'
     else
       render action: 'edit', alert: 'Unable to update project.'
     end

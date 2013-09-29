@@ -43,7 +43,9 @@
         <div class="row">
           <div class="span12">
             <%= render 'layouts/messages' %>
-            <img src="<%= current_user.gravatar_url unless current_user.nil? %>" />
+            <% unless current_user.nil? %>
+              <img class="ttip-right" title="<%= current_user.name %>" src="<%= current_user.gravatar_url %>" />
+            <% end %>
             <%= yield %>
           </div>
         </div>

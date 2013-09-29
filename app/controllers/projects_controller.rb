@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
 
   def update
     if project.update_attributes(project_params)
-      redirect_to edit_project_path(project), notice: 'Project successfully updated.'
+      redirect_to projects_path, notice: 'Project successfully updated.'
     else
       users
       render 'edit', alert: 'Unable to update project.'

@@ -5,8 +5,6 @@
 //= require modal
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
-//= require bootstrap-datepicker
-//= require bootstrap-datepicker/core
 //= require twitter/bootstrap/bootstrap-transition
 //= require twitter/bootstrap/bootstrap-tooltip
 //= require twitter/bootstrap/bootstrap-alert
@@ -40,15 +38,15 @@ App = {
     $('.tooltip').tooltip();
     $('a[rel=tooltip]').tooltip();
 
-    $.each($('img#avatar-1') ,function(){
-      $(this).tooltip({ placement: 'right' });
+    $.each($('.ttip-bottom'), function(){
+      $(this).tooltip({placement: 'bottom'})
     });
-     $.each($('a'), function(){
-       $(this).tooltip();
-     });
-     $.each($('img .card span'), function(){
-       $(this).tooltip({ placement: 'bottom' });
-     });
+    $.each($('.ttip-right'), function(){
+      $(this).tooltip({placement: 'right'})
+    });
+    $.each($('a'), function(){
+      $(this).tooltip();
+    });
   },
 
   calendar : function() {

@@ -39,7 +39,7 @@ span.label a{
   text-decoration: none;
 }
 
-.custom-checkbox {
+input[type="checkbox"] {
   -webkit-appearance: none !important;
   background-color: #fafafa !important;
   border: 1px solid #cacece !important;
@@ -50,18 +50,18 @@ span.label a{
   position: relative !important;
 }
 
-.custom-checkbox:active, .custom-checkbox:checked:active {
+input[type="checkbox"]:active, input[type="checkbox"]:active {
   box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1) !important;
 }
 
-.custom-checkbox:checked {
+input[type="checkbox"]:checked {
   background-color: #e9ecee !important;
   border: 1px solid #adb8c0 !important;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1) !important;
   color: #99a1a7 !important;
 }
 
-.custom-checkbox:checked:after {
+input[type="checkbox"]:checked:after {
   content: '\2714' !important;
   font-size: 14px !important;
   position: absolute !important;
@@ -84,6 +84,10 @@ a {
    &:hover{
     text-decoration: none !important;
    }
+}
+
+select.date {
+  width: 130px;
 }
 
 select#project_user_ids {

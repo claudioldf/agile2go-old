@@ -2,6 +2,16 @@
     new_project_path,
     class: 'btn btn-primary btn-large btn-center' %>
 
+<%= link_to content_tag('i', '.csv', class: 'icon-download-alt'),
+  projects_path(format: 'csv'),
+  title: 'export to .csv',
+  class: 'ttip-bottom'%>
+
+<%= link_to content_tag('i', '.xls', class: 'icon-download-alt'),
+  projects_path(format: 'xls'),
+  title: 'export to .xls',
+  class: 'ttip-right' %>
+
 <div class="row">
   <% @projects.each do |project| %>
     <div class="span4">
@@ -11,6 +21,13 @@
         </h3>
         <hr />
         <p class="left"><span><%= project.description %> </span></p>
+        <ul class="left nav nav-pills">
+          <% project.users.each do |u| %>
+            <li>
+              <img src="<%= u.gravatar_url %>">
+            </li>
+          <% end %>
+        </ul>
         <p class="left"><span><%= project.company %> - <%=l project.created_at.to_date %> </span></p>
         <span class="right"><%= link_to content_tag('span', 'remove', class: 'label label-important'),
           project,

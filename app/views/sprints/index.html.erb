@@ -1,44 +1,32 @@
-<%- model_class = Sprint -%>
-<div class="page-header">
-  <h1 class="muted"><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+<%= link_to 'Create new Sprint',
+    new_sprint_path,
+    class: 'btn btn-primary btn-large btn-center' %>
+
+<%= link_to content_tag('i', '.csv', class: 'icon-download-alt'),
+  sprints_path(format: 'csv'),
+  title: 'export to .csv',
+  class: 'ttip-bottom'%>
+
+<%= link_to content_tag('i', '.xls', class: 'icon-download-alt'),
+  sprints_path(format: 'xls'),
+  title: 'export to .xls',
+  class: 'ttip-right' %>
+
+<div class="row">
+  <% @sprints.each do |sprint| %>
+    <div class="span4">
+      <div class="card-project" style="padding: 5% 10% 12%;">
+        <h3><%= link_to sprint.name, edit_sprint_path(sprint) %></h3>
+        <h5 class="muted"><%= sprint.project.name %></h5>
+        <hr />
+        <p class="left"><span><%= sprint.goal %></span></p>
+        <p>Deadline - <span><%= sprint.end_date %> </span></p>
+        <p>Daily - <span><%= sprint.daily_scrum %> </span></p>
+        <span class="right"><%= link_to content_tag('span', 'remove', class: 'label label-important'),
+          sprint,
+          confirm: "Are you sure you want to delete '#{sprint.name}'?",
+          method: :delete %></span>
+      </div>
+    </div>
+  <% end %>
 </div>
-<table id="sprintTable" class="datatable table table-striped table-bordered table-condensed">  
-  <thead>
-    <tr>      
-      <th>Name</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Daily Scrum</th>      
-      <th>Project</th>
-      <th>Registered</th>      
-      <th>Actions</th>      
-    </tr>
-  </thead>
-  <tbody>
-    <% @sprints.each do |sprint| %>
-      <tr>        
-        <td><%= link_to sprint.name, sprint_path(sprint) %></td>
-        <td><%= sprint.start_date %></td>
-        <td><%= sprint.end_date %></td>
-        <td><%= sprint.daily_scrum %></td>        
-        <td><%= sprint.project.name %></td>
-        <td><%=l sprint.created_at.to_date %></td>
-        <td>
-          <%= link_to content_tag('i', '', class: 'icon-edit'), edit_sprint_path(sprint), :id => 'edit-tooltip', :title => 'edit' %>
-          <%= link_to content_tag('i', '', class: 'icon-trash '), sprint, :id => 'del-tooltip', :title => 'delete', confirm: "Are you sure you want to delete '#{sprint.name}'?", method: :delete  %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<% if @sprints.size > 0 %>
-  <ul class="nav nav-pills">      
-    <li class="active"><%= link_to "CSV", sprints_path(format: "csv"), :id => 'csv-tip', :title => 'export to .csv' %></li>                        
-    <li class="active"><%= link_to "Excel", sprints_path(format: "xls"), :id => 'xls-tip', :title => 'export to .xls' %></li>
-  </ul>                                          
-<% end %>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_sprint_path,
-            :class => 'btn btn-primary' %>
