@@ -1,46 +1,28 @@
-<%- model_class = User -%>
-<div class="page-header">
-  <h1 class="muted"><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
-</div>
-<table class="datatable table table-striped table-bordered table-condensed">
-  <thead>
-    <tr>
-      <th>Avatar</th>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Registered</th>
-      <th>Role</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td>
-          <img id="avatar-2" src="<%= user.gravatar_url %>" title="<%= user.email %>" />
-        </td>
-        <td><%= link_to user.name, user %></td>
-        <td><%= user.email %></td>
-        <td><%= user.created_at.to_date %></td>
-        <td><%= user.roles.first.name.titleize unless user.has_role %></td>
-        <td>
-          <a id="change-role" data-toggle="modal" href="#role-options-<%= user.id %>" class="icon-th-large" title="change role"></a>
-          <%= render user %>
-          <%= link_to content_tag('i', '', class: 'icon-trash '),
-              user,
-              :id => 'del-tooltip',
-              :title => 'delete',
-              confirm: "Are you sure you want to delete '#{user.name}'?",
-              method: :delete %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<p></p>
+<%= link_to content_tag('i', '.csv', class: 'icon-download-alt'),
+  users_path(format: 'csv'),
+  title: 'export to .csv',
+  class: 'ttip-bottom'%>
 
-<% if @users.size > 0 %>
-  <ul class="nav nav-pills">
-    <li class="active"><%= link_to "CSV", users_path(format: "csv"), :id => 'csv-tip', :title => 'export to .csv' %></li>
-    <li id="xls-tip" class="active"><%= link_to "Excel", users_path(format: "xls"), :id => 'xls-tip', :title => 'export to .xls' %></li>
-  </ul>
-<% end %>
+<%= link_to content_tag('i', '.xls', class: 'icon-download-alt'),
+  users_path(format: 'xls'),
+  title: 'export to .xls',
+  class: 'ttip-right' %>
+
+<div class="row">
+  <% @users.each do |user| %>
+    <div class="span4">
+      <div class="card-project" style="padding: 5% 10% 12%;">
+        <img id="avatar-2" src="<%= user.gravatar_url %>" title="<%= user.email %>" />
+        <h3><%= user.name %></h3>
+        <hr />
+        <p><span><%= user.email %> </span></p>
+        <p><span><%= user.roles.first.name.titleize unless user.has_role %></span></p>
+        <span class="right"><%= link_to content_tag('span', 'remove', class: 'label label-important'),
+          user,
+          confirm: "Are you sure you want to delete '#{user.name}'?",
+          method: :delete %></span>
+      </div>
+    </div>
+  <% end  %>
+</div>
