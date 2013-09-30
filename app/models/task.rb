@@ -14,8 +14,8 @@ class Task < ActiveRecord::Base
   scope :ordered, order('created_at DESC')
 
   def self.search(status)
-    return find(:all, conditions: ['status like ?', '%todo%']) unless status
-    find(:all, conditions: ['status like ?', "%" + status + "%"])
+    return where('status like ?', '%todo%') unless status
+    where('status like ?', "%" + status + "%")
   end
 
   def self.export(options = {})

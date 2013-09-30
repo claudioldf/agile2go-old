@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class TasksController < ApplicationController
  # load_and_authorize_resource except: [:index]
   before_filter :users, only: [:new, :edit]
@@ -8,14 +10,14 @@ class TasksController < ApplicationController
   helper_method :sprints
 
   def index
-    @tasks = Task.search(params[:status])
-    if stale? @tasks.last
+    @tasks = Task.search(params[:status]).paginate(page: params[:page], per_page: 12)
+#    if stale? @tasks.last
       respond_with(@tasks) do |format|
         format.csv { send_data @tasks.export }
         format.xls
         format.js
       end
-    end
+ #   end
   end
 
   def create

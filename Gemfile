@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :development, :test do
-	gem 'sqlite3'
+  gem 'sqlite3'
   gem "rspec-rails", ">= 2.12.2"
   gem "binding_of_caller", ">= 0.7.1"
   gem "factory_girl_rails", ">= 4.2.0"
