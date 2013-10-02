@@ -15,15 +15,17 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      respond_with(@users, notice: 'User updated.')
+      flash[:notice] = 'User updated.'
     else
-      respond_with(users, alert: 'Unable to update user.')
+      flash[:alert] = 'Unable to update user.'
     end
+    respond_with @user
   end
 
   def destroy
     @user.destroy
-    respond_with(@users, notice: 'User deleted.')
+    flash[:notice] = 'User deleted.'
+    respond_with @users
   end
 
   private

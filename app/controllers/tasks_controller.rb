@@ -11,39 +11,34 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.search(params[:status]).paginate(page: params[:page], per_page: 12)
-    if stale? @tasks.last
+    #if stale? @tasks.last
       respond_with(@tasks) do |format|
         format.csv { send_data @tasks.export }
         format.xls
         format.js
       end
-    end
+    #end
   end
 
   def create
     task.attributes=(task_params)
-    if task.save
-      redirect_to tasks_path, notice: 'Task created.'
-    else
-      users
-      sprints
-      render 'new', alert: 'Unable to create task.'
-    end
+    flash[:notice] = 'Task created.' if task.save
+    respond_with task, location: edit_task_path(task)
   end
 
   def update
     if task.update_attributes(task_params)
-      redirect_to edit_task_path(task), notice: 'Task updated.'
+      flash[:notice] = 'Task updated.'
     else
-      users
-      sprints
-      render 'edit', alert: 'Unable to update task.'
+      flash[:alert] = 'Unable to update task.'
     end
+    respond_with task, location: edit_task_path(task)
   end
 
   def destroy
     task.destroy
-    respond_with(task, notice: 'Task deleted.')
+    flash[:notice] = 'Task deleted.'
+    respond_with task
   end
 
   private

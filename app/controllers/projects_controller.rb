@@ -3,40 +3,33 @@ class ProjectsController < ApplicationController
   before_filter :users, only: [:new, :edit]
   helper_method :project
   helper_method :users
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @projects = Project.ordered
-    if stale? etag: @projects.all, last_modified: @projects.maximum(:updated_at)
+ #   if stale? etag: @projects.all, last_modified: @projects.maximum(:updated_at)
       respond_with(@projects) do |format|
        format.csv { send_data @projects.export }
        format.xls
       end
-    end
+#    end
   end
 
   def create
     project.attributes=(project_params)
-    if project.save
-      redirect_to projects_path, notice: 'Project created.'
-    else
-      users
-      render 'new', alert: 'Unable to create project.'
-    end
+    flash[:notice] = 'Project created.' if project.save
+    respond_with project, location: edit_project_path(project)
   end
 
   def update
-    if project.update_attributes(project_params)
-      redirect_to projects_path, notice: 'Project successfully updated.'
-    else
-      users
-      render 'edit', alert: 'Unable to update project.'
-    end
+    flash[:notice] = 'Project updated.' if project.update_attributes(project_params)
+    respond_with project, location: edit_project_path(project)
   end
 
   def destroy
     project.destroy
-    respond_with(project, notice: 'Project deleted.')
+    flash[:notice] = 'Project deleted.'
+    respond_with project
   end
 
   private

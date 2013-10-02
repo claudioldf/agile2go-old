@@ -1,26 +1,30 @@
 <div class="page-header">
-	<h2 class="muted">Edit <%= resource_name.to_s.humanize %></h2>
+  <h2 class="muted">Edit User</h2>
 </div>
-	<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal' }) do |f| %>
-	  <%= f.error_notification %>
-	  <%= display_base_errors resource %>
-	  <%= f.input :name, :placeholder => 'Name', :autofocus => true, input_html: { class: 'text_field input-xlarge' } %>
-	  <%= f.input :email, :placeholder => 'Email', :required => true, input_html: { class: 'text_field input-xlarge' } %>
-	  <%= f.input :password, :placeholder => 'Password', :autocomplete => "off", :required => false, input_html: { class: 'text_field input-xlarge text-info' } %>	  
-	  <div class="controls">
-	  	<p class="text-warning">leave it blank if you don't want to change it</p>
-	  </div>
-	  <%= f.input :password_confirmation, :placeholder => 'Confirmation', :required => false, input_html: { class: 'text_field input-xlarge' } %>
-	  <%= f.input :current_password, :placeholder => 'Current Password', :required => true, input_html: { class: 'text_field input-xlarge' } %>
-	  <div class="controls">
-	  	<p class="text-warning">we need your current password to confirm your changes</p>
-	  </div>
-	  <div class="form-actions">
-	  	<%= f.button :submit, 'Update', :class => 'btn-primary' %>
-	  	<%= link_to "Back", :back, :class => 'btn btn-secundary' %>
-	  </div>
-	<% end %>
-	<h3>Cancel my account</h3>
-	<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>	
-	</p>
-	
+<%= simple_form_for resource,
+                as: resource_name,
+                url: registration_path(resource_name),
+                html: { method: :put, class: 'form-horizontal' },
+                defaults: { input_html: { class: 'text_field input_xlarge' } } do |f| %>
+  <%= f.error_notification %>
+  <%= display_base_errors resource %>
+  <%= f.input :name, placeholder: 'Name', autofocus: true, input_html: { class: 'text_field input-xlarge' } %>
+  <%= f.input :email, placeholder: 'Email', required: true, input_html: { class: 'text_field input-xlarge' } %>
+  <%= f.input :password, placeholder: 'Password', autocomplete: "off", required: false, input_html: { class: 'text_field input-xlarge text-info' } %>
+  <div class="controls">
+  <p class="text-warning">leave it blank if you don't want to change it</p>
+  </div>
+  <%= f.input :password_confirmation, placeholder: 'Confirmation', required: false, input_html: { class: 'text_field input-xlarge' } %>
+  <%= f.input :current_password, placeholder: 'Current Password', required: true, input_html: { class: 'text_field input-xlarge' } %>
+  <div class="controls">
+  <p class="text-warning">we need your current password to confirm your changes</p>
+  </div>
+  <div class="form-actions">
+  <%= f.button :submit, 'Update', class: 'btn-primary btn-large' %>
+  <%= link_to "Back", :back, class: 'btn btn-secundary btn-large' %>
+  </div>
+<% end %>
+<h3>Cancel my account</h3>
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+</p>
+

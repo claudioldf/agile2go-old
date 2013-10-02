@@ -1,8 +1,5 @@
 <%= link_to "Agile2Go", root_path, class: 'brand icon-home active' %>
 <div class="nav-collapse collapse">
-  <% if user_signed_in? %>
-    <%= render 'projects/search' %>
-  <% end %>
   <ul class="nav">
     <% if user_signed_in? %>
       <li><%= link_to "Users", users_path %></li>

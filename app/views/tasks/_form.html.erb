@@ -9,8 +9,7 @@
   <%= f.association :users, collection: users, as: :check_boxes %>
   <div class="form-actions">
     <%= f.button :submit, class: 'btn-primary btn-large' %>
-    <%= link_to t('.cancel',
-                default: t("helpers.links.cancel")),
+    <%= link_to 'Back',
                 tasks_path, class: 'btn btn-large' %>
   </div>
 <% end %>

@@ -13,6 +13,8 @@
   class: 'ttip-right' %>
 
 <hr/>
+
+<%= render 'projects/search' %>
 <%= form_tag(tasks_path, method: 'get') do %>
     <ul class="nav nav-pills">
       <span class="label label-important">
@@ -30,7 +32,6 @@
     </ul>
 <% end %>
 
-<%= will_paginate @tasks %>
 <%= render 'tasks/cards' %>
 <%= will_paginate @tasks %>
 
