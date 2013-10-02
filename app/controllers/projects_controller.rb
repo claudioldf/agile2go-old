@@ -22,6 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    puts params[:project]
     flash[:notice] = 'Project updated.' if project.update_attributes(project_params)
     respond_with project, location: edit_project_path(project)
   end
@@ -39,7 +40,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :company, users: [:name])
+    params.require(:project).permit(:name, :description, :company, user_ids: [])
   end
 
   def users

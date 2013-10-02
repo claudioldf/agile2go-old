@@ -1,6 +1,6 @@
 <div class="span4">
   <div class="card" style="padding: 5% 10% 10%;">
-    <h3><%= task.id %></h3>
+    <h3><%= link_to task.id, edit_task_path(task) %></h3>
     <div class="progress progress-striped active">
       <div class="bar <%= progress(task) %>" style="width: 100%;"></div>
     </div>

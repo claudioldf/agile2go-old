@@ -22,6 +22,7 @@ App = {
     this.dataTables();
     this.tooltips();
     this.calendar();
+    $('#flash_notice').parent().delay(800).fadeIn(400);
   },
 
   dataTables : function(){
