@@ -22,7 +22,6 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    puts params[:project]
     flash[:notice] = 'Project updated.' if project.update_attributes(project_params)
     respond_with project, location: edit_project_path(project)
   end
