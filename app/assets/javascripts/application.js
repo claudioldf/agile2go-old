@@ -30,18 +30,18 @@ App = {};
     $.each($('a'), function(){
       $(this).tooltip();
     });
-  },
+  };
 
-  calendar : function() {
+  calendar = function() {
     $("[data-behaviour~='datepicker']").on('mouseover', function(){
       $(this).datepicker({ format : 'yyyy-mm-yy', weekStart : 1, autoclose : true});
     });
-  }
-  
+  };
+
   return {
     init : function(){
       tooltips();
-      dataTables();
+      calendar();
     }
   }
 })();
