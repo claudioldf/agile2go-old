@@ -3,8 +3,6 @@
 //
 //= require twitter/bootstrap
 //= require modal
-//= require dataTables/jquery.dataTables
-//= require dataTables/jquery.dataTables.bootstrap
 //= require twitter/bootstrap/bootstrap-transition
 //= require twitter/bootstrap/bootstrap-tooltip
 //= require twitter/bootstrap/bootstrap-alert

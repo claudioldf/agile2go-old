@@ -6,11 +6,12 @@ class ProjectsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @projects = Project.ordered
+    @projects = Project.search(params[:search])
  #   if stale? etag: @projects.all, last_modified: @projects.maximum(:updated_at)
       respond_with(@projects) do |format|
        format.csv { send_data @projects.export }
        format.xls
+       format.js
       end
 #    end
   end

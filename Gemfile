@@ -33,7 +33,6 @@ end
 
 gem 'roo'
 gem 'rails', '3.2.12'
-gem 'bootstrap-datepicker-rails'
 gem "devise", ">= 2.2.3"
 gem "cancan", ">= 1.6.9"
 gem "rolify", ">= 3.2.0"
@@ -42,6 +41,5 @@ gem "figaro", ">= 0.6.3"
 gem "libv8", ">= 3.11.8"
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate', :git => 'git://github.com/yrgoldteeth/bootstrap-will_paginate.git'
-gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 gem 'strong_parameters'
 

@@ -23,6 +23,19 @@ class Project < ActiveRecord::Base
                                      where("tasks.status = ? and projects.name = ?", status, project_name).
                                      group('tasks.status') }
 
+  def self.search(search)
+    return ordered unless search
+    columns = %w(name description company).freeze
+    tokens = search.split(/\s+/)
+    conditions = tokens.collect do |token|
+      columns.collect do |column|
+        "#{column} like '%#{token}%'"
+      end
+    end
+    conditions = conditions.flatten.join(" or ")
+    where(conditions)
+  end
+
   def generate_slug
     self.slug ||= self.name.parameterize if self.name
   end

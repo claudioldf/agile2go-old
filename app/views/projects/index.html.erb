@@ -18,27 +18,5 @@
   <%= render 'projects/search'  %>
 </div>
 
-<div class="row">
-  <% @projects.each do |project| %>
-    <div class="span4">
-      <div class="card">
-        <h3>
-          <%= link_to project.name, edit_project_path(project) %>
-        </h3>
-        <hr />
-        <p class="left"><span><%= project.description %> </span></p>
-        <ul class="left nav nav-pills">
-          <% project.users.each do |u| %>
-            <img src="<%= u.gravatar_url %>">
-          <% end %>
-        </ul>
-        <p class="left"><span><%= project.company %> - <%=l project.created_at.to_date %> </span></p>
-        <span class="right"><%= link_to content_tag('span', 'X', class: 'badge badge-important'),
-          project,
-          confirm: "Are you sure you want to delete '#{project.name}'?",
-          method: :delete %></span>
-      </div>
-    </div>
-  <% end  %>
-</div>
+<%= render 'projects/dash' %>
 
