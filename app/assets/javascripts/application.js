@@ -16,35 +16,37 @@ App = {};
 
 (function() {
 
-  var tooltips = function() {
-    $('a[rel=popover]').popover();
-    $('.tooltip').tooltip();
-    $('a[rel=tooltip]').tooltip();
+  App.el = function() {
+    var tooltips = function() {
+      $('a[rel=popover]').popover();
+      $('.tooltip').tooltip();
+      $('a[rel=tooltip]').tooltip();
 
-    $.each($('.ttip-bottom'), function(){
-      $(this).tooltip({placement: 'bottom'})
-    });
-    $.each($('.ttip-right'), function(){
-      $(this).tooltip({placement: 'right'})
-    });
-    $.each($('a'), function(){
-      $(this).tooltip();
-    });
-  };
+      $.each($('.ttip-bottom'), function(){
+        $(this).tooltip({placement: 'bottom'})
+      });
+      $.each($('.ttip-right'), function(){
+        $(this).tooltip({placement: 'right'})
+      });
+      $.each($('a'), function(){
+        $(this).tooltip();
+      });
+    };
 
-  calendar = function() {
-    $("[data-behaviour~='datepicker']").on('mouseover', function(){
-      $(this).datepicker({ format : 'yyyy-mm-yy', weekStart : 1, autoclose : true});
-    });
-  };
+    var calendar = function() {
+      $("[data-behaviour~='datepicker']").on('mouseover', function(){
+        $(this).datepicker({ format : 'yyyy-mm-yy', weekStart : 1, autoclose : true});
+      });
+    };
 
-  return {
-    init : function(){
-      tooltips();
-      calendar();
+    return {
+      init : function(){
+        tooltips();
+        calendar();
+      }
     }
   }
 })();
 
-App.init();
+App.el().init()
 
