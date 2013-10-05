@@ -12,28 +12,11 @@
 //= require twitter/bootstrap/bootstrap-button
 //= require twitter/bootstrap/bootstrap-collapse
 
-$(function() {
-  App.init();
-});
+App = {};
 
-App = {
+(function() {
 
-  init : function() {
-    this.dataTables();
-    this.tooltips();
-    this.calendar();
-  },
-
-  dataTables : function(){
-    $('.datatable').dataTable({
-      "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-      "sPaginationType": "bootstrap",
-      "sScrollX": "100%",
-      "bScrollCollapse": true
-    });
-  },
-
-  tooltips : function() {
+  var tooltips = function() {
     $('a[rel=popover]').popover();
     $('.tooltip').tooltip();
     $('a[rel=tooltip]').tooltip();
@@ -50,12 +33,18 @@ App = {
   },
 
   calendar : function() {
-    $("[data-behaviour˜='datepicker']").on('mouseover', function(){
+    $("[data-behaviour~='datepicker']").on('mouseover', function(){
       $(this).datepicker({ format : 'yyyy-mm-yy', weekStart : 1, autoclose : true});
     });
   }
+  
+  return {
+    init : function(){
+      tooltips();
+      dataTables();
+    }
+  }
+})();
 
-}
-
-
+App.init();
 
