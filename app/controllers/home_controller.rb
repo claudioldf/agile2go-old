@@ -4,8 +4,8 @@ class HomeController < ApplicationController
   def index
     @projects = Project.ordered
     @tasks = Task.names
-    if stale? etag: @projects.all, last_modified: @projects.maximum(:updated_at)
+ #   if stale? etag: @projects.all, last_modified: @projects.maximum(:updated_at)
       respond_with @projects
-    end
+ #   end
   end
 end
