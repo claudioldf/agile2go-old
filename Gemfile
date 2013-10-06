@@ -22,7 +22,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
   gem "less-rails"
-  gem "bootstrap-sass", ">= 2.3.0.0"
+  gem "bootstrap-sass", ">= 2.3.0"
   gem "twitter-bootstrap-rails"
   gem 'jquery-rails'
   gem "therubyracer", ">= 0.11.3", :platform => :ruby, :require => "v8"
