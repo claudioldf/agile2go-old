@@ -197,7 +197,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    twitter-bootstrap-rails (2.2.8)
+    twitter-bootstrap-rails (2.2.6)
       actionpack (>= 3.1)
       execjs
       rails (>= 3.1)
