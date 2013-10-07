@@ -1,8 +1,4 @@
 module ApplicationHelper
-  # not used yet
-  def paginate(collection, params = {})
-    will_paginate collection, params.merge(renderer: RemoteLinkPaginationHelper::LinkRenderer)
-  end
 
   def display_base_errors resource
     return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)

@@ -40,6 +40,6 @@ gem "simple_form", ">= 2.1.0"
 gem "figaro", ">= 0.6.3"
 gem "libv8", ">= 3.11.8"
 gem 'will_paginate', '~> 3.0'
-gem 'bootstrap-will_paginate', :git => 'git://github.com/yrgoldteeth/bootstrap-will_paginate.git'
+gem 'bootstrap-will_paginate', git: 'git://github.com/yrgoldteeth/bootstrap-will_paginate.git'
 gem 'strong_parameters'
 

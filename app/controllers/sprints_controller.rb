@@ -4,11 +4,12 @@ class SprintsController < ApplicationController
   helper_method :sprint
 
   def index
-    @sprints = Sprint.ordered
+    @sprints = Sprint.search(params[:search])
     #if stale? etag: @sprints.all, last_modified: @sprints.maximum(:updated_at)
       respond_with(@sprints) do |format|
         format.csv { send_data @sprints.export }
         format.xls
+        format.js
       end
     #end
   end

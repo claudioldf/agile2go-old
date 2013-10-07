@@ -15,6 +15,19 @@ class Sprint < ActiveRecord::Base
 
   scope :ordered, order(:name)
 
+  def self.search(search)
+    return ordered unless search
+    columns = %w(name daily_scrum end_date start_date goal).freeze
+    tokens = search.split(/\s+/)
+    conditions = tokens.collect do |token|
+      columns.collect do |column|
+        "#{column} like '%#{token}%'"
+      end
+    end
+    conditions = conditions.flatten.join(" or ")
+    where(conditions)
+  end
+
   def to_param
     slug
   end

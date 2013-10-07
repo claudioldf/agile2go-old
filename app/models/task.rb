@@ -13,7 +13,20 @@ class Task < ActiveRecord::Base
   scope :names, select("distinct status").order('status desc')
   scope :ordered, order('created_at DESC')
 
-  def self.search(status)
+  def self.search(search)
+    return ordered unless search
+    columns = %w(status storie priority hours id).freeze
+    tokens = search.split(/\s+/)
+    conditions = tokens.collect do |token|
+      columns.collect do |column|
+        "#{column} like '%#{token}%'"
+      end
+    end
+    conditions = conditions.flatten.join(" or ")
+    where(conditions)
+  end
+
+  def self.search_by_status(status)
     return where('status like ?', '%todo%') unless status
     where('status like ?', "%" + status + "%")
   end

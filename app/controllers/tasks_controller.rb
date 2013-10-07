@@ -10,7 +10,11 @@ class TasksController < ApplicationController
   helper_method :sprints
 
   def index
-    @tasks = Task.search(params[:status]).paginate(page: params[:page], per_page: 12)
+    if params[:search]
+      @tasks = Task.search(params[:search]).paginate(page: params[:page], per_page: 12)
+    else
+      @tasks = Task.search_by_status(params[:status]).paginate(page: params[:page], per_page: 12)
+    end
     #if stale? @tasks.last
       respond_with(@tasks) do |format|
         format.csv { send_data @tasks.export }
