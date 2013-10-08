@@ -15,7 +15,7 @@ class Task < ActiveRecord::Base
 
   def self.search(search)
     return ordered unless search
-    columns = %w(status storie priority hours id).freeze
+    columns = %w(status storie hours id).freeze
     tokens = search.split(/\s+/)
     conditions = tokens.collect do |token|
       columns.collect do |column|
