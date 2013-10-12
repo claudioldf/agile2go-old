@@ -13,15 +13,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def update
-    if @user.update_attributes(user_params)
-      flash[:notice] = 'User updated.'
-    else
-      flash[:alert] = 'Unable to update user.'
-    end
-    respond_with @user
-  end
-
   def destroy
     @user.destroy
     flash[:notice] = 'User deleted.'
@@ -29,10 +20,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
 
   def find_user
     @user ||= User.find_by_slug(params[:id])

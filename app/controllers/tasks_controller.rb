@@ -10,18 +10,14 @@ class TasksController < ApplicationController
   helper_method :sprints
 
   def index
-    if params[:search]
-      @tasks = Task.search(params[:search]).paginate(page: params[:page], per_page: 12)
-    else
-      @tasks = Task.search_by_status(params[:status]).paginate(page: params[:page], per_page: 12)
-    end
-    #if stale? @tasks.last
+    define_tasks
+    if stale? @tasks.last
       respond_with(@tasks) do |format|
         format.csv { send_data @tasks.export }
         format.xls
         format.js
       end
-    #end
+    end
   end
 
   def create
@@ -46,6 +42,14 @@ class TasksController < ApplicationController
   end
 
   private
+
+  def define_tasks
+    if params[:search]
+      @tasks = Task.search(params[:search]).paginate(page: params[:page], per_page: 12)
+    else
+      @tasks = Task.search_by_status(params[:status]).paginate(page: params[:page], per_page: 12)
+    end
+  end
 
   def task_params
     params.require(:task).permit(:status, :storie, :priority, :hours, :sprint_id, user_ids: [])
