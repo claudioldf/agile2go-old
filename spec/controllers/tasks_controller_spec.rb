@@ -1,15 +1,15 @@
 require "spec_helper"
 
-describe TasksController, "#show" do
-  context "show task" do
+describe TasksController, "#edit" do
+  context "edit task" do
     before do
       task = Task.create(status: 'todo', storie: 'bla', priority: 1, sprint_id: 1)
       task.save!
-      get :show, id: task.id
+      get :edit, id: task.id
     end
 
     it { should respond_with(:success) }
-    it { should render_template(:show) }
+    it { should render_template(:edit) }
     it { should_not set_the_flash }
   end
 end
@@ -32,8 +32,8 @@ describe TasksController, "#new" do
       get :new
     end
 
-    it { should respond_with(302) }
-    it { should redirect_to(root_path) }
-    it { should_not set_the_flash.to('"You are not authorized to access this page.') }
+    it { should respond_with(:success) }
+    it { should render_template(:new) }
+    it { should_not set_the_flash }
   end
 end
