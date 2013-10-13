@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ProjectsController, "#index" do
+describe ProjectsController, "#when goes to index page" do
   context "it renders index project page" do
     before do
       get :index
@@ -12,7 +12,7 @@ describe ProjectsController, "#index" do
   end
 end
 
-describe ProjectsController, "#new" do
+describe ProjectsController, "#when goes to new page" do
   context "it renders new project page" do
     before do
       get :new

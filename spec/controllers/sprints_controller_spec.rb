@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe SprintsController, "#index" do
-  context "index sprint" do
+describe SprintsController, "#when goes to index page" do
+  context "renders index sprint page" do
     before do
       get :index
     end
@@ -12,8 +12,8 @@ describe SprintsController, "#index" do
   end
 end
 
-describe SprintsController, "#new" do
-  context "new sprint" do
+describe SprintsController, "# when goes to new page" do
+  context "renders new sprint page" do
     before do
       get :new
     end
