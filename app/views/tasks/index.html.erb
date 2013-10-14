@@ -37,4 +37,6 @@
   <%= render 'tasks/cards' %>
 </div>
 
-<%= will_paginate @tasks, renderer: WillPaginate::ActionView::LinkRenderer %>
+<% if @tasks.empty? %> 
+  <%=  will_paginate @tasks, renderer: WillPaginate::ActionView::LinkRenderer %>
+<% end %>

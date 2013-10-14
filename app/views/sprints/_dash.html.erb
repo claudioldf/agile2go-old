@@ -1,3 +1,7 @@
+<% if @sprints.empty? %>
+  <h2 class="muted">No Resuls Found</h2>
+<% end -%>
+
 <div class="row">
   <% @sprints.each do |sprint| %>
     <div class="span4">
