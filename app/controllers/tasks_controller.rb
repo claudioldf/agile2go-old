@@ -5,6 +5,8 @@ class TasksController < ApplicationController
   before_filter :users, only: [:new, :edit]
   before_filter :sprints, only: [:new, :edit]
   respond_to :html
+  respond_to :html, :json
+  respond_to :xls, :js, only: :index
   helper_method :task
   helper_method :users
   helper_method :sprints
@@ -14,8 +16,6 @@ class TasksController < ApplicationController
     if stale? @tasks.last
       respond_with(@tasks) do |format|
         format.csv { send_data @tasks.export }
-        format.xls
-        format.js
       end
     end
   end

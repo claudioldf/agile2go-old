@@ -2,14 +2,14 @@ class SprintsController < ApplicationController
 #  load_and_authorize_resource find_by: :slug, except: [:index]
   respond_to :html, :json
   helper_method :sprint
+  respond_to :html, :json
+  respond_to :xls, :js, only: :index
 
   def index
     @sprints = Sprint.search(params[:search])
     if stale? etag: @sprints.all, last_modified: @sprints.maximum(:updated_at)
       respond_with(@sprints) do |format|
         format.csv { send_data @sprints.export }
-        format.xls
-        format.js
       end
     end
   end
