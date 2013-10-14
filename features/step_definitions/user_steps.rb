@@ -23,17 +23,17 @@ end
 
 def sign_up      
   visit '/auth/sign_up'
-  fill_in "user_name", :with => @visitor.name
-  fill_in "user_email", :with => @visitor.email
-  fill_in "user_password", :with => @visitor.password
-  fill_in "user_password_confirmation", :with => @visitor.password_confirmation
+  fill_in "user_name", with: @visitor.name
+  fill_in "user_email", with: @visitor.email
+  fill_in "user_password", with: @visitor.password
+  fill_in "user_password_confirmation", with: @visitor.password_confirmation
   click_button "Sign up"    
 end
 
 def sign_in
   visit '/auth/sign_in'
-  fill_in "user_email", :with => @visitor.email
-  fill_in "user_password", :with => @visitor.password
+  fill_in "user_email", with: @visitor.email
+  fill_in "user_password", with: @visitor.password
   click_button "Sign in"
 end
 
@@ -102,8 +102,8 @@ end
 
 When /^I edit my account name$/ do
   click_link "Edit account"
-  fill_in "user_name", :with => "newname"
-  fill_in "user_current_password", :with => @visitor.password
+  fill_in "user_name", with: "newname"
+  fill_in "user_current_password", with: @visitor.password
   click_button "Update"
 end
 
@@ -111,9 +111,9 @@ When /^I change my password$/ do
   @current_password = @visitor.password
   @visitor = FactoryGirl.build(:user, password: 'newpassword', password_confirmation: 'newpassword')
   click_link "Edit account"  
-  fill_in "user_password", :with => @visitor.password
-  fill_in "user_password_confirmation", :with => @visitor.password_confirmation
-  fill_in "user_current_password", :with => @current_password
+  fill_in "user_password", with: @visitor.password
+  fill_in "user_password_confirmation", with: @visitor.password_confirmation
+  fill_in "user_current_password", with: @current_password
   click_button "Update"  
 end
 
