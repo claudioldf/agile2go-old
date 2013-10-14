@@ -23,7 +23,7 @@ describe Project, 'associations' do
   it { should accept_nested_attributes_for(:sprints).allow_destroy(true) }
 end
 
-describe Project, 'public methods' do
+describe Project, 'project public methods' do
   let(:p) { FactoryGirl.create(:project) }
 
   it 'generate slug' do
