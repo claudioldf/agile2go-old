@@ -17,9 +17,10 @@ class Sprint < ActiveRecord::Base
 
   def self.search(search)
     return ordered unless search
+    columns = %w(name daily_scrum goal)
     tokens = search.split(/\s+/)
     conditions = tokens.collect do |token|
-      columns_to(search).collect do |column|
+      columns.collect do |column|
         "#{column} like '%#{token}%'"
       end
     end
@@ -31,11 +32,11 @@ class Sprint < ActiveRecord::Base
     SprintExport.new(self, options).to_csv
   end
 
-  private
-
-  def self.columns_to(search)
-    /^\d{4}-\d{2}-\d{2}/.match(search).nil? ? %w(name daily_scrum goal start_date end_date) : %w(name daily_scrum goal)
+  def project_name
+    project.name
   end
+
+  private
 
   def generate_slug
     self.slug ||= param_name

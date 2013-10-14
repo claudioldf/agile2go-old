@@ -36,8 +36,8 @@ class Project < ActiveRecord::Base
     where(conditions)
   end
 
-  def generate_slug
-    self.slug ||= self.name.parameterize if self.name
+  def sprint_name
+    self.sprints.last.name unless self.sprints.empty?
   end
 
   def to_param
@@ -48,7 +48,9 @@ class Project < ActiveRecord::Base
     ProjectExport.new(self, options).to_csv
   end
 
-  def sprint_name
-    self.sprints.last.name unless self.sprints.empty?
+  private
+
+  def generate_slug
+    self.slug ||= self.name.parameterize if self.name
   end
 end
