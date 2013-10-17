@@ -29,27 +29,28 @@ describe Task, 'queries' do
 
   context 'scopes' do
     it 'return task ordered' do
-      expect(Task.ordered).to be_true
+      t.save!
+      expect(Task.ordered.size).to eq 1
     end
 
     it 'return all tasks by todo status' do
-     result =  Task.search_by_status('todo')
-     expect(result.size).to eq 1 
+     result =  Task.search_by_status(t.status)
+     expect(result.size).to eq 1
     end
 
     it 'return all tasks by done status' do
      done_task = FactoryGirl.create(:task, status: 'done')
      result =  Task.search_by_status(done_task.status)
-     expect(result.size).to eq 1 
+     expect(result.size).to eq 1
     end
   end
 
-   context 'full-text search' do    
+   context 'full-text search' do
     it 'search by id' do
-     result =  Task.search(s.id)
+     result =  Task.search(t.id)
      expect(result.size).to eq 1
     end
-    
+
     it 'search by non-existing value' do
       result = Task.search('non-existing')
       expect(result.size).to eq 0

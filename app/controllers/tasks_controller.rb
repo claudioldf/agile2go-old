@@ -4,7 +4,6 @@ class TasksController < ApplicationController
  # load_and_authorize_resource except: [:index]
   before_filter :users, only: [:new, :edit]
   before_filter :sprints, only: [:new, :edit]
-  respond_to :html
   respond_to :html, :json
   respond_to :xls, :js, only: :index
   helper_method :task

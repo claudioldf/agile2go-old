@@ -40,6 +40,12 @@ describe Project, 'queries' do
     it 'return project ordered' do
       expect(Project.ordered).to be_true
     end
+
+    it 'return quantity of tasks given a status' do
+      # p = FactoryGirl.create(:project)
+      # result = Project.qty_tasks('todo', p.name)
+      # expect(result.size).to eq 1
+    end
   end
 
   context 'full-text search' do
