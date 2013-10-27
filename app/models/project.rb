@@ -15,8 +15,6 @@ class Project < ActiveRecord::Base
   validates :description, presence: true
   validates :slug, presence: true
 
-  delegate :to_csv, to: :export
-
   scope :names, select(:name)
   scope :ordered, order(:name)
   scope :qty_tasks, ->(status, project_name) {
