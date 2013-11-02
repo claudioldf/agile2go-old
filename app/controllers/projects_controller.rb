@@ -7,6 +7,7 @@ class ProjectsController < ApplicationController
   respond_to :xls, :js, only: :index
 
   def index
+    params[:search] = 'todo' if params[:search].nil?
     @projects = Project.search(params[:search])
     if stale? etag: @projects.all, last_modified: @projects.maximum(:updated_at)
       respond_with @projects do |format|

@@ -1,6 +1,4 @@
-<% if @projects.empty? %>
-  <h2 class="muted">No Resuls Found</h2>
-<% end -%>
+<%= content_tag :h2, 'No Resuls Found', class: 'muted' if @tasks.empty? %>
 
 <div class="row">
   <% @projects.each do |project| %>

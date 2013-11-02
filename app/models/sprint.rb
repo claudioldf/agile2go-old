@@ -3,7 +3,7 @@ class Sprint < ActiveRecord::Base
   include Searchable
 
   DATE_REGEX = /^\d{4}-\d{2}-\d{2}/
-  COLUMNS = %w(name daily_scrum goal)
+  COLUMNS = %w(id name daily_scrum goal)
 
   before_validation :generate_slug
 

@@ -9,7 +9,7 @@ require 'csv'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test production)))
+  Bundler.require(*Rails.groups(assets: %w(development test production)))
   # If you want your assets lazily compiled in production, use this line
   # Bundler.require(:default, :assets, Rails.env)
 end
@@ -25,8 +25,8 @@ module Agile
       g.javascripts = false
       g.helper = false
     end
-    config.autoload_paths += %W(#{config.root}/lib)
-    config.autoload_paths += %W(#{config.root}/app/models/concerns)
+    config.autoload_paths += %W(#{config.root}/lib
+                                #{config.root}/app/models/concerns)
     config.encoding = "utf-8"
     config.filter_parameters += [:password, :password_confirmation]
     config.active_support.escape_html_entities_in_json = true

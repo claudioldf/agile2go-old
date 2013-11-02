@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
   include Searchable
 
-  COLUMNS = %w(name description company)
+  COLUMNS = %w(id name description company)
 
   before_validation :generate_slug
 
