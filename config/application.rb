@@ -26,6 +26,7 @@ module Agile
       g.helper = false
     end
     config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/app/models/concerns)
     config.encoding = "utf-8"
     config.filter_parameters += [:password, :password_confirmation]
     config.active_support.escape_html_entities_in_json = true

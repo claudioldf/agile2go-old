@@ -36,16 +36,20 @@ class User < ActiveRecord::Base
     slug
   end
 
-  def is_scrum_master
+  def master?
     self.has_role? :master
   end
 
-  def is_dev_team
+  def team?
     self.has_role? :team
   end
 
   def has_role
     self.roles.first.nil?
+  end
+
+  def role_name
+    self.roles.first.name.titleize
   end
 
   def name_and_email

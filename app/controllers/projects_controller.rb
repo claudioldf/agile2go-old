@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-#  load_and_authorize_resource find_by: :slug, except: [:index]
+#  load_and_authorize_resource find_by: :slug, except [:index]
   before_filter :users, only: [:new, :edit]
   helper_method :project
   helper_method :users

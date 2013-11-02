@@ -1,7 +1,9 @@
 class Sprint < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
+  include Searchable
 
   DATE_REGEX = /^\d{4}-\d{2}-\d{2}/
+  COLUMNS = %w(name daily_scrum goal)
 
   before_validation :generate_slug
 
@@ -14,19 +16,6 @@ class Sprint < ActiveRecord::Base
   validates :project_id, presence: true
 
   scope :ordered, order(:name)
-
-  def self.search(search)
-    return ordered unless search
-    columns = %w(name daily_scrum goal)
-    tokens = search.split(/\s+/)
-    conditions = tokens.collect do |token|
-      columns.collect do |column|
-        "#{column} like '%#{token}%'"
-      end
-    end
-    conditions = conditions.flatten.join(" or ")
-    where(conditions)
-  end
 
   def self.export(options = {})
     SprintExport.new(self, options).to_csv

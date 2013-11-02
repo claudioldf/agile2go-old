@@ -1,5 +1,8 @@
 class Project < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
+  include Searchable
+
+  COLUMNS = %w(name description company)
 
   before_validation :generate_slug
 
@@ -22,19 +25,6 @@ class Project < ActiveRecord::Base
                                      joins(:sprints, :tasks).
                                      where("tasks.status = ? and projects.name = ?", status, project_name).
                                      group('tasks.status') }
-
-  def self.search(search)
-    return ordered unless search
-    columns = %w(name description company).freeze
-    tokens = search.split(/\s+/)
-    conditions = tokens.collect do |token|
-      columns.collect do |column|
-        "#{column} like '%#{token}%'"
-      end
-    end
-    conditions = conditions.flatten.join(" or ")
-    where(conditions)
-  end
 
   def sprint_name
     self.sprints.last.name unless self.sprints.empty?

@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
+
   STATUSES = %w(todo ongoing test done).freeze
 
   has_many :users
